@@ -7,51 +7,36 @@ import Lucide from "@/components/Base/Lucide";
 import clsx from "clsx";
 import _ from "lodash";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
-import React, { useState } from 'react';
-import { useAuth } from '../../AuthenticationContext';
-import { TOTPVerifyOpt, totp } from 'notp';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import QRCode from 'qrcode.react';
+import { truncate } from "fs";
 
 function Main() {
 
-  const { login } = useAuth();
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showQrCode, setShowQrCode] = useState(false);
   const [otp, setOtp] = useState('');
-  const [showOTPInput, setShowOTPInput] = useState(false);
+  const [secret, setSecret] = useState('');
+  const [error, setError] = useState('');
+  const [qrCode, setQrCode] = useState('');
 
-  function verifyTOTP(token: string, key: string, otp: string): boolean {
-    // Define verification options
-    const options: TOTPVerifyOpt = {
-      window: 1 // Optional: Number of time steps that are checked before and after the current time step (default: 1)
-    };
-  
-    // Verify the TOTP token
-    const result = totp.verify(token, key, options);
-  
-    // Check if the TOTP token is valid
-    return result !== null && result.delta === 0;
-  }
-  
-  // Example usage:
-  const secret = 'Tug8Q~0G6l5YY2S1mzU3e0KiMJaiF.uTBEmkVaBj'; // Replace with the actual secret key shared with the Authenticator app
-  const userEnteredToken = otp; // Replace with the TOTP token entered by the user
-  const isTokenValid = verifyTOTP(userEnteredToken, secret, userEnteredToken);
-  
-  if (isTokenValid) {
-    console.log('TOTP token is valid.');
-    // Proceed with authentication
-  } else {
-    console.log('TOTP token is invalid.');
-    // Handle invalid token
-  }
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/api/generate-secret/')
+      .then(response => {
+        console.log(response)
+        setSecret(response.data.secret);
+        setQrCode(`otpauth://totp/YourAppName?secret=${response.data.secret}`);
+      })
+      .catch(err => console.error(err));
+  }, []);
 
- const handleLogin = async () => {
+  const handleLogin = async () => {
     try {
-      // Send email and password for authentication
-      // Assuming your login function returns true if authentication is successful
-      const isAuthenticated = true; //await login(username, password);
-      if (isAuthenticated) {
-        setShowOTPInput(true); // Show OTP input if login is successful
+      if (1) {
+        setShowQrCode(true); // Show OTP input if login is successful
       } else {
         // Handle login failure
         console.error('Login failed. Please check your credentials.');
@@ -59,27 +44,22 @@ function Main() {
     } catch (error) {
       console.error('Error occurred:', error);
     }
- };
-  
- const handleOTPVerification = () => {
-  
-    const secret = 'Tug8Q~0G6l5YY2S1mzU3e0KiMJaiF.uTBEmkVaBj';
-    // Verify the OTP
-    const result = totpVerify({
-      secret: secret,
-      encoding: 'base32',
-      token: otp,
-    });
-    // Check if the OTP is valid
-    if (result && result.delta === 0) {
-      console.log('OTP is valid.');
-      // Proceed with authentication
-      login(username, password, otp); // Pass OTP to login function
-    } else {
-      console.log('OTP is invalid.');
-      // Handle invalid OTP
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post('http://localhost:8000/api/verify-otp/', { token: otp, secret });
+      if (response.data.success) {
+        // Handle successful verification
+        console.log('OTP Verified');
+      }
+    } catch (error) {
+      setError('Invalid OTP. Please try again.');
     }
-};
+  };
+
 
 
   return (
@@ -102,15 +82,16 @@ function Main() {
               </div>
             </div>
 
-            {showOTPInput ? (
+            {showQrCode ? (
               <div>
+                 {qrCode && <QRCode value={qrCode} />}
                 <input
                   type="text"
                   placeholder="Enter OTP from Microsoft Authenticator"
                   value={otp}
                   onChange={(e) => setOtp(e.target.value)}
                 />
-                <button onClick={handleOTPVerification}>Verify OTP</button>
+                <button onClick={handleSubmit}>Verify OTP</button>
               </div>
             ) : (
               <div className="mt-10">
