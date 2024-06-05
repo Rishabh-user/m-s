@@ -23,20 +23,22 @@ function Main() {
   const [error, setError] = useState('');
   const [qrCode, setQrCode] = useState('');
 
-  useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/generate-secret/')
-      .then(response => {
-        console.log(response)
-        setSecret(response.data.secret);
-        setQrCode(`otpauth://totp/YourAppName?secret=${response.data.secret}`);
-      })
-      .catch(err => console.error(err));
-  }, []);
+  
 
   const handleLogin = async () => {
     try {
       if (1) {
-        setShowQrCode(true); // Show OTP input if login is successful
+        axios.get('http://127.0.0.1:8000/api/generate-secret/')
+        .then(response => {
+          console.log(response)
+          setSecret(response.data.secret);
+          setQrCode(`otpauth://totp/MNS?secret=${secret}&issuer=${username}`);
+        })
+          .catch(err => console.error(err));
+       
+          setShowQrCode(true); // Show OTP input if login is successful
+        
+        
       } else {
         // Handle login failure
         console.error('Login failed. Please check your credentials.');
@@ -50,7 +52,7 @@ function Main() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8000/api/verify-otp/', { token: otp, secret });
+      const response = await axios.post('http://localhost:8000/api/verify-microsoftotp/', { token: otp, secret: secret });
       if (response.data.success) {
         // Handle successful verification
         console.log('OTP Verified');
