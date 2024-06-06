@@ -20,7 +20,7 @@ const initialState: SideMenuState = {
     "DASHBOARDS",
     {
       icon: "GaugeCircle",
-      pathname: "/dashboard",
+      pathname: "/",
       title: "E-Commerce",
     },
     // {
