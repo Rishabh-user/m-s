@@ -11,10 +11,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import QRCode from 'qrcode.react';
 import { truncate } from "fs";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 function Main() {
 
 
+  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showQrCode, setShowQrCode] = useState(false);
@@ -27,18 +29,12 @@ function Main() {
 
   const handleLogin = async () => {
     try {
-      if (1) {
-        axios.get('http://127.0.0.1:8000/api/generate-secret/')
-        .then(response => {
-          console.log(response)
-          setSecret(response.data.secret);
-          setQrCode(`otpauth://totp/MNS?secret=${secret}&issuer=${username}`);
-        })
-          .catch(err => console.error(err));
-       
-          setShowQrCode(true); // Show OTP input if login is successful
-        
-        
+      if (1) { // Replace with actual login check condition
+        const response = await axios.get('http://127.0.0.1:8000/api/generate-secret/');
+        const secret = response.data.secret;
+        setSecret(secret);
+        setQrCode(`otpauth://totp/MNS?secret=${secret}&issuer=${username}`);
+        setShowQrCode(true); // Show OTP input if login is successful
       } else {
         // Handle login failure
         console.error('Login failed. Please check your credentials.');
@@ -56,6 +52,7 @@ function Main() {
       if (response.data.success) {
         // Handle successful verification
         console.log('OTP Verified');
+        navigate("/");
       }
     } catch (error) {
       setError('Invalid OTP. Please try again.');
