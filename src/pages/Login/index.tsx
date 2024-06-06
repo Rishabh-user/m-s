@@ -30,7 +30,7 @@ function Main() {
   const handleLogin = async () => {
     try {
       if (1) { // Replace with actual login check condition
-        const response = await axios.get('http://127.0.0.1:8000/api/generate-secret/');
+        const response = await axios.get(`http://127.0.0.1:8000/api/generate-secret/?email=${username}`);
         const secret = response.data.secret;
         setSecret(secret);
         setQrCode(`otpauth://totp/MNS?secret=${secret}&issuer=${username}`);
