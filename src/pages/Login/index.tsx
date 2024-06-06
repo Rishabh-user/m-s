@@ -52,7 +52,7 @@ function Main() {
       if (response.data.success) {
         // Handle successful verification
         console.log('OTP Verified');
-        navigate("/");
+        navigate("/dashboard");
       }
     } catch (error) {
       setError('Invalid OTP. Please try again.');

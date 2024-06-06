@@ -494,7 +494,7 @@ function Main() {
                     </Menu.Item>
                     <Menu.Item
                       onClick={() => {
-                        navigate("login");
+                        navigate("/login");
                       }}
                     >
                       <Lucide icon="Power" className="w-4 h-4 mr-2" />
