@@ -1,3 +1,9 @@
+:root{
+    --border-color:#757575;
+    --white:#ffffff;
+    --green: #338239;
+    --black: #333333;
+}
 .landing-page {
     &__showcase {
         transition-property: transform, margin;
@@ -14,4 +20,15 @@
             transform: none;
         }
     }
+}
+p{color: var(--black);}
+.tns-outer{height: 100%;}
+.tns-ovh{ height: 100%;}
+.tns-inner { height: 100%;}
+input.border-color{border-color: var(--border-color);}
+.btn-primary{background-color:var(--green); color:var(--white)}
+.border-bottom {border-bottom: 1px solid #d9d9d9;}
+.tns-outer .tns-nav {margin-bottom: 0; bottom: 55px;}
+.tns-outer .tns-nav button.tns-nav-active {background-color: #D9D9D9;}
+.tns-outer .tns-nav button { width: 3rem; height: 0.35rem; background-color: #D9D9D926;   
 }
