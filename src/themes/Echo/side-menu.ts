@@ -38,7 +38,7 @@ const nestedMenu = (menu: Array<Menu | string>, location: Location) => {
   menu.forEach((item) => {
     if (typeof item !== "string") {
       const menuItem: FormattedMenu = {
-        icon: item.icon,
+        image: item.image,
         title: item.title,
         badge: item.badge,
         pathname: item.pathname,

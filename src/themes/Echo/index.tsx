@@ -1,7 +1,6 @@
 import "@/assets/css/vendors/simplebar.css";
 import "@/assets/css/themes/echo.css";
 import { Transition } from "react-transition-group";
-import Breadcrumb from "@/components/Base/Breadcrumb";
 import { useState, useEffect, createRef } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { selectSideMenu } from "@/stores/sideMenuSlice";
@@ -16,10 +15,9 @@ import users from "@/fakers/users";
 import clsx from "clsx";
 import SimpleBar from "simplebar";
 import { Menu } from "@/components/Base/Headless";
-import QuickSearch from "@/components/QuickSearch";
 import SwitchAccount from "@/components/SwitchAccount";
 import NotificationsPanel from "@/components/NotificationsPanel";
-import ActivitiesPanel from "@/components/ActivitiesPanel";
+import Logo from "../../assets/images/pages/logo.png"
 
 function Main() {
   const dispatch = useAppDispatch();
@@ -28,10 +26,8 @@ function Main() {
     localStorage.setItem("compactMenu", val.toString());
     dispatch(setCompactMenuStore(val));
   };
-  const [quickSearch, setQuickSearch] = useState(false);
   const [switchAccount, setSwitchAccount] = useState(false);
   const [notificationsPanel, setNotificationsPanel] = useState(false);
-  const [activitiesPanel, setActivitiesPanel] = useState(false);
   const [compactMenuOnHover, setCompactMenuOnHover] = useState(false);
   const [activeMobileMenu, setActiveMobileMenu] = useState(false);
   const location = useLocation();
@@ -53,13 +49,6 @@ function Main() {
   const compactLayout = () => {
     if (window.innerWidth <= 1600) {
       setCompactMenu(true);
-    }
-  };
-
-  const requestFullscreen = () => {
-    const el = document.documentElement;
-    if (el.requestFullscreen) {
-      el.requestFullscreen();
     }
   };
 
@@ -88,7 +77,7 @@ function Main() {
   return (
     <div
       className={clsx([
-        "echo group bg-gradient-to-b from-slate-200/70 to-slate-50 background relative min-h-screen",
+        "echo mns-main group bg-gradient-to-b from-slate-200/70 to-slate-50 background relative min-h-screen",
         "before:content-[''] before:h-[370px] before:w-screen before:bg-gradient-to-t before:from-theme-1/80 before:to-theme-2 [&.background--hidden]:before:opacity-0 before:transition-[opacity,height] before:ease-in-out before:duration-300 before:top-0 before:fixed",
         "after:content-[''] after:h-[370px] after:w-screen [&.background--hidden]:after:opacity-0 after:transition-[opacity,height] after:ease-in-out after:duration-300 after:top-0 after:fixed after:bg-texture-white after:bg-contain after:bg-fixed after:bg-[center_-13rem] after:bg-no-repeat",
         topBarActive && "background--hidden",
@@ -98,8 +87,8 @@ function Main() {
         className={clsx([
           "xl:ml-0 shadow-xl transition-[margin,padding] duration-300 xl:shadow-none fixed top-0 left-0 z-50 side-menu group inset-y-0 xl:py-3.5 xl:pl-3.5",
           "after:content-[''] after:fixed after:inset-0 after:bg-black/80 after:xl:hidden",
-          { "side-menu--collapsed": compactMenu },
-          { "side-menu--on-hover": compactMenuOnHover },
+          { "side-menu--collapsed": compactMenuOnHover },
+          { "side-menu--on-hover": compactMenu },
           { "ml-0 after:block": activeMobileMenu },
           { "-ml-[275px] after:hidden": !activeMobileMenu },
         ])}
@@ -124,41 +113,33 @@ function Main() {
         </div>
         <div
           className={clsx([
-            "h-full box bg-white/[0.95] rounded-none xl:rounded-xl z-20 relative w-[275px] duration-300 transition-[width] group-[.side-menu--collapsed]:xl:w-[91px] group-[.side-menu--collapsed.side-menu--on-hover]:xl:shadow-[6px_0_12px_-4px_#0000000f] group-[.side-menu--collapsed.side-menu--on-hover]:xl:w-[275px] overflow-hidden flex flex-col",
+            "h-full mt-5 box bg-white/[0.95] rounded-none xl:rounded-xl z-20 relative w-[275px] duration-300 transition-[width] group-[.side-menu--collapsed]:xl:w-[91px] group-[.side-menu--collapsed.side-menu--on-hover]:xl:shadow-[6px_0_12px_-4px_#0000000f] group-[.side-menu--collapsed.side-menu--on-hover]:xl:w-[275px] overflow-hidden flex flex-col",
           ])}
           onMouseOver={(event) => {
             event.preventDefault();
-            setCompactMenuOnHover(true);
+            setCompactMenuOnHover(false);
           }}
           onMouseLeave={(event) => {
             event.preventDefault();
-            setCompactMenuOnHover(false);
+            setCompactMenuOnHover(true);
           }}
         >
           <div
             className={clsx([
-              "flex-none hidden xl:flex items-center z-10 px-5 h-[65px] w-[275px] overflow-hidden relative duration-300 group-[.side-menu--collapsed]:xl:w-[91px] group-[.side-menu--collapsed.side-menu--on-hover]:xl:w-[275px]",
+              "flex-none hidden xl:flex items-center z-10 px-5 h-[90px] w-[275px] overflow-hidden relative duration-300 group-[.side-menu--collapsed]:xl:w-[91px] group-[.side-menu--collapsed.side-menu--on-hover]:xl:w-[275px]",
             ])}
           >
             <a
               href=""
               className="flex items-center transition-[margin] duration-300 group-[.side-menu--collapsed]:xl:ml-2 group-[.side-menu--collapsed.side-menu--on-hover]:xl:ml-0"
             >
-              <div className="flex items-center justify-center w-[34px] rounded-lg h-[34px] bg-gradient-to-b from-theme-1 to-theme-2/80 transition-transform ease-in-out group-[.side-menu--collapsed.side-menu--on-hover]:xl:-rotate-180">
-                <div className="w-[16px] h-[16px] relative -rotate-45 [&_div]:bg-white">
-                  <div className="absolute w-[21%] left-0 inset-y-0 my-auto rounded-full opacity-50 h-[75%]"></div>
-                  <div className="absolute w-[21%] inset-0 m-auto h-[120%] rounded-full"></div>
-                  <div className="absolute w-[21%] right-0 inset-y-0 my-auto rounded-full opacity-50 h-[75%]"></div>
-                </div>
-              </div>
-              <div className="ml-3.5 group-[.side-menu--collapsed.side-menu--on-hover]:xl:opacity-100 group-[.side-menu--collapsed]:xl:opacity-0 transition-opacity font-medium">
-                ECHO
-              </div>
+              <img src={Logo} alt="MNS" width={99} height={56} />
+              
             </a>
             <a
               href=""
               onClick={toggleCompactMenu}
-              className="hidden group-[.side-menu--collapsed.side-menu--on-hover]:xl:opacity-100 group-[.side-menu--collapsed]:xl:rotate-180 group-[.side-menu--collapsed]:xl:opacity-0 transition-[opacity,transform] 3xl:flex items-center justify-center w-[20px] h-[20px] ml-auto border rounded-full border-slate-600/40 hover:bg-slate-600/5"
+              className="group-[.side-menu--collapsed.side-menu--on-hover]:xl:opacity-100 group-[.side-menu--collapsed]:xl:rotate-180 group-[.side-menu--collapsed]:xl:opacity-0 transition-[opacity,transform] 3xl:flex items-center justify-center w-[20px] h-[20px] ml-auto border rounded-full border-slate-600/40 hover:bg-slate-600/5"
             >
               <Lucide icon="ArrowLeft" className="w-3.5 h-3.5 stroke-[1.3]" />
             </a>
@@ -195,10 +176,11 @@ function Main() {
                         setFormattedMenu([...formattedMenu]);
                       }}
                     >
-                      <Lucide
+                      {/* <Lucide
                         icon={menu.icon}
                         className="side-menu__link__icon"
-                      />
+                      /> */}
+                      <img src={menu.image} alt={menu.title} width={25} height={25} />
                       <div className="side-menu__link__title">{menu.title}</div>
                       {menu.badge && (
                         <div className="side-menu__link__badge">
@@ -245,10 +227,11 @@ function Main() {
                                   setFormattedMenu([...formattedMenu]);
                                 }}
                               >
-                                <Lucide
+                                {/* <Lucide
                                   icon={subMenu.icon}
                                   className="side-menu__link__icon"
-                                />
+                                /> */}
+                                <img src={menu.image} alt={menu.title} width={25} height={25} />
                                 <div className="side-menu__link__title">
                                   {subMenu.title}
                                 </div>
@@ -307,10 +290,11 @@ function Main() {
                                               ]);
                                             }}
                                           >
-                                            <Lucide
+                                            {/* <Lucide
                                               icon={lastSubMenu.icon}
                                               className="side-menu__link__icon"
-                                            />
+                                            /> */}
+                                            <img src={menu.image} alt={menu.title} width={25} height={25} />
                                             <div className="side-menu__link__title">
                                               {lastSubMenu.title}
                                             </div>
@@ -345,7 +329,8 @@ function Main() {
             className={clsx([
               "top-bar absolute left-0 xl:left-3.5 right-0 h-full mx-5 group",
               "before:content-[''] before:absolute before:top-0 before:inset-x-0 before:-mt-[15px] before:h-[20px] before:backdrop-blur",
-              topBarActive && "top-bar--active",
+              topBarActive 
+              //&& "top-bar--active",
             ])}
           >
             <div
@@ -355,7 +340,7 @@ function Main() {
                 group-[.top-bar--active]:bg-transparent group-[.top-bar--active]:border-transparent group-[.top-bar--active]:bg-gradient-to-r group-[.top-bar--active]:from-theme-1 group-[.top-bar--active]:to-theme-2
               "
             >
-              <div className="flex items-center gap-1 xl:hidden">
+             <div className="flex items-center gap-1 xl:hidden">
                 <a
                   href=""
                   onClick={(event) => {
@@ -366,80 +351,21 @@ function Main() {
                 >
                   <Lucide icon="AlignJustify" className="w-[18px] h-[18px]" />
                 </a>
-                <a
-                  href=""
-                  className="p-2 text-white rounded-full hover:bg-white/5"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setQuickSearch(true);
-                  }}
-                >
-                  <Lucide icon="Search" className="w-[18px] h-[18px]" />
-                </a>
+                
               </div>
-              {/* BEGIN: Breadcrumb */}
-              <Breadcrumb light className="flex-1 hidden xl:block">
-                <Breadcrumb.Link to="/">App</Breadcrumb.Link>
-                <Breadcrumb.Link to="/">Dashboards</Breadcrumb.Link>
-                <Breadcrumb.Link to="/" active={true}>
-                  Analytics
-                </Breadcrumb.Link>
-              </Breadcrumb>
-              {/* END: Breadcrumb */}
-              {/* BEGIN: Search */}
-              <div
-                className="relative justify-center flex-1 hidden xl:flex"
-                onClick={() => setQuickSearch(true)}
-              >
-                <div className="bg-white/[0.12] border-transparent border w-[350px] flex items-center py-2 px-3.5 rounded-[0.5rem] text-white/60 cursor-pointer hover:bg-white/[0.15] transition-colors duration-300 hover:duration-100">
-                  <Lucide icon="Search" className="w-[18px] h-[18px]" />
-                  <div className="ml-2.5 mr-auto">Quick search...</div>
-                  <div>⌘K</div>
-                </div>
-              </div>
-              <QuickSearch
-                quickSearch={quickSearch}
-                setQuickSearch={setQuickSearch}
-              />
-              {/* END: Search */}
+              <div>qwerty</div>
               {/* BEGIN: Notification & User Menu */}
               <div className="flex items-center flex-1">
-                <div className="flex items-center gap-1 ml-auto">
+                <div className="flex items-center gap-1 ml-auto">                 
                   <a
                     href=""
-                    className="p-2 text-white rounded-full hover:bg-white/5"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setActivitiesPanel(true);
-                    }}
-                  >
-                    <Lucide icon="LayoutGrid" className="w-[18px] h-[18px]" />
-                  </a>
-                  {/* <a
-                    href=""
-                    className="p-2 text-white rounded-full hover:bg-white/5"
-                  >
-                    <Lucide icon="Moon" className="w-[18px] h-[18px]" />
-                  </a> */}
-                  <a
-                    href=""
-                    className="p-2 text-white rounded-full hover:bg-white/5"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      requestFullscreen();
-                    }}
-                  >
-                    <Lucide icon="Expand" className="w-[18px] h-[18px]" />
-                  </a>
-                  <a
-                    href=""
-                    className="p-2 text-white rounded-full hover:bg-white/5"
+                    className="p-2 text-white rounded-full font-bold hover:bg-white/5"
                     onClick={(e) => {
                       e.preventDefault();
                       setNotificationsPanel(true);
                     }}
                   >
-                    <Lucide icon="Bell" className="w-[18px] h-[18px]" />
+                    <Lucide icon="Bell" className="w-[25px] h-[25px] font-bold" />
                   </a>
                 </div>
                 <Menu className="ml-5">
@@ -451,43 +377,9 @@ function Main() {
                   </Menu.Button>
                   <Menu.Items className="w-56 mt-1">
                     <Menu.Item
-                      onClick={() => {
-                        setSwitchAccount(true);
-                      }}
-                    >
-                      <Lucide icon="ToggleLeft" className="w-4 h-4 mr-2" />
-                      Switch Account
-                    </Menu.Item>
-                    <Menu.Divider />
-                    <Menu.Item
-                      onClick={() => {
-                        navigate("settings?page=connected-services");
-                      }}
-                    >
-                      <Lucide icon="Settings" className="w-4 h-4 mr-2" />
-                      Connected Services
-                    </Menu.Item>
-                    <Menu.Item
-                      onClick={() => {
-                        navigate("settings?page=email-settings");
-                      }}
-                    >
-                      <Lucide icon="Inbox" className="w-4 h-4 mr-2" />
-                      Email Settings
-                    </Menu.Item>
-                    <Menu.Item
-                      onClick={() => {
-                        navigate("settings?page=security");
-                      }}
-                    >
-                      <Lucide icon="Lock" className="w-4 h-4 mr-2" />
-                      Reset Password
-                    </Menu.Item>
-                    <Menu.Divider />
-                    <Menu.Item
-                      onClick={() => {
-                        navigate("settings");
-                      }}
+                      // onClick={() => {
+                      //   navigate("settings");
+                      // }}
                     >
                       <Lucide icon="Users" className="w-4 h-4 mr-2" />
                       Profile Info
@@ -503,10 +395,7 @@ function Main() {
                   </Menu.Items>
                 </Menu>
               </div>
-              <ActivitiesPanel
-                activitiesPanel={activitiesPanel}
-                setActivitiesPanel={setActivitiesPanel}
-              />
+            
               <NotificationsPanel
                 notificationsPanel={notificationsPanel}
                 setNotificationsPanel={setNotificationsPanel}
@@ -523,8 +412,8 @@ function Main() {
       <div
         className={clsx([
           "transition-[margin,width] duration-100 xl:pl-3.5 pt-[54px] pb-16 relative z-10 group mode",
-          { "xl:ml-[275px]": !compactMenu },
-          { "xl:ml-[91px]": compactMenu },
+          { "xl:ml-[275px]": compactMenu },
+          { "xl:ml-[91px]": !compactMenu },
           { "mode--light": !topBarActive },
         ])}
       >
