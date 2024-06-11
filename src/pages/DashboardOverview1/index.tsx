@@ -1,18 +1,9 @@
 import Lucide from "@/components/Base/Lucide";
 import { Menu } from "@/components/Base/Headless";
-import TinySlider, { TinySliderElement } from "@/components/Base/TinySlider";
 import { getColor } from "@/utils/colors";
 import ReportLineChart from "@/components/ReportLineChart";
 import ReportDonutChart3 from "@/components/ReportDonutChart3";
-import Pagination from "@/components/Base/Pagination";
-import { FormSelect } from "@/components/Base/Form";
-import Tippy from "@/components/Base/Tippy";
-import transactions from "@/fakers/transactions";
-import Button from "@/components/Base/Button";
-import Litepicker from "@/components/Base/Litepicker";
-import Table from "@/components/Base/Table";
-import { useState, useRef } from "react";
-import clsx from "clsx";
+
 import _ from "lodash";
 import Breadcrumb from "@/components/Base/Breadcrumb";
 import MNSPortal from '../../assets/images/icons/ms-portal.png';
@@ -30,21 +21,13 @@ import RetailCloud from '../../assets/images/icons/Retail.png'
 import SAP from '../../assets/images/icons/SAP.png'
 
 function Main() {
-  const [generalReportFilter, setGeneralReportFilter] = useState<string>();
-  const sliderRef = useRef<TinySliderElement>();
-  const prevImportantNotes = () => {
-    sliderRef.current?.tns.goTo("prev");
-  };
-  const nextImportantNotes = () => {
-    sliderRef.current?.tns.goTo("next");
-  };
-
+  
   return (
     <div className="grid grid-cols-12 gap-y-10 gap-x-6  mt-15">
       <div className="col-span-12">        
         {/* BEGIN: Breadcrumb */}
         <Breadcrumb className="flex-1 hidden xl:block">
-          <Breadcrumb.Link to="/">Dashboards</Breadcrumb.Link>
+          <Breadcrumb.Link to="/" className="text-white">Dashboards</Breadcrumb.Link>
         </Breadcrumb>
         {/* END: Breadcrumb */}
         <div className="grid grid-cols-12 gap-5 mt-3.5">          

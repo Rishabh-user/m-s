@@ -5,7 +5,7 @@ html {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         font-family: theme("fontFamily.public-sans");
-        color: theme("colors.slate.600");
+      
         line-height: theme("lineHeight.5");
     }
 }

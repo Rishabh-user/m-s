@@ -21,14 +21,19 @@
         }
     }
 }
+body{color: var(--black);}
 p{color: var(--black);}
+h3{font-size: 1.3rem !important;}
 .mt-15{margin-top: 8rem;}
 .tns-outer{height: 100%;}
 .tns-ovh{ height: 100%;}
 .tns-inner { height: 100%;}
+.border{border-color: (var(--border-color));}
+.bg-black{background-color: #000;}
 input.border-color{border-color: var(--border-color);}
 .btn-primary{background-color:var(--green); color:var(--white)}
 .border-bottom {border-bottom: 1px solid #d9d9d9;}
+.border-left{border-left: 1px solid #eee;}
 .tns-outer .tns-nav {margin-bottom: 0; bottom: 55px;}
 .tns-outer .tns-nav button.tns-nav-active {background-color: #D9D9D9;}
 .tns-outer .tns-nav button { width: 3rem; height: 0.35rem; background-color: #D9D9D926;   
@@ -42,3 +47,7 @@ background-position: top;}
 .external-app .box-img3{border: 1px solid #D42B04;background-color: hsla(11, 96%, 42%, 0.1);}
 .external-app .box-img4{border: 1px solid #6CAB41;background-color: hsla(96, 45%, 46%, 0.1);}
 .external-app .box-img5{border: 1px solid #1B751E;background-color: hsla(123, 79%, 22%, 0.1);}
+.colored-box{padding: 2rem .5rem;text-align: center;border-radius: .5rem;margin-top: 2rem;}
+.account-upgrade{background-color: #1D8287;}
+.colored-box h3{font-size: 26px;margin-bottom: .5rem;}
+.gift-voucher{background-color: #5B7B50;}

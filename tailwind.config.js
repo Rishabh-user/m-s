@@ -35,6 +35,7 @@ module.exports = {
         danger: "rgb(var(--color-danger) / <alpha-value>)",
         light: "rgb(var(--color-light) / <alpha-value>)",
         dark: "rgb(var(--color-dark) / <alpha-value>)",
+        purple: "rgb(--color-purple) /  <alpha-value>",
         darkmode: {
           50: "rgb(var(--color-darkmode-50) / <alpha-value>)",
           100: "rgb(var(--color-darkmode-100) / <alpha-value>)",
@@ -84,6 +85,7 @@ module.exports = {
           "--color-danger": toRGB(colors.red["700"]),
           "--color-light": toRGB(colors.slate["100"]),
           "--color-dark": toRGB(colors.slate["800"]),
+          "--color-purple" : toRGB("#E578B9")
         },
         // Default dark-mode colors
         ".dark": {

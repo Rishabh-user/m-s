@@ -61,6 +61,8 @@ import ImageZoom from "../pages/ImageZoom";
 import LandingPage from "../pages/LandingPage";
 
 import Layout from "../themes";
+import StorePortal from '@/portals/store-portal'
+import LoyaltyCustomer from "@/portals/store-portal/loyalty-customer";
 
 
 function Router() {
@@ -74,8 +76,12 @@ function Router() {
           element: <DashboardOverview1 />,
         },
         {
-          path: "dashboard-overview-2",
-          element: <DashboardOverview2 />,
+          path: "store-portal",
+          element: <StorePortal />,
+        },
+        {
+          path: "loyalty-customer",
+          element: <LoyaltyCustomer />,
         },
         {
           path: "dashboard-overview-3",

@@ -20,15 +20,14 @@ function Main({ width = "auto", height = "auto", className = "" }: MainProps) {
   const colorScheme = useAppSelector(selectColorScheme);
   const darkMode = useAppSelector(selectDarkMode);
 
-  const chartData = [15, 10, 65];
+  const chartData = [20, 65];
   const chartColors = () => [
-    getColor("pending", 0.9),
+    getColor("danger", 0.9),
     getColor("warning", 0.9),
-    getColor("primary", 0.9),
   ];
   const data: ChartData = useMemo(() => {
     return {
-      labels: ["Yellow", "Dark"],
+      //labels: ["Yellow", "Dark"],
       datasets: [
         {
           data: chartData,
