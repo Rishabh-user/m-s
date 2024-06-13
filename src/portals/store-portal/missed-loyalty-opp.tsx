@@ -7,7 +7,7 @@ import Table from "@/components/Base/Table";
 import _ from "lodash";
 import { Menu } from "@/components/Base/Headless";
 
-function LoyaltyEnrollment() {
+function MissedLoyaltyOpportunity() {
 
   return (
     <div className="grid grid-cols-12 gap-y-10 gap-x-6  mt-15">
@@ -181,4 +181,4 @@ function LoyaltyEnrollment() {
   );
 }
 
-export default LoyaltyEnrollment;
+export default MissedLoyaltyOpportunity;

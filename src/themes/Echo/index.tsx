@@ -3,7 +3,7 @@ import "@/assets/css/themes/echo.css";
 import { Transition } from "react-transition-group";
 import { useState, useEffect, createRef } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { selectSideMenu } from "@/stores/sideMenuSlice";
+import { selectSideMenu, selectStoreMenu } from "@/stores/sideMenuSlice";
 import {
   selectCompactMenu,
   setCompactMenu as setCompactMenuStore,
@@ -36,7 +36,8 @@ function Main() {
     Array<FormattedMenu | string>
   >([]);
   const sideMenuStore = useAppSelector(selectSideMenu);
-  const sideMenu = () => nestedMenu(sideMenuStore, location);
+  const storeMenuportal = useAppSelector(selectStoreMenu);
+  //const sideMenu = () => nestedMenu(sideMenuStore, location);
   const scrollableRef = createRef<HTMLDivElement>();
 
   const [topBarActive, setTopBarActive] = useState(false);
@@ -57,13 +58,18 @@ function Main() {
       new SimpleBar(scrollableRef.current);
     }
 
-    setFormattedMenu(sideMenu());
+    //setFormattedMenu(sideMenu());
+    const formattedMenu = location.pathname.startsWith("/store-portal")
+      ? nestedMenu(storeMenuportal, location)
+      : nestedMenu(sideMenuStore, location);
+      setFormattedMenu(formattedMenu);
+
     compactLayout();
 
     window.onresize = () => {
       compactLayout();
     };
-  }, [sideMenuStore, location]);
+  }, [sideMenuStore,storeMenuportal, location]);
 
   window.onscroll = () => {
     // Topbar
@@ -127,7 +133,7 @@ function Main() {
         >
           <div
             className={clsx([
-              "flex-none hidden xl:flex items-center z-10 px-5 h-[90px] w-[275px] overflow-hidden relative duration-300 group-[.side-menu--collapsed]:xl:w-[91px] group-[.side-menu--collapsed.side-menu--on-hover]:xl:w-[275px]",
+              "relative flex-none hidden xl:flex items-center justify-center z-10 px-5 h-[90px] w-[275px] overflow-hidden relative duration-300 group-[.side-menu--collapsed]:xl:w-[91px] group-[.side-menu--collapsed.side-menu--on-hover]:xl:w-[275px]",
             ])}
           >
             <a
@@ -140,9 +146,9 @@ function Main() {
             <a
               href=""
               onClick={toggleCompactMenu}
-              className="group-[.side-menu--collapsed.side-menu--on-hover]:xl:opacity-100 group-[.side-menu--collapsed]:xl:rotate-180 group-[.side-menu--collapsed]:xl:opacity-0 transition-[opacity,transform] 3xl:flex items-center justify-center w-[20px] h-[20px] ml-auto border rounded-full border-slate-600/40 hover:bg-slate-600/5"
+              className="absolute top-4 right-4 group-[.side-menu--collapsed.side-menu--on-hover]:xl:opacity-100  group-[.side-menu--collapsed]:xl:opacity-0 transition-[opacity,transform] 3xl:flex items-center justify-center w-[20px] h-[20px] ml-auto"
             >
-              <Lucide icon="ArrowLeft" className="w-3.5 h-3.5 stroke-[1.3]" />
+              <Lucide icon="AlignJustify" className="w-4 h-4 stroke-[1.3] " />
             </a>
           </div>
           <div
@@ -325,13 +331,13 @@ function Main() {
             </ul>
           </div>
         </div>
-        <div className="fixed h-[65px] transition-[margin] duration-100 xl:ml-[275px] group-[.side-menu--collapsed]:xl:ml-[90px] mt-3.5 inset-x-0 top-0">
+        <div className="fixed h-[65px] transition-[margin] duration-100 xl:ml-[275px] group-[.side-menu--collapsed]:xl:ml-[91px] mt-3.5 inset-x-0 top-0">
           <div
             className={clsx([
               "top-bar absolute left-0 xl:left-3.5 right-0 h-full mx-5 group",
               "before:content-[''] before:absolute before:top-0 before:inset-x-0 before:-mt-[15px] before:h-[20px] before:backdrop-blur",
               topBarActive 
-              //&& "top-bar--active",
+              && "top-bar--active",
             ])}
           >
             <div

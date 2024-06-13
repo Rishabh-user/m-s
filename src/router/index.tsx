@@ -63,7 +63,8 @@ import LandingPage from "../pages/LandingPage";
 import Layout from "../themes";
 import StorePortal from '@/portals/store-portal'
 import LoyaltyCustomer from "@/portals/store-portal/loyalty-customer";
-
+import LoyaltyEnrollment from "@/portals/store-portal/loyalty-enrollment";
+import MissedLoyaltyOpportunity from "@/portals/store-portal/missed-loyalty-opp";
 
 function Router() {
   const routes = [
@@ -80,8 +81,16 @@ function Router() {
           element: <StorePortal />,
         },
         {
-          path: "loyalty-customer",
+          path: "store-portal/loyalty-customer",
           element: <LoyaltyCustomer />,
+        },
+        {
+          path: "store-portal/loyalty-enrollment",
+          element: <LoyaltyEnrollment />,
+        },
+        {
+          path: "store-portal/missed-loyalty",
+          element: <MissedLoyaltyOpportunity />,
         },
         {
           path: "dashboard-overview-3",
