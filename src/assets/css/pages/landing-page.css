@@ -3,6 +3,8 @@
     --white:#ffffff;
     --green: #338239;
     --black: #333333;
+    --blue: #2B78C1;
+    --red: #CE171B;
 }
 .landing-page {
     &__showcase {
@@ -21,7 +23,7 @@
         }
     }
 }
-body{color: var(--black);}
+body{color: var(--black);font-size: 1rem;}
 p{color: var(--black);}
 h3{font-size: 1.3rem !important;}
 .mt-15{margin-top: 8rem;}
@@ -31,7 +33,7 @@ h3{font-size: 1.3rem !important;}
 .border{border-color: (var(--border-color));}
 .bg-black{background-color: #000;}
 input.border-color{border-color: var(--border-color);}
-.btn-primary{background-color:var(--green); color:var(--white)}
+.btn-primary{background-color:var(--green); color:var(--white); padding: 1rem;border-radius: .5rem;text-align: center;}
 .border-bottom {border-bottom: 1px solid #d9d9d9;}
 .border-left{border-left: 1px solid #eee;}
 .tns-outer .tns-nav {margin-bottom: 0; bottom: 55px;}
@@ -51,3 +53,14 @@ background-position: top;}
 .account-upgrade{background-color: #1D8287;}
 .colored-box h3{font-size: 26px;margin-bottom: .5rem;}
 .gift-voucher{background-color: #5B7B50;}
+.pagination { display: flex; justify-content: center; margin-top: 20px;}
+.page-number { margin: 0 5px; padding: 5px 10px; border: 1px solid #ccc; cursor: pointer;}
+.page-number.active { background-color: #000; color: #fff;}
+.box-sales{border-radius: 6px; padding: 2.5rem 1.5rem;color: var(--white); text-align: center;}
+.north, .north-sales .btn{background-color: var(--green);}
+.south, .south-sales .btn{background-color: var(--blue);}
+.west, .west-sales .btn{background-color: var(--red);}
+.box-sales h4{font-size: 1.3rem;margin-bottom: 1rem;}
+.box-sales .sales-value{font-size: 1.6rem;}
+.side-menu--on-hover .margin-adjust{ margin-right: 1rem;}
+.side-menu--on-hover .margin-adjust .fixed.xl\:ml-\[275px\]{ margin-left: 90px;}

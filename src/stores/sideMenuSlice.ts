@@ -178,23 +178,23 @@ const initialState: SideMenuState = {
         title: "Reports",
         subMenu: [
           {
-            pathname: "store-portal/loyalty-enrollment",
+            pathname: "/store-portal/loyalty-enrollment",
             title: "Loyalty Enrollment",
           },
           {
-            pathname: "store-portal/missed-loyalty",
+            pathname: "/store-portal/missed-loyalty",
             title: "Missed Loyalty Opp",
           },
           {
-            pathname: "store-portal/loyalty-customer",
+            pathname: "/store-portal",
             title: "Active Promotions",
           },
           {
-            pathname: "/loyalty-customer",
+            pathname: "/store-portal/transaction-summery",
             title: "Transaction Summary",
           },
           {
-            pathname: "/loyalty-customer",
+            pathname: "/store-portal/one-piece-transaction-summery",
             title: "One Pieces Transaction",
           },          
         ],
@@ -204,11 +204,11 @@ const initialState: SideMenuState = {
         title: "Sales Tracker",
         subMenu: [
           {
-            pathname: "/loyalty-customer",
+            pathname: "/store-portal/sales-tracker-old-view",
             title: "Old View",
           },
           {
-            pathname: "/store-portal",
+            pathname: "store-portal/sales-tracker-new-view",
             title: "New View"
           }         
         ],

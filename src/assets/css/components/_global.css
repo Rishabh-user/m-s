@@ -1,7 +1,7 @@
 html {
     body {
         letter-spacing: theme("letterSpacing.wide");
-        font-size: theme("fontSize.sm");
+        /*font-size: theme("fontSize.sm");*/
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         font-family: theme("fontFamily.public-sans");

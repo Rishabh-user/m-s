@@ -1,12 +1,12 @@
 import { useRoutes } from "react-router-dom";
-import DashboardOverview1 from "../pages/DashboardOverview1";
-import DashboardOverview2 from "../pages/DashboardOverview2";
-import DashboardOverview3 from "../pages/DashboardOverview3";
-import DashboardOverview4 from "../pages/DashboardOverview4";
-import DashboardOverview5 from "../pages/DashboardOverview5";
-import DashboardOverview6 from "../pages/DashboardOverview6";
-import DashboardOverview7 from "../pages/DashboardOverview7";
-import DashboardOverview8 from "../pages/DashboardOverview8";
+import MainDashboard from "../pages/DashboardOverview1";
+// import DashboardOverview2 from "../pages/DashboardOverview2";
+// import DashboardOverview3 from "../pages/DashboardOverview3";
+// import DashboardOverview4 from "../pages/DashboardOverview4";
+// import DashboardOverview5 from "../pages/DashboardOverview5";
+// import DashboardOverview6 from "../pages/DashboardOverview6";
+// import DashboardOverview7 from "../pages/DashboardOverview7";
+// import DashboardOverview8 from "../pages/DashboardOverview8";
 import Users from "../pages/Users";
 import Departments from "../pages/Departments";
 import AddUser from "../pages/AddUser";
@@ -65,6 +65,10 @@ import StorePortal from '@/portals/store-portal'
 import LoyaltyCustomer from "@/portals/store-portal/loyalty-customer";
 import LoyaltyEnrollment from "@/portals/store-portal/loyalty-enrollment";
 import MissedLoyaltyOpportunity from "@/portals/store-portal/missed-loyalty-opp";
+import SalesTrackerOldView from "@/portals/store-portal/sales-tracker-old-view";
+import SalesTrackerNewView from "@/portals/store-portal/sales-tracker-new-view";
+import TransactionSummery from "@/portals/store-portal/transaction-summery";
+import OnePieceTransactionSummery from "@/portals/store-portal/one-piece-transaction-summery";
 
 function Router() {
   const routes = [
@@ -74,7 +78,7 @@ function Router() {
       children: [
         {
           path: "/",
-          element: <DashboardOverview1 />,
+          element: <MainDashboard />,
         },
         {
           path: "store-portal",
@@ -93,29 +97,45 @@ function Router() {
           element: <MissedLoyaltyOpportunity />,
         },
         {
-          path: "dashboard-overview-3",
-          element: <DashboardOverview3 />,
+          path: "store-portal/transaction-summery",
+          element: <TransactionSummery />,
         },
         {
-          path: "dashboard-overview-4",
-          element: <DashboardOverview4 />,
+          path: "store-portal/one-piece-transaction-summery",
+          element: <OnePieceTransactionSummery />,
         },
         {
-          path: "dashboard-overview-5",
-          element: <DashboardOverview5 />,
+          path: "store-portal/sales-tracker-old-view",
+          element: <SalesTrackerOldView />,
         },
         {
-          path: "dashboard-overview-6",
-          element: <DashboardOverview6 />,
+          path: "store-portal/sales-tracker-new-view",
+          element: <SalesTrackerNewView />,
         },
-        {
-          path: "dashboard-overview-7",
-          element: <DashboardOverview7 />,
-        },
-        {
-          path: "dashboard-overview-8",
-          element: <DashboardOverview8 />,
-        },
+        // {
+        //   path: "dashboard-overview-3",
+        //   element: <DashboardOverview3 />,
+        // },
+        // {
+        //   path: "dashboard-overview-4",
+        //   element: <DashboardOverview4 />,
+        // },
+        // {
+        //   path: "dashboard-overview-5",
+        //   element: <DashboardOverview5 />,
+        // },
+        // {
+        //   path: "dashboard-overview-6",
+        //   element: <DashboardOverview6 />,
+        // },
+        // {
+        //   path: "dashboard-overview-7",
+        //   element: <DashboardOverview7 />,
+        // },
+        // {
+        //   path: "dashboard-overview-8",
+        //   element: <DashboardOverview8 />,
+        // },
         {
           path: "users",
           element: <Users />,

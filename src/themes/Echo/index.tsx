@@ -331,7 +331,7 @@ function Main() {
             </ul>
           </div>
         </div>
-        <div className="fixed h-[65px] transition-[margin] duration-100 xl:ml-[275px] group-[.side-menu--collapsed]:xl:ml-[91px] mt-3.5 inset-x-0 top-0">
+        <div className="fixed h-[65px] transition-[margin] duration-100 xl:ml-[275px] group-[.side-menu--collapsed]:xl:ml-[90px] mt-3.5 inset-x-0 top-0">
           <div
             className={clsx([
               "top-bar absolute left-0 xl:left-3.5 right-0 h-full mx-5 group",
@@ -345,7 +345,7 @@ function Main() {
                 container flex items-center w-full h-full transition-[padding,background-color,border-color] ease-in-out duration-300 box bg-transparent border-transparent shadow-none 
                 group-[.top-bar--active]:box group-[.top-bar--active]:px-5
                 group-[.top-bar--active]:bg-transparent group-[.top-bar--active]:border-transparent group-[.top-bar--active]:bg-gradient-to-r group-[.top-bar--active]:from-theme-1 group-[.top-bar--active]:to-theme-2
-              "
+              margin-adjust"
             >
              <div className="flex items-center gap-1 xl:hidden">
                 <a
