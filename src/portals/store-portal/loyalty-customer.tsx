@@ -228,44 +228,30 @@ function LoyaltyCustomer() {
                     <h3>Loyalty Account Running Balance</h3>
                 </div>
                 <div className="p-5 mt-2.5 flex flex-col gap-5">
-                    <div className="overflow-auto xl:overflow-visible">
+                    <div className="overflow-x-auto">
                     <Table className="border-b border-dashed border-slate-200/80">
-                        <Table.Thead>
+                        <Table.Thead className="bg-black">
                         <Table.Tr>
-                            <Table.Td className="px-0 py-0 [&_div]:first:border-l [&_div]:last:border-r [&_div]:first:rounded-l-md [&_div]:last:rounded-r-md border-b-0">
-                                <div className="px-5 py-4 font-medium bg-black text-white">
-                                    Receipt No
-                                </div>
+                            <Table.Td className="whitespace-nowrap text-white">
+                                Receipt No
                             </Table.Td>
-                            <Table.Td className="px-0 py-0 [&_div]:first:border-l [&_div]:last:border-r [&_div]:first:rounded-l-md [&_div]:last:rounded-r-md border-b-0">
-                                <div className="px-5 py-4 font-medium bg-black text-white">
-                                    Transaction Date Time
-                                </div>
+                            <Table.Td  className="whitespace-nowrap text-white">
+                                Transaction Date Time
                             </Table.Td>
-                            <Table.Td className="px-0 py-0 [&_div]:first:border-l [&_div]:last:border-r [&_div]:first:rounded-l-md [&_div]:last:rounded-r-md border-b-0">
-                                <div className="px-5 py-4 font-medium bg-black text-white">
-                                    Store Code
-                                </div>
+                            <Table.Td  className="whitespace-nowrap text-white">
+                                Store Code
                             </Table.Td>
-                            <Table.Td className="px-0 py-0 [&_div]:first:border-l [&_div]:last:border-r [&_div]:first:rounded-l-md [&_div]:last:rounded-r-md border-b-0">
-                                <div className="px-5 py-4 font-medium bg-black text-white">
-                                    Payment
-                                </div>
+                            <Table.Td  className="whitespace-nowrap text-white">
+                                Payment
                             </Table.Td>
-                            <Table.Td className="px-0 py-0 [&_div]:first:border-l [&_div]:last:border-r [&_div]:first:rounded-l-md [&_div]:last:rounded-r-md border-b-0">
-                                <div className="px-5 py-4 font-medium bg-black text-white">
-                                    Tier
-                                </div>
+                            <Table.Td  className="whitespace-nowrap text-white">
+                                Tier
                             </Table.Td>
-                            <Table.Td className="px-0 py-0 [&_div]:first:border-l [&_div]:last:border-r [&_div]:first:rounded-l-md [&_div]:last:rounded-r-md border-b-0">
-                                <div className="px-5 py-4 font-medium bg-black text-white">
-                                    Earned Points
-                                </div>
+                            <Table.Td  className="whitespace-nowrap text-white">
+                                Earned Points
                             </Table.Td>
-                            <Table.Td className="px-0 py-0 [&_div]:first:border-l [&_div]:last:border-r [&_div]:first:rounded-l-md [&_div]:last:rounded-r-md border-b-0">
-                                <div className="px-5 py-4 font-medium bg-black text-white">
-                                    Redeemed Points
-                                </div>
+                            <Table.Td  className="whitespace-nowrap text-white">
+                                Redeemed Points
                             </Table.Td>
                         </Table.Tr>
                         </Table.Thead>
@@ -374,54 +360,36 @@ function LoyaltyCustomer() {
                     <h3>Coupon Information</h3>
                 </div>
                 <div className="p-5 mt-2.5 flex flex-col gap-5">
-                    <div className="overflow-auto xl:overflow-visible">
+                    <div className="overflow-x-auto">
                     <Table className="border-b border-dashed border-slate-200/80">
-                        <Table.Thead>
+                        <Table.Thead className="bg-black">
                         <Table.Tr>
-                            <Table.Td className="px-0 py-0 [&_div]:first:border-l [&_div]:last:border-r [&_div]:first:rounded-l-md [&_div]:last:rounded-r-md border-b-0">
-                                <div className="px-5 py-4 font-medium bg-black text-white">
-                                    Coupon Code
-                                </div>
+                            <Table.Td className="whitespace-nowrap text-white">
+                               Coupon Code
                             </Table.Td>
-                            <Table.Td className="px-0 py-0 [&_div]:first:border-l [&_div]:last:border-r [&_div]:first:rounded-l-md [&_div]:last:rounded-r-md border-b-0">
-                                <div className="px-5 py-4 font-medium bg-black text-white">
-                                    Valid From
-                                </div>
+                            <Table.Td className="whitespace-nowrap text-white">
+                                Valid From
                             </Table.Td>
-                            <Table.Td className="px-0 py-0 [&_div]:first:border-l [&_div]:last:border-r [&_div]:first:rounded-l-md [&_div]:last:rounded-r-md border-b-0">
-                                <div className="px-5 py-4 font-medium bg-black text-white">
-                                    Valid To
-                                </div>
+                            <Table.Td className="whitespace-nowrap text-white">
+                                Valid To
                             </Table.Td>
-                            <Table.Td className="px-0 py-0 [&_div]:first:border-l [&_div]:last:border-r [&_div]:first:rounded-l-md [&_div]:last:rounded-r-md border-b-0">
-                                <div className="px-5 py-4 font-medium bg-black text-white">
-                                    Discount Type
-                                </div>
+                            <Table.Td className="whitespace-nowrap text-white">
+                                Discount Type
                             </Table.Td>
-                            <Table.Td className="px-0 py-0 [&_div]:first:border-l [&_div]:last:border-r [&_div]:first:rounded-l-md [&_div]:last:rounded-r-md border-b-0">
-                                <div className="px-5 py-4 font-medium bg-black text-white">
-                                    Discount Value
-                                </div>
+                            <Table.Td className="whitespace-nowrap text-white">
+                                Discount Value
                             </Table.Td>
-                            <Table.Td className="px-0 py-0 [&_div]:first:border-l [&_div]:last:border-r [&_div]:first:rounded-l-md [&_div]:last:rounded-r-md border-b-0">
-                                <div className="px-5 py-4 font-medium bg-black text-white">
-                                    Qualifier Amount
-                                </div>
+                            <Table.Td className="whitespace-nowrap text-white">
+                                Qualifier Amount
                             </Table.Td>
-                            <Table.Td className="px-0 py-0 [&_div]:first:border-l [&_div]:last:border-r [&_div]:first:rounded-l-md [&_div]:last:rounded-r-md border-b-0">
-                                <div className="px-5 py-4 font-medium bg-black text-white">
-                                    Redeem Receipt No
-                                </div>
+                            <Table.Td className="whitespace-nowrap text-white">
+                                Redeem Receipt No
                             </Table.Td>
-                            <Table.Td className="px-0 py-0 [&_div]:first:border-l [&_div]:last:border-r [&_div]:first:rounded-l-md [&_div]:last:rounded-r-md border-b-0">
-                                <div className="px-5 py-4 font-medium bg-black text-white">
-                                    Mobile No
-                                </div>
+                            <Table.Td className="whitespace-nowrap text-white">
+                                Mobile No
                             </Table.Td>
-                            <Table.Td className="px-0 py-0 [&_div]:first:border-l [&_div]:last:border-r [&_div]:first:rounded-l-md [&_div]:last:rounded-r-md border-b-0">
-                                <div className="px-5 py-4 font-medium bg-black text-white">
-                                    Action
-                                </div>
+                            <Table.Td className="whitespace-nowrap text-white">
+                                Action
                             </Table.Td>
                         </Table.Tr>
                         </Table.Thead>

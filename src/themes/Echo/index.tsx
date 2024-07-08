@@ -137,7 +137,7 @@ function Main() {
             ])}
           >
             <a
-              href=""
+              href="/"
               className="flex items-center transition-[margin] duration-300 group-[.side-menu--collapsed]:xl:ml-2 group-[.side-menu--collapsed.side-menu--on-hover]:xl:ml-0"
             >
               <img src={Logo} alt="MNS" width={99} height={56} />
@@ -337,7 +337,7 @@ function Main() {
               "top-bar absolute left-0 xl:left-3.5 right-0 h-full mx-5 group",
               "before:content-[''] before:absolute before:top-0 before:inset-x-0 before:-mt-[15px] before:h-[20px] before:backdrop-blur",
               topBarActive 
-              && "top-bar--active",
+              //&& "top-bar--active",
             ])}
           >
             <div
@@ -360,7 +360,7 @@ function Main() {
                 </a>
                 
               </div>
-              <div>qwerty</div>
+              <div className="text-white">Welcome Rajeev</div>
               {/* BEGIN: Notification & User Menu */}
               <div className="flex items-center flex-1">
                 <div className="flex items-center gap-1 ml-auto">                 
