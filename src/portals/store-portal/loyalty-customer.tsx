@@ -1,15 +1,42 @@
-
+import React, {useState} from "react";
 import Breadcrumb from "@/components/Base/Breadcrumb";
 import Lucide from "@/components/Base/Lucide";
 import { Menu } from "@/components/Base/Headless";
 import { FormInput, FormLabel, FormInline } from "@/components/Base/Form";
 import Button from "@/components/Base/Button";
 import Table from "@/components/Base/Table";
-import clsx from "clsx";
 import _ from "lodash";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+//import { register } from "module";
+import LoadingIcon from "@/components/Base/LoadingIcon";
+
+interface FormData {
+    name: string;
+    email: string;
+    loyaltyId: string;
+    mobile: string;
+  }
+  
+  const schema = yup.object().shape({
+    name: yup.string().required("Name is required"),
+    email: yup.string().email("Email ID is invalid").required("Email ID is required"),
+    loyaltyId: yup.string().required("Loyalty ID is required"),
+    mobile: yup
+      .string()
+      .matches(/^\d{10}$/, "Mobile No. is invalid")
+      .required("Mobile No. is required")
+  });
 
 function LoyaltyCustomer() {
-
+    const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+        resolver: yupResolver(schema)
+      });
+    
+      const onSubmit: SubmitHandler<FormData> = data => {
+        console.log("Searching with data:", data);
+      };
   return (
     <div className="grid grid-cols-12 gap-y-10 gap-x-6  mt-15">
       <div className="col-span-12">        
@@ -25,51 +52,55 @@ function LoyaltyCustomer() {
        <div className="flex flex-col gap-8 mt-3.5">
           <div className="flex flex-col box py-4">
             <div className="flex flex-col p-5 xl:items-center xl:flex-row gap-y-2">
-              <form
+            <form
+                onSubmit={handleSubmit(onSubmit)}
                 className="flex xl:flex-row flex-col items-end border-dashed gap-x-5 gap-y-2 border border-slate-300/80 xl:border-0 rounded-[0.6rem] p-4 sm:p-5 xl:p-0"
-                
-              >               
+                >
                 <div>
-                  <FormLabel className="mr-3 whitespace-nowrap">
-                    Name
-                  </FormLabel>
-                  <FormInput                  
+                    <FormLabel className="mr-3 whitespace-nowrap">Name</FormLabel>
+                    <FormInput
                     type="text"
+                    {...register("name")}
                     className=""
-                  />
+                    />
+                    {errors.name && <span className="text-red-500">{errors.name.message}</span>}
                 </div>
                 <div>
-                  <FormLabel className="mr-3 whitespace-nowrap">
-                    Email ID
-                  </FormLabel>
-                  <FormInput                  
+                    <FormLabel className="mr-3 whitespace-nowrap">Email ID</FormLabel>
+                    <FormInput
                     type="text"
+                    {...register("email")}
                     className=""
-                  />
+                    />
+                    {errors.email && <span className="text-red-500">{errors.email.message}</span>}
                 </div>
                 <div>
-                  <FormLabel className="mr-3 whitespace-nowrap">
-                    Loyalty ID
-                  </FormLabel>
-                  <FormInput                  
+                    <FormLabel className="mr-3 whitespace-nowrap">Loyalty ID</FormLabel>
+                    <FormInput
                     type="text"
+                    {...register("loyaltyId")}
                     className=""
-                  />
+                    />
+                    {errors.loyaltyId && <span className="text-red-500">{errors.loyaltyId.message}</span>}
                 </div>
-                <div className="gap-y-2">
-                  <FormLabel className="mr-3 whitespace-nowrap">
-                    Mobile No.
-                  </FormLabel>
-                  <FormInput                  
+                <div>
+                    <FormLabel className="mr-3 whitespace-nowrap">Mobile No.</FormLabel>
+                    <FormInput
                     type="text"
+                    {...register("mobile")}
                     className=""
-                  />
+                    />
+                    {errors.mobile && <span className="text-red-500">{errors.mobile.message}</span>}
                 </div>
                 <div className="flex gap-2">
-                  <Button type="button" className="btn-primary" >Search </Button>
-                  <Button type="button" className="btn-primary"> <Lucide icon="RotateCw" className="block" /> </Button>
+                    <Button type="submit" className="btn-primary">
+                    Search
+                    </Button>
+                    <Button type="button" className="btn-primary">
+                    <Lucide icon="RotateCw" className="block" />
+                    </Button>
                 </div>
-              </form>
+                </form>
             </div>
           </div>
         </div>

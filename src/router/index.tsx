@@ -1,12 +1,5 @@
 import { useRoutes } from "react-router-dom";
-import MainDashboard from "../pages/DashboardOverview1";
-// import DashboardOverview2 from "../pages/DashboardOverview2";
-// import DashboardOverview3 from "../pages/DashboardOverview3";
-// import DashboardOverview4 from "../pages/DashboardOverview4";
-// import DashboardOverview5 from "../pages/DashboardOverview5";
-// import DashboardOverview6 from "../pages/DashboardOverview6";
-// import DashboardOverview7 from "../pages/DashboardOverview7";
-// import DashboardOverview8 from "../pages/DashboardOverview8";
+import MainDashboard from "../pages/Dashboard";
 import Users from "../pages/Users";
 import Departments from "../pages/Departments";
 import AddUser from "../pages/AddUser";
@@ -39,14 +32,12 @@ import Tabulator from "../pages/Tabulator";
 import Modal from "../pages/Modal";
 import Slideover from "../pages/Slideover";
 import Notification from "../pages/Notification";
-import Tab from "../pages/Tab";
-import Accordion from "../pages/Accordion";
-import Button from "../pages/Button";
+
 import Alert from "../pages/Alert";
 import ProgressBar from "../pages/ProgressBar";
 import Tooltip from "../pages/Tooltip";
 import Dropdown from "../pages/Dropdown";
-import Typography from "../pages/Typography";
+
 import Icon from "../pages/Icon";
 import LoadingIcon from "../pages/LoadingIcon";
 import RegularForm from "../pages/RegularForm";
@@ -56,7 +47,7 @@ import FileUpload from "../pages/FileUpload";
 import WysiwygEditor from "../pages/WysiwygEditor";
 import Validation from "../pages/Validation";
 import Chart from "../pages/Chart";
-import Slider from "../pages/Slider";
+
 import ImageZoom from "../pages/ImageZoom";
 import LandingPage from "../pages/LandingPage";
 
@@ -112,30 +103,7 @@ function Router() {
           path: "store-portal/sales-tracker-new-view",
           element: <SalesTrackerNewView />,
         },
-        // {
-        //   path: "dashboard-overview-3",
-        //   element: <DashboardOverview3 />,
-        // },
-        // {
-        //   path: "dashboard-overview-4",
-        //   element: <DashboardOverview4 />,
-        // },
-        // {
-        //   path: "dashboard-overview-5",
-        //   element: <DashboardOverview5 />,
-        // },
-        // {
-        //   path: "dashboard-overview-6",
-        //   element: <DashboardOverview6 />,
-        // },
-        // {
-        //   path: "dashboard-overview-7",
-        //   element: <DashboardOverview7 />,
-        // },
-        // {
-        //   path: "dashboard-overview-8",
-        //   element: <DashboardOverview8 />,
-        // },
+        
         {
           path: "users",
           element: <Users />,
@@ -256,18 +224,7 @@ function Router() {
           path: "notification",
           element: <Notification />,
         },
-        {
-          path: "tab",
-          element: <Tab />,
-        },
-        {
-          path: "accordion",
-          element: <Accordion />,
-        },
-        {
-          path: "button",
-          element: <Button />,
-        },
+        
         {
           path: "alert",
           element: <Alert />,
@@ -284,10 +241,7 @@ function Router() {
           path: "dropdown",
           element: <Dropdown />,
         },
-        {
-          path: "typography",
-          element: <Typography />,
-        },
+       
         {
           path: "icon",
           element: <Icon />,
@@ -324,10 +278,7 @@ function Router() {
           path: "chart",
           element: <Chart />,
         },
-        {
-          path: "slider",
-          element: <Slider />,
-        },
+        
         {
           path: "image-zoom",
           element: <ImageZoom />,

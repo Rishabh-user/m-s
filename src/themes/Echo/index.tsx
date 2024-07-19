@@ -331,100 +331,91 @@ function Main() {
             </ul>
           </div>
         </div>
-        <div className="fixed h-[65px] transition-[margin] duration-100 xl:ml-[275px] group-[.side-menu--collapsed]:xl:ml-[90px] mt-3.5 inset-x-0 top-0">
+        <div className="fixed h-[65px] transition-[margin] duration-100 xl:ml-[275px]  mt-3.5 inset-x-0 top-0">
           <div
             className={clsx([
-              "top-bar absolute left-0 xl:left-3.5 right-0 h-full mx-5 group",
+              "top-bar absolute left-0 right-0 h-full mx-5 group",
               "before:content-[''] before:absolute before:top-0 before:inset-x-0 before:-mt-[15px] before:h-[20px] before:backdrop-blur",
               topBarActive 
-              //&& "top-bar--active",
+              && "top-bar--active",
             ])}
           >
-            <div
-              className="
-                container flex items-center w-full h-full transition-[padding,background-color,border-color] ease-in-out duration-300 box bg-transparent border-transparent shadow-none 
-                group-[.top-bar--active]:box group-[.top-bar--active]:px-5
-                group-[.top-bar--active]:bg-transparent group-[.top-bar--active]:border-transparent group-[.top-bar--active]:bg-gradient-to-r group-[.top-bar--active]:from-theme-1 group-[.top-bar--active]:to-theme-2
-              margin-adjust"
-            >
-             <div className="flex items-center gap-1 xl:hidden">
-                <a
-                  href=""
-                  onClick={(event) => {
-                    event.preventDefault();
-                    setActiveMobileMenu(true);
-                  }}
-                  className="p-2 text-white rounded-full hover:bg-white/5"
-                >
-                  <Lucide icon="AlignJustify" className="w-[18px] h-[18px]" />
-                </a>
-                
-              </div>
-              <div className="text-white">Welcome Rajeev</div>
-              {/* BEGIN: Notification & User Menu */}
-              <div className="flex items-center flex-1">
-                <div className="flex items-center gap-1 ml-auto">                 
+             <div className="container flex items-center w-full h-full ease-in-out duration-300 box shadow-none border-none
+                group-[.top-bar--active]:box group-[.top-bar--active] px-5 bg-transparent group-[.top-bar--active]:bg-black">
+              <div className="flex items-center gap-1 xl:hidden">
                   <a
                     href=""
-                    className="p-2 text-white rounded-full font-bold hover:bg-white/5"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setNotificationsPanel(true);
+                    onClick={(event) => {
+                      event.preventDefault();
+                      setActiveMobileMenu(true);
                     }}
+                    className="p-2 text-white rounded-full hover:bg-white/5"
                   >
-                    <Lucide icon="Bell" className="w-[25px] h-[25px] font-bold" />
+                    <Lucide icon="AlignJustify" className="w-[18px] h-[18px]" />
                   </a>
+                  
                 </div>
-                <Menu className="ml-5">
-                  <Menu.Button className="overflow-hidden rounded-full w-[36px] h-[36px] border-[3px] border-white/[0.15] image-fit">
-                    <img
-                      alt="Tailwise - Admin Dashboard Template"
-                      src={users.fakeUsers()[0].photo}
-                    />
-                  </Menu.Button>
-                  <Menu.Items className="w-56 mt-1">
-                    <Menu.Item
-                      // onClick={() => {
-                      //   navigate("settings");
-                      // }}
-                    >
-                      <Lucide icon="Users" className="w-4 h-4 mr-2" />
-                      Profile Info
-                    </Menu.Item>
-                    <Menu.Item
-                      onClick={() => {
-                        navigate("/login");
+                <div className="text-white">Welcome, Rajeev</div>
+                
+                <div className="flex items-center flex-1">
+                  <div className="flex items-center gap-1 ml-auto">                 
+                    <a
+                      href=""
+                      className="p-2 text-white rounded-full font-bold hover:bg-white/5"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setNotificationsPanel(true);
                       }}
                     >
-                      <Lucide icon="Power" className="w-4 h-4 mr-2" />
-                      Logout
-                    </Menu.Item>
-                  </Menu.Items>
-                </Menu>
-              </div>
-            
-              <NotificationsPanel
-                notificationsPanel={notificationsPanel}
-                setNotificationsPanel={setNotificationsPanel}
-              />
-              {/* <SwitchAccount
-                switchAccount={switchAccount}
-                setSwitchAccount={setSwitchAccount}
-              /> */}
-              {/* END: Notification & User Menu */}
-            </div>
+                      <Lucide icon="Bell" className="w-[25px] h-[25px] font-bold" />
+                    </a>
+                  </div>
+                  <Menu className="ml-5">
+                    <Menu.Button className="overflow-hidden rounded-full w-[36px] h-[36px] border-[3px] border-white/[0.15] image-fit">
+                      <img
+                        alt="Tailwise - Admin Dashboard Template"
+                        src={users.fakeUsers()[0].photo}
+                      />
+                    </Menu.Button>
+                    <Menu.Items className="w-56 mt-1">
+                      <Menu.Item
+                        // onClick={() => {
+                        //   navigate("settings");
+                        // }}
+                      >
+                        <Lucide icon="Users" className="w-4 h-4 mr-2" />
+                        Profile Info
+                      </Menu.Item>
+                      <Menu.Item
+                        onClick={() => {
+                          navigate("/login");
+                        }}
+                      >
+                        <Lucide icon="Power" className="w-4 h-4 mr-2" />
+                        Logout
+                      </Menu.Item>
+                    </Menu.Items>
+                  </Menu>
+                </div>
+              
+                <NotificationsPanel
+                  notificationsPanel={notificationsPanel}
+                  setNotificationsPanel={setNotificationsPanel}
+                />
+             </div>             
+           
           </div>
         </div>
       </div>
       <div
         className={clsx([
-          "transition-[margin,width] duration-100 xl:pl-3.5 pt-[54px] pb-16 relative z-10 group mode",
+          "transition-[margin,width] duration-100 pt-[54px] pb-16 relative z-10 group mode",
           { "xl:ml-[275px]": compactMenu },
           { "xl:ml-[91px]": !compactMenu },
           { "mode--light": !topBarActive },
         ])}
       >
-        <div className="px-5 mt-16">
+        <div className="px-5 mt-16 mx-5">
           <div className="container">
             <Outlet />
           </div>

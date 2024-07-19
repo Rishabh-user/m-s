@@ -31,7 +31,7 @@ function Main() {
         </Breadcrumb>
         {/* END: Breadcrumb */}
         <div className="grid grid-cols-12 gap-5 mt-3.5">          
-          <div className="flex flex-col col-span-12 p-5 md:col-span-4 2xl:col-span-3 box ">
+          <div className="flex flex-col col-span-12 p-5 md:col-span-4 2xl:col-span-4 box ">
             <Menu className="absolute top-0 right-0 mt-5 mr-5">
               <Menu.Button className="w-5 h-5 text-slate-500">
                 <Lucide
@@ -73,7 +73,7 @@ function Main() {
                 backgroundColor={getColor("primary", 0.3)}
               />
             </div>
-            <div className="flex flex-wrap items-center justify-center gap-y-3 gap-x-5">
+            <div className="flex flex-wrap items-center justify-between gap-y-3 gap-x-5">
               <div className="flex items-center">
                 <div className="w-2 h-2 rounded-full bg-primary/70"></div>
                 <div className="ml-2.5">Products Sold</div>
@@ -84,7 +84,7 @@ function Main() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col col-span-12 p-5 md:col-span-4 2xl:col-span-3 box ">
+          <div className="flex flex-col col-span-12 p-5 md:col-span-4 2xl:col-span-4 box ">
             <Menu className="absolute top-0 right-0 mt-5 mr-5">
               <Menu.Button className="w-5 h-5 text-slate-500">
                 <Lucide
@@ -130,7 +130,7 @@ function Main() {
                 backgroundColor={getColor("success", 0.3)}
               />
             </div>
-            <div className="flex flex-wrap items-center justify-center gap-y-3 gap-x-5">
+            <div className="flex flex-wrap items-center justify-between gap-y-3 gap-x-5">
               <div className="flex items-center">
                 <div className="w-2 h-2 rounded-full bg-success/70"></div>
                 <div className="ml-2.5">Total Shipped</div>
@@ -141,7 +141,7 @@ function Main() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col col-span-12 p-5 md:col-span-4 2xl:col-span-3 box ">
+          <div className="flex flex-col col-span-12 p-5 md:col-span-4 2xl:col-span-4 box ">
             <Menu className="absolute top-0 right-0 mt-5 mr-5">
               <Menu.Button className="w-5 h-5 text-slate-500">
                 <Lucide
@@ -176,7 +176,7 @@ function Main() {
             <div className="relative mt-5 mb-6">
               <ReportDonutChart3 className="relative z-10" height={100} />
             </div>
-            <div className="flex flex-wrap items-center justify-center gap-y-3 gap-x-5">
+            <div className="flex flex-wrap items-center justify-between gap-y-3 gap-x-5">
               <div className="flex items-center">
                 <div className="w-2 h-2 rounded-full bg-primary/70"></div>
                 <div className="ml-2.5">Order Volume</div>
