@@ -18,6 +18,7 @@ import { Menu } from "@/components/Base/Headless";
 //import SwitchAccount from "@/components/SwitchAccount";
 import NotificationsPanel from "@/components/NotificationsPanel";
 import Logo from "../../assets/images/pages/logo.png"
+import { Link } from "react-router-dom";
 
 function Main() {
   const dispatch = useAppDispatch();
@@ -79,6 +80,7 @@ function Main() {
       setTopBarActive(false);
     }
   };
+  
 
   return (
     <div
@@ -160,7 +162,7 @@ function Main() {
           >
             <ul className="scrollable">
               {/* BEGIN: First Child */}
-              {formattedMenu.map((menu, menuKey) =>
+              {formattedMenu.map((menu, menuKey) =>              
                 typeof menu == "string" ? (
                   <li className="side-menu__divider" key={menuKey}>
                     {menu}
@@ -168,7 +170,9 @@ function Main() {
                 ) : (
                   <li key={menuKey}>
                     <a
-                      href=""
+                      href={menu.pathname ?? '#'} 
+                      target={menu.pathname?.startsWith('http') ? '_blank' : undefined}  
+                      rel={menu.pathname?.startsWith('http') ? 'noopener noreferrer' : undefined}                  
                       className={clsx([
                         "side-menu__link",
                         { "side-menu__link--active": menu.active },
@@ -178,6 +182,7 @@ function Main() {
                         },
                       ])}
                       onClick={(event: React.MouseEvent) => {
+                        if (menu.pathname?.startsWith('http')) return;
                         event.preventDefault();
                         linkTo(menu, navigate);
                         setFormattedMenu([...formattedMenu]);
@@ -328,7 +333,13 @@ function Main() {
                 )
               )}
               {/* END: First Child */}
+              <li>
+                <div className="flex justify-center my-5">
+                  <Link to='/' className="btn btn-primary">Back to Dashboard</Link>
+                </div>
+              </li>
             </ul>
+            
           </div>
         </div>
         <div className="fixed h-[65px] transition-[margin] duration-100 xl:ml-[275px]  mt-3.5 inset-x-0 top-0">
@@ -420,6 +431,7 @@ function Main() {
             <Outlet />
           </div>
         </div>
+        
       </div>
     </div>
   );

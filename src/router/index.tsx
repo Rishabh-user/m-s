@@ -60,6 +60,7 @@ import SalesTrackerOldView from "@/portals/store-portal/sales-tracker-old-view";
 import SalesTrackerNewView from "@/portals/store-portal/sales-tracker-new-view";
 import TransactionSummery from "@/portals/store-portal/transaction-summery";
 import OnePieceTransactionSummery from "@/portals/store-portal/one-piece-transaction-summery";
+import ErrorPage from "@/pages/404Page/error-404";
 
 function Router() {
   const routes = [
@@ -124,178 +125,22 @@ function Router() {
           path: "settings",
           element: <Settings />,
         },
-        {
-          path: "billing",
-          element: <Billing />,
-        },
-        {
-          path: "invoice",
-          element: <Invoice />,
-        },
-        {
-          path: "categories",
-          element: <Categories />,
-        },
-        {
-          path: "add-product",
-          element: <AddProduct />,
-        },
-        {
-          path: "product-list",
-          element: <ProductList />,
-        },
-        {
-          path: "product-grid",
-          element: <ProductGrid />,
-        },
-        {
-          path: "transaction-list",
-          element: <TransactionList />,
-        },
-        {
-          path: "transaction-detail",
-          element: <TransactionDetail />,
-        },
-        {
-          path: "seller-list",
-          element: <SellerList />,
-        },
-        {
-          path: "seller-detail",
-          element: <SellerDetail />,
-        },
-        {
-          path: "reviews",
-          element: <Reviews />,
-        },
-        {
-          path: "inbox",
-          element: <Inbox />,
-        },
-        {
-          path: "file-manager-list",
-          element: <FileManagerList />,
-        },
-        {
-          path: "file-manager-grid",
-          element: <FileManagerGrid />,
-        },
-        {
-          path: "chat",
-          element: <Chat />,
-        },
-        {
-          path: "calendar",
-          element: <Calendar />,
-        },
-        {
-          path: "point-of-sale",
-          element: <PointOfSale />,
-        },
-        {
-          path: "creative",
-          element: <Creative />,
-        },
-        {
-          path: "dynamic",
-          element: <Dynamic />,
-        },
-        {
-          path: "interactive",
-          element: <Interactive />,
-        },
-        {
-          path: "regular-table",
-          element: <RegularTable />,
-        },
-        {
-          path: "tabulator",
-          element: <Tabulator />,
-        },
-        {
-          path: "modal",
-          element: <Modal />,
-        },
-        {
-          path: "slideover",
-          element: <Slideover />,
-        },
+        
         {
           path: "notification",
           element: <Notification />,
-        },
-        
-        {
-          path: "alert",
-          element: <Alert />,
-        },
-        {
-          path: "progress-bar",
-          element: <ProgressBar />,
-        },
-        {
-          path: "tooltip",
-          element: <Tooltip />,
-        },
-        {
-          path: "dropdown",
-          element: <Dropdown />,
-        },
+        },       
        
-        {
-          path: "icon",
-          element: <Icon />,
-        },
-        {
-          path: "loading-icon",
-          element: <LoadingIcon />,
-        },
-        {
-          path: "regular-form",
-          element: <RegularForm />,
-        },
-        {
-          path: "datepicker",
-          element: <Datepicker />,
-        },
-        {
-          path: "tom-select",
-          element: <TomSelect />,
-        },
-        {
-          path: "file-upload",
-          element: <FileUpload />,
-        },
-        {
-          path: "wysiwyg-editor",
-          element: <WysiwygEditor />,
-        },
-        {
-          path: "validation",
-          element: <Validation />,
-        },
-        {
-          path: "chart",
-          element: <Chart />,
-        },
-        
-        {
-          path: "image-zoom",
-          element: <ImageZoom />,
-        },
       ],
     },
-    {
-      path: "/landing-page",
-      element: <LandingPage />,
-    },
+    
     {
       path: "login",
       element: <Login />,
     },
     {
-      path: "register",
-      element: <Register />,
+      path: "*",
+      element: <ErrorPage />,
     },
   ];
 

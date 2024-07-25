@@ -436,6 +436,7 @@ function LoadingIcon({
           );
         } else if (icon == "oval") {
           return (
+            <div className="loader-overlay">
             <svg
               width="25"
               viewBox="-2 -2 42 42"
@@ -459,6 +460,7 @@ function LoadingIcon({
                 </g>
               </g>
             </svg>
+            </div>
           );
         } else if (icon == "puff") {
           return (
