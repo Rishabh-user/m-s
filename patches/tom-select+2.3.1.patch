@@ -1,0 +1,13 @@
+diff --git a/node_modules/tom-select/src/vanilla.ts b/node_modules/tom-select/src/vanilla.ts
+index d3cc0d9..6a7db0a 100644
+--- a/node_modules/tom-select/src/vanilla.ts
++++ b/node_modules/tom-select/src/vanilla.ts
+@@ -97,7 +97,7 @@ export const classesArray = (args:string[]|string[][]):string[] => {
+ 	var classes:string[] = [];
+ 	iterate( args, (_classes) =>{
+ 		if( typeof _classes === 'string' ){
+-			_classes = _classes.trim().split(/[\11\12\14\15\40]/);
++			_classes = _classes.trim().split(/[\x11\x12\x14\x15\x40]/);
+ 		}
+ 		if( Array.isArray(_classes) ){
+ 			classes = classes.concat(_classes);
