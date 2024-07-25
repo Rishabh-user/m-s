@@ -26,6 +26,7 @@
     "@reduxjs/toolkit": "^2.2.3",
     "axios": "^1.7.2",
     "chart.js": "^4.4.1",
+    "create-vite": "^5.4.0",
     "dayjs": "^1.11.10",
     "dropzone": "^6.0.0-beta.2",
     "flat": "^6.0.1",
@@ -80,6 +81,6 @@
     "tailwind-merge": "^2.2.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3",
-    "vite": "^5.0.11"
+    "vite": "^5.3.4"
   }
 }
