@@ -1,4 +1,6 @@
-const BASE_URL = "https://mnsapiqa.marksandspencers.co.in/api"
+import axios from "axios";
+
+export const BASE_URL = "https://mnsapiqa.marksandspencers.co.in/api"
 
 //Search Customer
 export const searchCustomer = async (name, mobile, emailID) => {
@@ -45,15 +47,31 @@ export const GetCoupenCodeForAccountNoForStorePortal = async (accountNo) => {
   return response.json();
 };
 
-//Get Today's Sale
-export const GetTodaysSale = async (accountNo) => {
-  const response = await fetch(`${BASE_URL}/StorePortal/SalesTracker`, {
+//Get Active PromoCode
+export const GetActivePromotionbyUPC = async (upc) => {
+  const response = await fetch(`${BASE_URL}/StorePortal/ActivePromotionByUPC`, {
     method: 'POST',
     headers: {
       'accept': 'text/plain',
       'Content-Type': 'application/json-patch+json'
     },
-    body: JSON.stringify({ accountNo: accountNo })
+    body: JSON.stringify({ upc: upc })
+  });
+  if (!response.ok) {
+    throw new Error('Failed to fetch running balance');
+  }
+  return response.json();
+};
+
+//Get Active PromoCode
+export const GetLoyaltyEnrollment = async (storeNo, dateFrom, dateTo) => {
+  const response = await fetch(`${BASE_URL}/StorePortal/LoyaltyEnrollmentSummary`, {
+    method: 'POST',
+    headers: {
+      'accept': 'text/plain',
+      'Content-Type': 'application/json-patch+json'
+    },
+    body: JSON.stringify({ storeNo, dateFrom, dateTo })
   });
   if (!response.ok) {
     throw new Error('Failed to fetch running balance');

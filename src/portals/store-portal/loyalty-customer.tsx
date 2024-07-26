@@ -2,24 +2,14 @@ import React, {useState, ChangeEvent, FormEvent} from "react";
 import Breadcrumb from "@/components/Base/Breadcrumb";
 import Lucide from "@/components/Base/Lucide";
 import Pagination from "@/components/Base/Pagination";
-import { Menu } from "@/components/Base/Headless";
 import { FormInput, FormLabel, FormInline, FormSelect } from "@/components/Base/Form";
 import Button from "@/components/Base/Button";
 import Table from "@/components/Base/Table";
 import _ from "lodash";
-//import LoadingIcon from "@/components/Base/LoadingIcon";
 import { searchCustomer } from "./api";
 import { GetLCRunningBalance } from "./api";
 import { GetCoupenCodeForAccountNoForStorePortal } from "./api";
 import LoadingIcon from "@/components/Base/LoadingIcon";
-
-interface FormData {
-    name: string;
-    emailID: string;
-    loyaltyId: string;
-    mobile: string;
-}
-
 
 function LoyaltyCustomer() {
     const [formData, setFormData] = useState({
@@ -58,12 +48,9 @@ function LoyaltyCustomer() {
           setLoading(false);
         }
       };
-    
-    //   if (loading) return <div>Loading...</div>;
-    //   if (error) return <div>{error}</div>;
+
   return (
     <div className="grid grid-cols-12 gap-y-10 gap-x-6  mt-15">
-        {/* {loading && <LoadingIcon icon="oval" /> } */}
       <div className="col-span-12">        
         {/* BEGIN: Breadcrumb */}
         <Breadcrumb className="flex-1 hidden xl:block">

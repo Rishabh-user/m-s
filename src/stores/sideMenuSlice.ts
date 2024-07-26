@@ -186,7 +186,7 @@ const initialState: SideMenuState = {
             title: "Missed Loyalty Opp",
           },
           {
-            pathname: "/store-portal",
+            pathname: "/store-portal/active-promotion",
             title: "Active Promotions",
           },
           {

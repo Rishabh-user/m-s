@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Breadcrumb from "@/components/Base/Breadcrumb";
 import Lucide from "@/components/Base/Lucide";
 import { FormInput, FormLabel, FormInline } from "@/components/Base/Form";
@@ -8,60 +8,52 @@ import Table from "@/components/Base/Table";
 import _ from "lodash";
 import { Menu } from "@/components/Base/Headless";
 import { Link } from "react-router-dom";
+import { BASE_URL } from "./api";
+import axios from "axios";
 
 function SalesTrackerOldView() {
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(5);
-    const data = [
-        {
-            registrationDate: "5/8/2024 7:54:16 AM",
-            staffId: "10003428",
-            staffName: "Staff Name 1",
-            registrationCount: "1392",
-            id: "000T653000108748"
-        },       
-        {
-            registrationDate: "5/8/2024 7:54:16 AM",
-            staffId: "10003428",
-            staffName: "Staff Name 1",
-            registrationCount: "1392",
-            id: "000T653000108748"
-        },   
-        {
-            registrationDate: "5/8/2024 7:54:16 AM",
-            staffId: "10003428",
-            staffName: "Staff Name 1",
-            registrationCount: "1392",
-            id: "000T653000108748"
-        },   
-        {
-            registrationDate: "5/8/2024 7:54:16 AM",
-            staffId: "10003428",
-            staffName: "Staff Name 1",
-            registrationCount: "1392",
-            id: "000T653000108748"
-        },   
-    ];
-    const totalPages = Math.ceil(data.length / itemsPerPage);
-    const currentData = data.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
-    // const changePage = (pageNumber: number) => {
-    //     setCurrentPage(pageNumber);
-    // };
-    const handleItemsPerPageChange = (event: { target: { value: any; }; }) => {
-        setItemsPerPage(Number(event.target.value));
-        setCurrentPage(1); 
-    };
-    const nextPage = () => {
-        if (currentPage < totalPages) {
-            setCurrentPage(currentPage + 1);
-        }
-    };
-    const previousPage = () => {
-        if (currentPage > 1) {
-            setCurrentPage(currentPage - 1);
-        }
-    };
+    const [itemsPerPage, setItemsPerPage] = useState(10);
+    const [salesData, setSalesData] = useState<any>(null);
 
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await axios.get(`${BASE_URL}/StorePortal/SalesTracker`); 
+            setSalesData(response.data);
+            //setLoading(false);
+          } catch (err) {
+            // setError(err.message);
+            // setLoading(false);
+          }
+        };
+    
+        fetchData();
+      }, []);
+    //   const totalPages = Math.ceil(salesData.TodaySale.length / itemsPerPage);
+    //   const currentData = salesData.TodaySale.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+      
+    //   const changePage = (pageNumber) => {
+    //     setCurrentPage(pageNumber);
+    //   };
+      
+    //   const handleItemsPerPageChange = (event) => {
+    //     setItemsPerPage(Number(event.target.value));
+    //     setCurrentPage(1); 
+    //   };
+      
+    //   const nextPage = () => {
+    //     if (currentPage < totalPages) {
+    //       setCurrentPage(currentPage + 1);
+    //     }
+    //   };
+      
+    //   const previousPage = () => {
+    //     if (currentPage > 1) {
+    //       setCurrentPage(currentPage - 1);
+    //     }
+    //   };
+      
   return (
     <div className="grid grid-cols-12 gap-y-10 gap-x-6  mt-15">
       <div className="col-span-12">        
@@ -197,48 +189,48 @@ function SalesTrackerOldView() {
                                 <Table.Tr>
                                     <Table.Td className="px-0 py-0 border-b-0">
                                         <div className="px-5 py-4 font-medium bg-black text-white">
-                                            Registration Date
+                                            Store
                                         </div>
                                     </Table.Td>
                                     <Table.Td className="px-0 py-0 border-b-0">
                                         <div className="px-5 py-4 font-medium bg-black text-white">
-                                            Staff ID
+                                            Store Date
                                         </div>
                                     </Table.Td>
                                     <Table.Td className="px-0 py-0 border-b-0">
                                         <div className="px-5 py-4 font-medium bg-black text-white">
-                                            Staff Name
+                                            Sale
                                         </div>
                                     </Table.Td>
                                     <Table.Td className="px-0 py-0 border-b-0">
                                         <div className="px-5 py-4 font-medium bg-black text-white">
-                                            Registration Count
+                                            Region
                                         </div>
                                     </Table.Td>
                                 </Table.Tr>
                             </Table.Thead>
-                            <Table.Tbody>
-                                {currentData.map((item, index) => (
+                            <Table.Tbody>                            
+                                {salesData?.data?.TodaySale.map((item, index) => (
                                     <Table.Tr key={index} className="[&_td]:last:border-b-0">
                                         <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
-                                            <div className="whitespace-nowrap">{item.registrationDate}</div>
+                                        <div className="whitespace-nowrap">{item.Store}</div>
                                         </Table.Td>
                                         <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
-                                            <div className="flex items-center">
-                                                <div className="ml-1.5 whitespace-nowrap">{item.staffId}</div>
-                                            </div>
+                                        <div className="flex items-center">
+                                            <div className="ml-1.5 whitespace-nowrap">{new Date(item.SaleDate).toLocaleDateString()}</div>
+                                        </div>
                                         </Table.Td>
                                         <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
-                                            <div className="whitespace-nowrap">{item.staffName}</div>
+                                        <div className="whitespace-nowrap">{item.Sale}</div>
                                         </Table.Td>
                                         <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
-                                            <div className="flex items-center text-primary whitespace-nowrap">{item.registrationCount}</div>
+                                        <div className="flex items-center text-primary whitespace-nowrap">{item.Region}</div>
                                         </Table.Td>
                                     </Table.Tr>
-                                ))}
+                                ))}                           
                             </Table.Tbody>
                         </Table>
-                        <div className="pagination flex items-center justify-between mt-4">
+                        {/* <div className="pagination flex items-center justify-between mt-4">
                             <div className="flex items-center">
                                 <button onClick={previousPage} disabled={currentPage === 1} className="px-2 py-1 disabled:opacity-50">
                                     <Lucide icon="ChevronLeft" className="w-[18px] h-[18px]" />
@@ -263,7 +255,7 @@ function SalesTrackerOldView() {
                                     <option value={30}>30</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> */}
                     </div>                            
                 </div>
             </div>
@@ -297,7 +289,7 @@ function SalesTrackerOldView() {
                                 </Table.Tr>
                             </Table.Thead>
                             <Table.Tbody>
-                                {currentData.map((item, index) => (
+                                {/* {currentData.map((item, index) => (
                                     <Table.Tr key={index} className="[&_td]:last:border-b-0">
                                         <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
                                             <div className="whitespace-nowrap">{item.registrationDate}</div>
@@ -314,10 +306,10 @@ function SalesTrackerOldView() {
                                             <div className="flex items-center text-primary whitespace-nowrap">{item.registrationCount}</div>
                                         </Table.Td>
                                     </Table.Tr>
-                                ))}
+                                ))} */}
                             </Table.Tbody>
                         </Table>
-                        <div className="pagination flex items-center justify-between mt-4">
+                        {/* <div className="pagination flex items-center justify-between mt-4">
                             <div className="flex items-center">
                                 <button onClick={previousPage} disabled={currentPage === 1} className="px-2 py-1 disabled:opacity-50">
                                     <Lucide icon="ChevronLeft" className="w-[18px] h-[18px]" />
@@ -342,7 +334,7 @@ function SalesTrackerOldView() {
                                     <option value={30}>30</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> */}
                     </div>                            
                 </div>
             </div>
@@ -376,7 +368,7 @@ function SalesTrackerOldView() {
                                 </Table.Tr>
                             </Table.Thead>
                             <Table.Tbody>
-                                {currentData.map((item, index) => (
+                                {/* {currentData.map((item, index) => (
                                     <Table.Tr key={index} className="[&_td]:last:border-b-0">
                                         <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
                                             <div className="whitespace-nowrap">{item.registrationDate}</div>
@@ -393,10 +385,10 @@ function SalesTrackerOldView() {
                                             <div className="flex items-center text-primary whitespace-nowrap">{item.registrationCount}</div>
                                         </Table.Td>
                                     </Table.Tr>
-                                ))}
+                                ))} */}
                             </Table.Tbody>
                         </Table>
-                        <div className="pagination flex items-center justify-between mt-4">
+                        {/* <div className="pagination flex items-center justify-between mt-4">
                             <div className="flex items-center">
                                 <button onClick={previousPage} disabled={currentPage === 1} className="px-2 py-1 disabled:opacity-50">
                                     <Lucide icon="ChevronLeft" className="w-[18px] h-[18px]" />
@@ -421,7 +413,7 @@ function SalesTrackerOldView() {
                                     <option value={30}>30</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> */}
                     </div>                            
                 </div>
             </div>
