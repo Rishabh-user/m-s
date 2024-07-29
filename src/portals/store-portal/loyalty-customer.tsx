@@ -115,8 +115,69 @@ function LoyaltyCustomer() {
           </div>
         </div>
        </div>
-       {customerData && (
+       {customerData && customerData.memberContact  && (
        <div className="col-span-12">
+        <div className="col-span-12">
+          <div className="col-span-12 mb-5">
+            <div className="grid grid-cols-10 gap-5">
+              <div className="col-span-12">
+                <div className="flex flex-col p-5 box h-full">
+                  <div className="flex flex-col gap-5 h-full">
+                    <div className="border rounded-[0.6rem] relative mt-3 h-full">
+                      <div className="absolute left-0 px-3 ml-4 -mt-3 bg-white">
+                        <h3>Members Information</h3>
+                      </div>
+                      <div className="p-5 mt-2.5 flex flex-col gap-5">
+                        <table className="min-w-full leading-normal">
+                          <thead className="bg-black">
+                            <tr>
+                              <th className="px-5 py-3 border-b dark:border-darkmode-300 whitespace-nowrap text-white text-left">
+                                Name
+                              </th>
+                              <th className="px-5 py-3 border-b dark:border-darkmode-300 whitespace-nowrap text-white text-left">
+                                Account No
+                              </th>                              
+                              <th className="px-5 py-3 border-b dark:border-darkmode-300 whitespace-nowrap text-white text-left">
+                                Mobile No
+                              </th>
+                              <th className="px-5 py-3 border-b dark:border-darkmode-300 whitespace-nowrap text-white text-left">
+                                Email
+                              </th>
+                              <th className="px-5 py-3 border-b dark:border-darkmode-300 whitespace-nowrap text-white text-left">
+                                Tier
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {customerData.memberContact.map((contact, index) => (
+                              <tr key={index}>
+                                <td className="px-5 border-b dark:border-darkmode-300 py-4 border-dashed dark:bg-darkmode-600">
+                                  {contact.name}
+                                </td>
+                                <td className="px-5 border-b dark:border-darkmode-300 py-4 border-dashed dark:bg-darkmode-600">
+                                  {contact.account_No}
+                                </td>                                
+                                <td className="px-5 border-b dark:border-darkmode-300 py-4 border-dashed dark:bg-darkmode-600">
+                                  {contact.mobile_Phone_No}
+                                </td>
+                                <td className="px-5 border-b dark:border-darkmode-300 py-4 border-dashed dark:bg-darkmode-600">
+                                  {contact.e_Mail}
+                                </td>
+                                <td className="px-5 border-b dark:border-darkmode-300 py-4 border-dashed dark:bg-darkmode-600">
+                                  {contact.scheme_Code}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>                    
+                  </div>
+                </div>
+              </div>             
+            </div>
+          </div>
+        </div>
             <div className="col-span-12 mb-5">
                 <div className="grid grid-cols-10 gap-5">
                     <div className="col-span-12 xl:col-span-3">
@@ -124,7 +185,7 @@ function LoyaltyCustomer() {
                         <div className="flex flex-col gap-5 h-full">
                             <div className="border rounded-[0.6rem] relative mt-3 h-full">
                             <div className="absolute left-0 px-3 ml-4 -mt-3 bg-white">
-                                <h3>Members Information</h3>
+                                <h3>Member Information</h3>
                             </div>
                             <div className="p-5 mt-2.5 flex flex-col gap-5">
                                 <div className="flex items-center">
@@ -260,7 +321,7 @@ function LoyaltyCustomer() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>            
             <div className="col-span-12 mb-5">
                 <div className="flex flex-col p-5 box">
                     <div className="border rounded-[0.6rem] relative mt-3">
@@ -383,119 +444,120 @@ function LoyaltyCustomer() {
                 
             </div>
             <div className="col-span-12 mb-5">
-                    <div className="flex flex-col p-5 box">
-                        <div className="border rounded-[0.6rem] relative mt-3">
-                        <div className="absolute left-0 px-3 ml-4 -mt-2 text-xs bg-white">
-                            <h3>Coupon Information</h3>
-                        </div>
-                        <div className="p-5 mt-2.5 flex flex-col gap-5">
-                            <div className="overflow-x-auto">
-                            {loading ? (
-                            <div className="flex items-center justify-center">
-                                <LoadingIcon icon={"oval"} className="w-20 h-20 flex items-center justify-center" />
-                            </div>
-                            ) : (
-                            <Table className="border-b border-dashed border-slate-200/80">
-                                <Table.Thead className="bg-black">
-                                <Table.Tr>
-                                    <Table.Td className="whitespace-nowrap text-white">
-                                    Coupon Code
-                                    </Table.Td>
-                                    <Table.Td className="whitespace-nowrap text-white">
-                                        Valid From
-                                    </Table.Td>
-                                    <Table.Td className="whitespace-nowrap text-white">
-                                        Valid To
-                                    </Table.Td>
-                                    <Table.Td className="whitespace-nowrap text-white">
-                                        Discount Type
-                                    </Table.Td>
-                                    <Table.Td className="whitespace-nowrap text-white">
-                                        Discount Value
-                                    </Table.Td>
-                                    <Table.Td className="whitespace-nowrap text-white">
-                                        Qualifier Amount
-                                    </Table.Td>
-                                    <Table.Td className="whitespace-nowrap text-white">
-                                        Redeem Receipt No
-                                    </Table.Td>
-                                    <Table.Td className="whitespace-nowrap text-white">
-                                        Mobile No
-                                    </Table.Td>
-                                    <Table.Td className="whitespace-nowrap text-white">
-                                        Action
-                                    </Table.Td>
-                                </Table.Tr>
-                                </Table.Thead>
-                                <Table.Tbody> 
-                                    {coupenCodeData?.data?.VouchersByAccountNoForStorePortal.map((coupenData, index) => ( 
-                                        <Table.Tr key={index} className="[&_td]:last:border-b-0">
-                                            <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
-                                                <div className="whitespace-nowrap">
-                                                    {coupenData.Barcode}
-                                                </div>
-                                            </Table.Td>
-                                            <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
-                                                <div className= "flex items-center">
-                                                    <div className="ml-1.5 whitespace-nowrap">
-                                                        {coupenData.ValidFrom}
-                                                    </div>
-                                                </div>
-                                            </Table.Td>
-                                            <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
-                                                <div className="whitespace-nowrap">
-                                                    {coupenData.ValidTo}
-                                                </div>
-                                            </Table.Td>
-                                            <Table.Td className="py-4border-dashed dark:bg-darkmode-600">
-                                                <div className="flex items-center justify-center text-primary whitespace-nowrap"
-                                                >
-                                                    {coupenData.DiscountType}
-                                                </div>
-                                            </Table.Td>
-                                            <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
-                                                <div className="flex items-center justify-center text-primary whitespace-nowrap"
-                                                >
-                                                    {coupenData.DiscountValue}
-                                                </div>
-                                            </Table.Td>
-                                            <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
-                                                <div className="flex items-center justify-center text-primary whitespace-nowrap"
-                                                >
-                                                    {coupenData.QualifierAmount}
-                                                </div>
-                                            </Table.Td>
-                                            <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
-                                                <div className="flex items-center justify-center text-primary whitespace-nowrap"
-                                                >
-                                                        {coupenData.RedeemReceiptNo}   
-                                                </div>
-                                            </Table.Td>
-                                            <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
-                                                <div className="flex items-center justify-center text-primary whitespace-nowrap"
-                                                >
-                                                    {coupenData.MobileNo}
-                                                </div>
-                                            </Table.Td>
-                                            <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
-                                                <div className="flex items-center justify-center text-primary whitespace-nowrap"
-                                                >
-                                                    {coupenData.isExpired === 1 ? 'Active' : 'Inactive'}
-                                                </div>
-                                            </Table.Td>
-                                        </Table.Tr>
-                                    ))}  
-                                </Table.Tbody>
-                            </Table>
-                            )}
-                            </div>
-                            
-                        </div>
-                        </div>
+                <div className="flex flex-col p-5 box">
+                    <div className="border rounded-[0.6rem] relative mt-3">
+                    <div className="absolute left-0 px-3 ml-4 -mt-2 text-xs bg-white">
+                        <h3>Coupon Information</h3>
                     </div>
-            </div>
+                    <div className="p-5 mt-2.5 flex flex-col gap-5">
+                        <div className="overflow-x-auto">
+                        {loading ? (
+                        <div className="flex items-center justify-center">
+                            <LoadingIcon icon={"oval"} className="w-20 h-20 flex items-center justify-center" />
+                        </div>
+                        ) : (
+                        <Table className="border-b border-dashed border-slate-200/80">
+                            <Table.Thead className="bg-black">
+                            <Table.Tr>
+                                <Table.Td className="whitespace-nowrap text-white">
+                                Coupon Code
+                                </Table.Td>
+                                <Table.Td className="whitespace-nowrap text-white">
+                                    Valid From
+                                </Table.Td>
+                                <Table.Td className="whitespace-nowrap text-white">
+                                    Valid To
+                                </Table.Td>
+                                <Table.Td className="whitespace-nowrap text-white">
+                                    Discount Type
+                                </Table.Td>
+                                <Table.Td className="whitespace-nowrap text-white">
+                                    Discount Value
+                                </Table.Td>
+                                <Table.Td className="whitespace-nowrap text-white">
+                                    Qualifier Amount
+                                </Table.Td>
+                                <Table.Td className="whitespace-nowrap text-white">
+                                    Redeem Receipt No
+                                </Table.Td>
+                                <Table.Td className="whitespace-nowrap text-white">
+                                    Mobile No
+                                </Table.Td>
+                                <Table.Td className="whitespace-nowrap text-white">
+                                    Action
+                                </Table.Td>
+                            </Table.Tr>
+                            </Table.Thead>
+                            <Table.Tbody> 
+                                {coupenCodeData?.data?.VouchersByAccountNoForStorePortal.map((coupenData, index) => ( 
+                                    <Table.Tr key={index} className="[&_td]:last:border-b-0">
+                                        <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
+                                            <div className="whitespace-nowrap">
+                                                {coupenData.Barcode}
+                                            </div>
+                                        </Table.Td>
+                                        <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
+                                            <div className= "flex items-center">
+                                                <div className="ml-1.5 whitespace-nowrap">
+                                                    {coupenData.ValidFrom}
+                                                </div>
+                                            </div>
+                                        </Table.Td>
+                                        <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
+                                            <div className="whitespace-nowrap">
+                                                {coupenData.ValidTo}
+                                            </div>
+                                        </Table.Td>
+                                        <Table.Td className="py-4border-dashed dark:bg-darkmode-600">
+                                            <div className="flex items-center justify-center text-primary whitespace-nowrap"
+                                            >
+                                                {coupenData.DiscountType}
+                                            </div>
+                                        </Table.Td>
+                                        <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
+                                            <div className="flex items-center justify-center text-primary whitespace-nowrap"
+                                            >
+                                                {coupenData.DiscountValue}
+                                            </div>
+                                        </Table.Td>
+                                        <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
+                                            <div className="flex items-center justify-center text-primary whitespace-nowrap"
+                                            >
+                                                {coupenData.QualifierAmount}
+                                            </div>
+                                        </Table.Td>
+                                        <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
+                                            <div className="flex items-center justify-center text-primary whitespace-nowrap"
+                                            >
+                                                    {coupenData.RedeemReceiptNo}   
+                                            </div>
+                                        </Table.Td>
+                                        <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
+                                            <div className="flex items-center justify-center text-primary whitespace-nowrap"
+                                            >
+                                                {coupenData.MobileNo}
+                                            </div>
+                                        </Table.Td>
+                                        <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
+                                            <div className="flex items-center justify-center text-primary whitespace-nowrap"
+                                            >
+                                                {coupenData.isExpired === 1 ? 'Active' : 'Inactive'}
+                                            </div>
+                                        </Table.Td>
+                                    </Table.Tr>
+                                ))}  
+                            </Table.Tbody>
+                        </Table>
+                        )}
+                        </div>
+                        
+                    </div>
+                    </div>
+                </div>                 
+            </div>           
        </div>
        )}
+       
     </div>
   );
 }

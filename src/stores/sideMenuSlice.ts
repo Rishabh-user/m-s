@@ -162,7 +162,12 @@ const initialState: SideMenuState = {
       },
     ],
     storeMenu: [
-      "Store Portal",      
+      "Store Portal", 
+      {
+        image: SearchCustomer,
+        pathname: "/store-portal",
+        title: "Dashboard",        
+      },     
       {
         image: SearchCustomer,
         title: "Search Customer",

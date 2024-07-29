@@ -17,7 +17,7 @@ import SalesTrackerNewView from "@/portals/store-portal/sales-tracker-new-view";
 import TransactionSummery from "@/portals/store-portal/transaction-summery";
 import OnePieceTransactionSummery from "@/portals/store-portal/one-piece-transaction-summery";
 import ErrorPage from "@/pages/404Page/error-404";
-import ActivePromotionbyUPC from "@/portals/store-portal/active-promotionbyUpc";
+import ActivePromotion from "@/portals/store-portal/active-promotion";
 
 function Router() {
   const routes = [
@@ -63,7 +63,7 @@ function Router() {
         },
         {
           path: "store-portal/active-promotion",
-          element: <ActivePromotionbyUPC />,
+          element: <ActivePromotion />,
         },
         {
           path: "users",

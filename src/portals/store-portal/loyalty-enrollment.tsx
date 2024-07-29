@@ -7,7 +7,6 @@ import Table from "@/components/Base/Table";
 import _ from "lodash";
 import { Menu } from "@/components/Base/Headless";
 import { GetLoyaltyEnrollment } from "./api";
-import LoadingIcon from "@/pages/LoadingIcon";
 import Loader from "@/components/Base/LoadingIcon/loader";
 
 function LoyaltyEnrollment() {
@@ -134,7 +133,7 @@ function LoyaltyEnrollment() {
                     <div className="overflow-auto xl:overflow-visible">
                         {loading ? (
                             <div className="flex items-center justify-center">
-                                <Loader icon="oval" className="w-20 h-20 flex items-center justify-center" />
+                                <Loader icon={"oval"} className="w-20 h-20 flex items-center justify-center" />
                             </div>
                         ) : (
                         <Table className="border-b border-dashed border-slate-200/80">

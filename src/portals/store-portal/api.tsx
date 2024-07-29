@@ -63,9 +63,41 @@ export const GetActivePromotionbyUPC = async (upc) => {
   return response.json();
 };
 
-//Get Active PromoCode
+//Get GetLoyaltyEnrollment
 export const GetLoyaltyEnrollment = async (storeNo, dateFrom, dateTo) => {
   const response = await fetch(`${BASE_URL}/StorePortal/LoyaltyEnrollmentSummary`, {
+    method: 'POST',
+    headers: {
+      'accept': 'text/plain',
+      'Content-Type': 'application/json-patch+json'
+    },
+    body: JSON.stringify({ storeNo, dateFrom, dateTo })
+  });
+  if (!response.ok) {
+    throw new Error('Failed to fetch running balance');
+  }
+  return response.json();
+};
+
+//Get Get Missed Loyalty  Opportuniy
+export const GetMissedLoyaltyOpp = async (storeNo, dateFrom, dateTo) => {
+  const response = await fetch(`${BASE_URL}/StorePortal/MissedLoyaltyOpportunity`, {
+    method: 'POST',
+    headers: {
+      'accept': 'text/plain',
+      'Content-Type': 'application/json-patch+json'
+    },
+    body: JSON.stringify({ storeNo, dateFrom, dateTo })
+  });
+  if (!response.ok) {
+    throw new Error('Failed to fetch running balance');
+  }
+  return response.json();
+};
+
+//Get Get Transaction Summary
+export const GetTransactionSummary = async (storeNo, dateFrom, dateTo) => {
+  const response = await fetch(`${BASE_URL}/StorePortal/TransactionSummaryByStore`, {
     method: 'POST',
     headers: {
       'accept': 'text/plain',
