@@ -174,7 +174,7 @@ function ActivePromotion() {
                                 </Table.Tr>
                                 </Table.Thead>
                                 <Table.Tbody> 
-                                    {activepromotionData?.data?.ActivePromotionByUPC.map((promo, index) => ( 
+                                    {/* {activepromotionData?.data?.ActivePromotionByUPC.map((promo, index) => ( 
                                         <Table.Tr key={index} className="[&_td]:last:border-b-0">
                                             <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
                                                 <div className="whitespace-nowrap">
@@ -200,7 +200,12 @@ function ActivePromotion() {
                                                 </div>
                                             </Table.Td>
                                         </Table.Tr>
-                                    ))}  
+                                    ))}   */}
+                                    <Table.Tr>
+                                        <Table.Td colSpan={4} className="py-4 text-center text-gray-500">
+                                            No records available.
+                                        </Table.Td>
+                                    </Table.Tr>
                                 </Table.Tbody>
                             </Table>
                         )}
