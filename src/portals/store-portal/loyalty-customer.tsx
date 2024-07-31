@@ -132,11 +132,11 @@ function LoyaltyCustomer() {
 
   return (
     <div className="grid grid-cols-12 gap-y-10 gap-x-6  mt-15">
-        {loading && 
+        {/* {loading && 
             <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
                 <Loader className="w-20 h-20" icon={"oval"} />
             </div>
-        }
+        } */}
       <div className="col-span-12">        
         {/* BEGIN: Breadcrumb */}
         <Breadcrumb className="flex-1 hidden xl:block">

@@ -19,6 +19,7 @@ import BIPortal from '../../assets/images/icons/BI.png'
 import Inmoment from '../../assets/images/icons/Inmoment.png'
 import RetailCloud from '../../assets/images/icons/Retail.png'
 import SAP from '../../assets/images/icons/SAP.png'
+import { Link } from "react-router-dom";
 
 function Main() {
   
@@ -196,82 +197,98 @@ function Main() {
         <div className="mt-3.5 grid grid-cols-12 gap-y-4 gap-x-4">          
           <div className="flex-col col-span-12 md:col-span-3">
             <div className="relative p-5 box text-center">
-                <div className="">
-                    <img loading="lazy" alt="MNSPortal" src={MNSPortal} className="m-auto" width={100} height={100} />
-                </div>
-                <div className="mt-5">
-                  <div className="text-base font-medium">M&S Portal</div>              
-                </div>            
+                <Link to="http://10.24.3.55/WebPortal/Home1/Index/0" target="_blank">
+                  <div className="">
+                      <img loading="lazy" alt="MNSPortal" src={MNSPortal} className="m-auto" width={100} height={100} />
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-base font-medium">M&S Portal</div>              
+                  </div>
+                </Link>            
             </div>
           </div>
           <div className="flex-col col-span-12 md:col-span-3">
             <div className="relative p-5 box text-center">
-                <div className="">
-                    <img loading="lazy" alt="FAMS" src={FAMS} className="m-auto" width={100} height={100} />
-                </div>
-                <div className="mt-5">
-                  <div className="text-base font-medium">FAMS</div>              
-                </div>            
+                <Link to="http://10.24.3.55/WebPortal/Home1/Index/1" target="_blank">
+                  <div className="">
+                      <img loading="lazy" alt="FAMS" src={FAMS} className="m-auto" width={100} height={100} />
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-base font-medium">FAMS</div>              
+                  </div>
+                </Link>            
             </div>
           </div>
           <div className="flex-col col-span-12 md:col-span-3">
             <div className="relative p-5 box text-center">
-                <div className="">
-                    <img loading="lazy" alt="StorePortal" src={StorePortal} className="m-auto" width={100} height={100} />
-                </div>
-                <div className="mt-5">
-                  <div className="text-base font-medium">Store Portal</div>              
-                </div>            
+                <Link to="/store-portal">
+                  <div className="">
+                      <img loading="lazy" alt="StorePortal" src={StorePortal} className="m-auto" width={100} height={100} />
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-base font-medium">Store Portal</div>              
+                  </div> 
+                </Link>           
             </div>
           </div>
           <div className="flex-col col-span-12 md:col-span-3">
             <div className="relative p-5 box text-center">
-                <div className="">
-                    <img loading="lazy" alt="CoPortal" src={CoPortal} className="m-auto" width={100} height={100} />
-                </div>
-                <div className="mt-5">
-                  <div className="text-base font-medium">Co Portal</div>              
-                </div>            
+                <Link to="http://127.0.0.1:5173/co-portal" target="_blank">
+                  <div className="">
+                      <img loading="lazy" alt="CoPortal" src={CoPortal} className="m-auto" width={100} height={100} />
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-base font-medium">Co Portal</div>              
+                  </div> 
+                </Link>           
             </div>
           </div>
           <div className="flex-col col-span-12 md:col-span-3">
             <div className="relative p-5 box text-center">
-                <div className="">
-                    <img loading="lazy" alt="EcomPortal" src={EcomPortal} className="m-auto" width={100} height={100} />
-                </div>
-                <div className="mt-5">
-                  <div className="text-base font-medium">ECOM Portal</div>              
-                </div>            
+                <Link to="http://10.24.3.55/WebPortal/Home1/Index/8" target="_blank">
+                  <div className="">
+                      <img loading="lazy" alt="EcomPortal" src={EcomPortal} className="m-auto" width={100} height={100} />
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-base font-medium">ECOM Portal</div>              
+                  </div> 
+                </Link>           
             </div>
           </div>
           <div className="flex-col col-span-12 md:col-span-3">
             <div className="relative p-5 box text-center">
-                <div className="">
-                    <img loading="lazy" alt="ISSDI" src={ISSDI} className="m-auto" width={100} height={100} />
-                </div>
-                <div className="mt-5">
-                  <div className="text-base font-medium">ISSDI</div>              
-                </div>            
+                <Link to="http://10.24.3.55/WebPortal/Home1/Index/5" target="_blank">
+                  <div className="">
+                      <img loading="lazy" alt="ISSDI" src={ISSDI} className="m-auto" width={100} height={100} />
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-base font-medium">ISSDI</div>              
+                  </div>
+                </Link>            
             </div>
           </div>
           <div className="flex-col col-span-12 md:col-span-3">
             <div className="relative p-5 box text-center">
-                <div className="">
-                    <img loading="lazy" alt="MNSCare" src={MNSCare} className="m-auto" width={100} height={100} />
-                </div>
-                <div className="mt-5">
-                  <div className="text-base font-medium">MNS Care</div>              
-                </div>            
+                <Link to="/mns-care">
+                  <div className="">
+                      <img loading="lazy" alt="MNSCare" src={MNSCare} className="m-auto" width={100} height={100} />
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-base font-medium">MNS Care</div>              
+                  </div>
+                </Link>            
             </div>
           </div>
           <div className="flex-col col-span-12 md:col-span-3">
             <div className="relative p-5 box text-center">
-                <div className="">
-                    <img loading="lazy" alt="LeaseManagement" src={LeaseManagement} className="m-auto" width={100} height={100} />
-                </div>
-                <div className="mt-5">
-                  <div className="text-base font-medium">Lease Management</div>              
-                </div>            
+                <Link to="http://10.24.3.55/WebPortal/Home1/Index/4" target="_blank">
+                  <div className="">
+                      <img loading="lazy" alt="LeaseManagement" src={LeaseManagement} className="m-auto" width={100} height={100} />
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-base font-medium">Lease Management</div>              
+                  </div>
+                </Link>            
             </div>
           </div>
         </div>
@@ -283,52 +300,62 @@ function Main() {
         <div className="mt-3.5 grid grid-cols-12 gap-y-4 gap-x-4">          
           <div className="flex-col col-span-12 md:col-span-3">
             <div className="relative p-5 box text-center">
-                <div className="box-img box-img1">
-                    <img loading="lazy" alt="Outlook" src={Outlook} className="m-auto" width={100} height={100} />
-                </div>
-                <div className="mt-5">
-                  <div className="text-base font-medium">Outlook</div>              
-                </div>            
+                <Link target="_blank" to="https://login.microsoftonline.com/common/oauth2/authorize?client_id=00000002-0000-0ff1-ce00-000000000000&redirect_uri=https%3a%2f%2foutlook.office365.com%2fowa%2f&resource=00000002-0000-0ff1-ce00-000000000000&response_mode=form_post&response_type=code+id_token&scope=openid&msafed=1&msaredir=1&client-request-id=b3331a2e-3bfa-7fe1-0a16-dd16b2d01c8c&protectedtoken=true&claims=%7b%22id_token%22%3a%7b%22xms_cc%22%3a%7b%22values%22%3a%5b%22CP1%22%5d%7d%7d%7d&domain_hint=mnscorp.net&nonce=638574912985750846.73c72cff-0900-4bdf-a65e-0cfd51b8d725&state=DYvJEYAgEMBAG7ARYEGWhXI45Cc46oztu48kr0ghxMosjASWoLBHJJ-sS1yE6IOmvZKrvStIAMqX1lUOeCiovaEtsZFDye9m5pfNOZ4670uP4_0B">
+                  <div className="box-img box-img1">
+                      <img loading="lazy" alt="Outlook" src={Outlook} className="m-auto" width={100} height={100} />
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-base font-medium">Outlook</div>              
+                  </div> 
+                </Link>           
             </div>
           </div>
           <div className="flex-col col-span-12 md:col-span-3">
             <div className="relative p-5 box text-center">
-                <div className="box-img box-img2">
-                    <img loading="lazy" alt="SAP" src={SAP} className="m-auto" width={100} height={100} />
-                </div>
-                <div className="mt-5">
-                  <div className="text-base font-medium">SAP</div>              
-                </div>            
+                <Link to="http://ecc-a-eap-isap.webapps.marksandspencer.com/sap/bc/gui/sap/its/z_wosm?sap-client=900" target="_blank">
+                  <div className="box-img box-img2">
+                      <img loading="lazy" alt="SAP" src={SAP} className="m-auto" width={100} height={100} />
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-base font-medium">SAP</div>              
+                  </div>
+                </Link>            
             </div>
           </div>
           <div className="flex-col col-span-12 md:col-span-3">
             <div className="relative p-5 box text-center">
-                <div className="box-img box-img3">
-                    <img loading="lazy" alt="BIPortal" src={BIPortal} className="m-auto" width={100} height={100} />
-                </div>
-                <div className="mt-5">
-                  <div className="text-base font-medium">BI Portal</div>              
-                </div>            
+                <Link to="http://ep-j-bjp-isap.webapps.marksandspencer.com/irj/portal" target="_blank">
+                  <div className="box-img box-img3">
+                      <img loading="lazy" alt="BIPortal" src={BIPortal} className="m-auto" width={100} height={100} />
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-base font-medium">BI Portal</div>              
+                  </div> 
+                </Link>           
             </div>
           </div>
           <div className="flex-col col-span-12 md:col-span-3">
             <div className="relative p-5 box text-center">
-                <div className="box-img box-img4">
-                    <img loading="lazy" alt="Inmoment" src={Inmoment} className="m-auto" width={100} height={100} />
-                </div>
-                <div className="mt-5">
-                  <div className="text-base font-medium">Inmoment</div>              
-                </div>            
+                <Link to="https://www.inmoment.com/report/app?service=page&page=Login" target="_blank">
+                  <div className="box-img box-img4">
+                      <img loading="lazy" alt="Inmoment" src={Inmoment} className="m-auto" width={100} height={100} />
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-base font-medium">Inmoment</div>              
+                  </div> 
+                </Link>           
             </div>
           </div>
           <div className="flex-col col-span-12 md:col-span-3">
             <div className="relative p-5 box text-center">
-                <div className="box-img box-img5">
-                    <img loading="lazy" alt="RetailCloud" src={RetailCloud} className="m-auto" width={100} height={100} />
-                </div>
-                <div className="mt-5">
-                  <div className="text-base font-medium">Retail Cloud</div>              
-                </div>            
+                <Link to="https://mands.retailcloud.net/public_first_login.cfm" target="_blank">
+                  <div className="box-img box-img5">
+                      <img loading="lazy" alt="RetailCloud" src={RetailCloud} className="m-auto" width={100} height={100} />
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-base font-medium">Retail Cloud</div>              
+                  </div> 
+                </Link>           
             </div>
           </div>
           
