@@ -68,5 +68,7 @@ background-position: top;}
     border: 1px solid #ccc;
     padding: .5rem 1rem;
 }
-
+.echo .side-menu ul.scrollable > li ul .side-menu__link img {
+    display: none;
+}
 
