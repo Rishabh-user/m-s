@@ -3,7 +3,7 @@ import "@/assets/css/themes/echo.css";
 import { Transition } from "react-transition-group";
 import { useState, useEffect, createRef } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { selectSideMenu, selectStoreMenu } from "@/stores/sideMenuSlice";
+import { selectHRISMenu, selectMNSMenu, selectSideMenu, selectStoreMenu } from "@/stores/sideMenuSlice";
 import {
   selectCompactMenu,
   setCompactMenu as setCompactMenuStore,
@@ -15,7 +15,6 @@ import users from "@/fakers/users";
 import clsx from "clsx";
 import SimpleBar from "simplebar";
 import { Menu } from "@/components/Base/Headless";
-//import SwitchAccount from "@/components/SwitchAccount";
 import NotificationsPanel from "@/components/NotificationsPanel";
 import Logo from "../../assets/images/pages/logo.png"
 import { Link } from "react-router-dom";
@@ -38,6 +37,8 @@ function Main() {
   >([]);
   const sideMenuStore = useAppSelector(selectSideMenu);
   const storeMenuportal = useAppSelector(selectStoreMenu);
+  const mnsMenucare = useAppSelector(selectMNSMenu);
+  const HRISMenu = useAppSelector(selectHRISMenu)
   //const sideMenu = () => nestedMenu(sideMenuStore, location);
   const scrollableRef = createRef<HTMLDivElement>();
 
@@ -62,6 +63,10 @@ function Main() {
     //setFormattedMenu(sideMenu());
     const formattedMenu = location.pathname.startsWith("/store-portal")
       ? nestedMenu(storeMenuportal, location)
+      : location.pathname.startsWith("/mns-care")
+      ? nestedMenu(mnsMenucare, location)
+      : location.pathname.startsWith("/hris")
+      ? nestedMenu(HRISMenu, location)
       : nestedMenu(sideMenuStore, location);
       setFormattedMenu(formattedMenu);
 
@@ -70,7 +75,7 @@ function Main() {
     window.onresize = () => {
       compactLayout();
     };
-  }, [sideMenuStore,storeMenuportal, location]);
+  }, [sideMenuStore, storeMenuportal, mnsMenucare, HRISMenu, location]);
 
   window.onscroll = () => {
     // Topbar

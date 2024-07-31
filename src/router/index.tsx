@@ -18,6 +18,8 @@ import TransactionSummery from "@/portals/store-portal/transaction-summery";
 import OnePieceTransactionSummery from "@/portals/store-portal/one-piece-transaction-summery";
 import ErrorPage from "@/pages/404Page/error-404";
 import ActivePromotion from "@/portals/store-portal/active-promotion";
+import MNSCare from "@/portals/mns-care";
+import HRIMS from "@/portals/HRIS";
 
 function Router() {
   const routes = [
@@ -32,6 +34,14 @@ function Router() {
         {
           path: "store-portal",
           element: <StorePortal />,
+        },
+        {
+          path: "mns-care",
+          element: <MNSCare />,
+        },
+        {
+          path: "hris",
+          element: <HRIMS />,
         },
         {
           path: "store-portal/loyalty-customer",

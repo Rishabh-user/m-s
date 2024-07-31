@@ -41,6 +41,8 @@ export interface SideMenuState {
   menu: any;
   mainMenu: Array<Menu | string>;
   storeMenu: Array<Menu | string>;
+  mnsMenu: Array<Menu | string>;
+  HRISMenu: Array<Menu | string>
 }
 
 const initialState: SideMenuState = {
@@ -121,7 +123,7 @@ const initialState: SideMenuState = {
       },
       {
         image: HRIS,
-        pathname: "https://hr.allsectech.com/msr/Common/web_Signon.aspx",
+        pathname: "/hris",
         title: "HRIS",
       },
       {
@@ -229,9 +231,40 @@ const initialState: SideMenuState = {
         title: "Capture Bra Fit Data",        
       },
     ],
+    mnsMenu: [
+      "MNS Care", 
+      {
+        image: SearchCustomer,
+        pathname: "/mns-care",
+        title: "Dashboard",        
+      },     
+      {
+        image: SearchCustomer,
+        title: "Search UPC",        
+      },
+      {
+        image: SearchCustomer,
+        title: "Search Gift Card",        
+      },
+    ],
+    HRISMenu: [
+      "HRIMS", 
+      {
+        image: SearchCustomer,
+        pathname: "/hris",
+        title: "Dashboard",        
+      },     
+      {
+        image: SearchCustomer,
+        title: "User Management",        
+      },
+      
+    ],
   },
   mainMenu: [],
-  storeMenu: []
+  storeMenu: [],
+  mnsMenu: [],
+  HRISMenu: []
 };
 
 export const sideMenuSlice = createSlice({
@@ -243,5 +276,7 @@ export const sideMenuSlice = createSlice({
 //export const selectSideMenu = (state: RootState) => state.sideMenu.menu;
 export const selectSideMenu = (state: RootState) => state.sideMenu.menu.mainMenu;
 export const selectStoreMenu = (state: RootState) => state.sideMenu.menu.storeMenu;
+export const selectMNSMenu = (state: RootState) => state.sideMenu.menu.mnsMenu;
+export const selectHRISMenu = (state: RootState) => state.sideMenu.menu.HRISMenu;
 
 export default sideMenuSlice.reducer;
