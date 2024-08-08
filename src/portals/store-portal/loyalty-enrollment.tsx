@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import Breadcrumb from "@/components/Base/Breadcrumb";
 import Lucide from "@/components/Base/Lucide";
-import { FormInput, FormLabel, FormInline } from "@/components/Base/Form";
+import { FormInput, FormLabel, FormInline, FormSelect } from "@/components/Base/Form";
 import Button from "@/components/Base/Button";
 import Table from "@/components/Base/Table";
 import _ from "lodash";
@@ -18,11 +18,18 @@ function LoyaltyEnrollment() {
       const [loyaltyData, setLoyaltyData] = useState<any>(null);
       const [loading, setLoading] = useState(false);
       const [error, setError] = useState<string | null>(null);
+      // Balance table pagination state
+      const [loyaltyPage, setLoyaltyPage] = useState(1);
+      const [loyaltyItemsPerPage, setLoyaltyItemsPerPage] = useState(10);  
     
       const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value });
       };    
+      const handleLoyaltyItemsPerPageChange = (event: ChangeEvent<HTMLSelectElement>) => {
+        setLoyaltyItemsPerPage(parseInt(event.target.value, 10));
+        setLoyaltyPage(1); 
+      };
       const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
         setLoading(true);
@@ -32,11 +39,57 @@ function LoyaltyEnrollment() {
           setLoyaltyData(data);   
          
         } catch (err) {
-          setError('Error fetching customer or balance data');
+          setError('Error fetching loyalty data');
         } finally {
           setLoading(false);
         }
       };
+      // Pagination calculations for balance table
+    const loyaltyTotalItems = loyaltyData?.data?.LoyaltyEnrollmentSummary?.length || 0;
+    const loyaltyTotalPages = Math.ceil(loyaltyTotalItems / loyaltyItemsPerPage);
+    const loyaltyIndexOfLastItem = loyaltyPage * loyaltyItemsPerPage;
+    const loyaltyIndexOfFirstItem = loyaltyIndexOfLastItem - loyaltyItemsPerPage;
+    const currentloyaltyItems = loyaltyData?.data?.LoyaltyEnrollmentSummary?.slice(loyaltyIndexOfFirstItem, loyaltyIndexOfLastItem);
+    
+    // Pagination component
+    const Pagination = ({ currentPage, totalPages, onPageChange }: { currentPage: number, totalPages: number, onPageChange: (pageNumber: number) => void }) => {
+        const maxPagesToShow = 5;
+        const getPaginationRange = () => {
+            const start = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
+            const end = Math.min(totalPages, start + maxPagesToShow - 1);
+            return { start, end };
+        };
+        const { start, end } = getPaginationRange();
+        return (
+            <div className="flex justify-between mt-4 w-[100%]">
+                <div className="flex justify-center pagination">
+                    <button
+                        disabled={currentPage === 1}
+                        onClick={() => onPageChange(currentPage - 1)}
+                        className="px-4 rounded disabled:opacity-50"
+                    >
+                        <Lucide icon="ChevronsLeft" className="w-5 h-5" />
+                    </button>
+                    {Array.from({ length: end - start + 1 }, (_, index) => (
+                        <button
+                            key={start + index}
+                            onClick={() => onPageChange(start + index)}
+                            className={`px-4 ${currentPage === start + index} rounded mx-2`}
+                        >
+                            {start + index}
+                        </button>
+                    ))}
+                    <button
+                        disabled={currentPage === totalPages}
+                        onClick={() => onPageChange(currentPage + 1)}
+                        className="px-4 rounded disabled:opacity-50"
+                    >
+                        <Lucide icon="ChevronsRight" className="w-5 h-5" />
+                    </button>
+                </div>                
+            </div>
+        );
+    };
   return (
     <div className="grid grid-cols-12 gap-y-10 gap-x-6  mt-15">
       <div className="col-span-12">        
@@ -162,7 +215,7 @@ function LoyaltyEnrollment() {
                             </Table.Tr>
                             </Table.Thead>
                             <Table.Tbody>    
-                                {loyaltyData?.data?.LoyaltyEnrollmentSummary.map((loyaltyItem, index) => (
+                                {currentloyaltyItems?.map((loyaltyItem, index) => (
                                     <Table.Tr key={index} className="[&_td]:last:border-b-0">
                                         <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
                                             <div className="whitespace-nowrap">
@@ -182,7 +235,7 @@ function LoyaltyEnrollment() {
                                             </div>
                                         </Table.Td>
                                         <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
-                                            <div className="flex items-center text-primary whitespace-nowrap"
+                                            <div className="flex items-center whitespace-nowrap"
                                             >
                                                 {loyaltyItem['Store No']}
                                             </div>
@@ -192,7 +245,24 @@ function LoyaltyEnrollment() {
                             </Table.Tbody>
                         </Table>
                         )}
-                    </div>                            
+                    </div> 
+                    <div className="flex flex-col-reverse justify-between items-center p-5 flex-reverse gap-y-2 sm:flex-row">
+                        <Pagination
+                            currentPage={loyaltyPage}
+                            totalPages={loyaltyTotalPages}
+                            onPageChange={setLoyaltyPage}
+                        />
+                        <FormSelect
+                            className="sm:w-20 rounded-[0.5rem]"
+                            onChange={handleLoyaltyItemsPerPageChange}
+                            value={loyaltyItemsPerPage}
+                        >
+                            <option value={10}>10</option>
+                            <option value={25}>25</option>
+                            <option value={35}>35</option>
+                            <option value={50}>50</option>
+                        </FormSelect>
+                    </div>                           
                 </div>
             </div>
             

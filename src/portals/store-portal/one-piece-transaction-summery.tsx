@@ -139,7 +139,7 @@ function OnePieceTransactionSummery() {
                                         </div>
                                     </Table.Td>
                                     <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
-                                        <div className="flex items-center text-primary whitespace-nowrap"
+                                        <div className="flex items-center whitespace-nowrap"
                                         >000T653000108748
                                         </div>
                                     </Table.Td>

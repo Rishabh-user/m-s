@@ -7,7 +7,7 @@ import Table from "@/components/Base/Table";
 import _ from "lodash";
 import { Menu } from "@/components/Base/Headless";
 import { ChangeEvent, FormEvent, useState } from "react";
-import { GetMissedLoyaltyOpp } from "./api";
+import { GetMissedLoyaltyOpp } from "../../api";
 import Loader from "@/components/Base/LoadingIcon/loader";
 
 function MissedLoyaltyOpportunity() {
@@ -27,7 +27,7 @@ function MissedLoyaltyOpportunity() {
       const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
         setLoading(true);
-        setError(null);
+        setError(null); 
         setNoRecords(false); 
         try {
             const data = await GetMissedLoyaltyOpp(formData.storeNo, formData.dateFrom, formData.dateTo);
@@ -56,7 +56,7 @@ function MissedLoyaltyOpportunity() {
             <div className="flex flex-col gap-8 mt-3.5 p-5 box">
                 <div className="flex flex-col">
                 <form onSubmit={handleSubmit} className="flex xl:flex-row flex-col items-end border-dashed gap-x-5 gap-y-2 border border-slate-300/80 xl:border-0 rounded-[0.6rem] p-4 sm:p-5 xl:p-0" >               
-                    <div>
+                    <div className="w-[100%]">
                         <FormLabel className="mr-3 whitespace-nowrap">
                             Date From:
                         </FormLabel>
@@ -68,7 +68,7 @@ function MissedLoyaltyOpportunity() {
                             value={formData.dateFrom}
                         />
                     </div>
-                    <div>
+                    <div className="w-[100%]">
                         <FormLabel className="mr-3 whitespace-nowrap">
                             Date To:
                         </FormLabel>
@@ -80,7 +80,7 @@ function MissedLoyaltyOpportunity() {
                             value={formData.dateTo}
                         />
                     </div>                
-                    <div className="gap-y-2">
+                    <div className="gap-y-2 w-[100%]">
                         <FormLabel className="mr-3 whitespace-nowrap">
                             Store No
                         </FormLabel>
@@ -193,7 +193,7 @@ function MissedLoyaltyOpportunity() {
                                                 </div>
                                             </Table.Td>
                                             <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
-                                                <div className="flex items-center text-primary whitespace-nowrap">
+                                                <div className="flex items-center whitespace-nowrap">
                                                     {loyaltyItem['Store No']}
                                                 </div>
                                             </Table.Td>

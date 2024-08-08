@@ -19,6 +19,12 @@ import BIPortal from '../../assets/images/icons/BI.png'
 import Inmoment from '../../assets/images/icons/Inmoment.png'
 import RetailCloud from '../../assets/images/icons/Retail.png'
 import SAP from '../../assets/images/icons/SAP.png'
+import FoofallReport from '../../assets/images/icons/footfall-report.png'
+import HRIS from '../../assets/images/icons/HRIS.png'
+import DCScanning from '../../assets/images/icons/DC-Scanning.png'
+import ITSupport from '../../assets/images/icons/IT-Support.png'
+import Qlikview from '../../assets/images/icons/qlikview.png'
+import ItemReservation from '../../assets/images/icons/reservesion.png'
 import { Link } from "react-router-dom";
 
 function Main() {
@@ -358,7 +364,102 @@ function Main() {
                 </Link>           
             </div>
           </div>
-          
+          <div className="flex-col col-span-12 md:col-span-3">
+            <div className="relative p-5 box text-center">
+                <Link to="http://10.24.3.127:90/htareports/Login.aspx" target="_blank">
+                  <div className="box-img box-img6">
+                      <img loading="lazy" alt="FoofallReport" src={FoofallReport} className="m-auto" width={100} height={100} />
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-base font-medium">Footfall Reports</div>              
+                  </div> 
+                </Link>           
+            </div>
+          </div>
+          <div className="flex-col col-span-12 md:col-span-3">
+            <div className="relative p-5 box text-center">
+                <Link to="https://hr.allsectech.com/msr/Common/web_Signon.aspx" target="_blank">
+                  <div className="box-img box-img7">
+                      <img loading="lazy" alt="HRIS" src={HRIS} className="m-auto" width={100} height={100} />
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-base font-medium">HRIS</div>              
+                  </div> 
+                </Link>           
+            </div>
+          </div>
+          <div className="flex-col col-span-12 md:col-span-3">
+            <div className="relative p-5 box text-center">
+                <Link to="https://signin.wooqer.com/idp/profile/SAML2/POST/SSO;jsessionid=node01l89cblx78dmvnl6dcc36q6i812239259.node0?execution=e1s1" target="_blank">
+                  <div className="box-img box-img8">
+                      <img loading="lazy" alt="Wooqer" src={StorePortal} className="m-auto" width={100} height={100} />
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-base font-medium">Wooqer</div>              
+                  </div> 
+                </Link>           
+            </div>
+          </div>
+          <div className="flex-col col-span-12 md:col-span-3">
+            <div className="relative p-5 box text-center">
+                <Link to="http://10.24.128.23/mnsutility" target="_blank">
+                  <div className="box-img box-img9">
+                      <img loading="lazy" alt="DCScanning" src={DCScanning} className="m-auto" width={100} height={100} />
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-base font-medium">DC Scanning App</div>              
+                  </div> 
+                </Link>           
+            </div>
+          </div>
+          <div className="flex-col col-span-12 md:col-span-3">
+            <div className="relative p-5 box text-center">
+                <Link to="https://10.24.3.61/" target="_blank">
+                  <div className="box-img box-img10">
+                      <img loading="lazy" alt="ITSupport" src={ITSupport} className="m-auto" width={100} height={100} />
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-base font-medium">One IT Support</div>              
+                  </div> 
+                </Link>           
+            </div>
+          </div>
+          <div className="flex-col col-span-12 md:col-span-3">
+            <div className="relative p-5 box text-center">
+                <Link to="https://msripl.in/msr/" target="_blank">
+                  <div className="box-img box-img8">
+                      <img loading="lazy" alt="MemberLogin" src={StorePortal} className="m-auto" width={100} height={100} />
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-base font-medium">Member Login</div>              
+                  </div> 
+                </Link>           
+            </div>
+          </div>
+          <div className="flex-col col-span-12 md:col-span-3">
+            <div className="relative p-5 box text-center">
+                <Link to="http://10.24.3.41/qlikview/index.htm" target="_blank">
+                  <div className="box-img box-img12">
+                      <img loading="lazy" alt="Qlikview" src={Qlikview} className="m-auto" width={100} height={100} />
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-base font-medium">Qlikview</div>              
+                  </div> 
+                </Link>           
+            </div>
+          </div>
+          <div className="flex-col col-span-12 md:col-span-3">
+            <div className="relative p-5 box text-center">
+                <Link to="http://10.24.3.55/Views/Shared/Error.cshtml?aspxerrorpath=/ItemsReservationPortal" target="_blank">
+                  <div className="box-img box-img13">
+                      <img loading="lazy" alt="ItemReservation" src={ItemReservation} className="m-auto" width={100} height={100} />
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-base font-medium">Item Reservation Portal</div>              
+                  </div> 
+                </Link>           
+            </div>
+          </div>
         </div>
       </div>
     </div>

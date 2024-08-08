@@ -20,6 +20,9 @@ import ErrorPage from "@/pages/404Page/error-404";
 import ActivePromotion from "@/portals/store-portal/active-promotion";
 import MNSCare from "@/portals/mns-care";
 import HRIMS from "@/portals/HRIS";
+import CoPortals from "@/portals/co-portals";
+import SalesTrackerCoPortal from "@/portals/co-portals/sales-tracker";
+import SalesTrackerOldCoPortal from "@/portals/co-portals/sales-tracker-old";
 
 function Router() {
   const routes = [
@@ -42,6 +45,10 @@ function Router() {
         {
           path: "hris",
           element: <HRIMS />,
+        },
+        {
+          path: "co-portal",
+          element: <CoPortals />,
         },
         {
           path: "store-portal/loyalty-customer",
@@ -74,6 +81,14 @@ function Router() {
         {
           path: "store-portal/active-promotion",
           element: <ActivePromotion />,
+        },
+        {
+          path: "co-portal/sales-tracker",
+          element: <SalesTrackerCoPortal />,
+        },
+        {
+          path: "co-portal/sales-tracker-old",
+          element: <SalesTrackerOldCoPortal />,
         },
         {
           path: "users",

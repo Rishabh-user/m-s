@@ -33,7 +33,7 @@ h3{font-size: 1.3rem !important;}
 .border{border-color: (var(--border-color));}
 .bg-black{background-color: #000;}
 input.border-color{border-color: var(--border-color);}
-.btn-primary{background-color:var(--green); color:var(--white); padding: 1rem;border-radius: .5rem;text-align: center;}
+.btn-primary{background-color:var(--green); color:var(--white);border-radius: .5rem;text-align: center;}
 .border-bottom {border-bottom: 1px solid #d9d9d9;}
 .border-left{border-left: 1px solid #eee;}
 .tns-outer .tns-nav {margin-bottom: 0; bottom: 55px;}
@@ -50,6 +50,17 @@ background-position: top;}
 .external-app .box-img4{border: 1px solid #6CAB41;background-color: hsla(96, 45%, 46%, 0.1);}
 .external-app .box-img5{border: 1px solid #1B751E;background-color: hsla(123, 79%, 22%, 0.1);}
 .colored-box{padding: 2rem .5rem;text-align: center;border-radius: .5rem;margin-top: 2rem;}
+.external-app .box-img6 {border: 1px solid #c03d3b;background-color: hsla(11, 96%, 42%, 0.1);}
+.external-app .box-img7 {border: 1px solid #2746a2;background-color: hsl(294deg 11.11% 82.35% / 30%);}
+.external-app .box-img8 {border: 1px solid #249298;background-color: hsl(170.77deg 13.4% 80.98% / 37%);
+}
+.external-app .box-img9 {border: 1px solid #c03d3b;background-color: hsla(11, 96%, 42%, 0.1);}
+.external-app .box-img10 {border: 1px solid #c03d3b;background-color: hsla(11, 96%, 42%, 0.1);}
+.external-app .box-img11 {border: 1px solid #c03d3b;background-color: hsla(11, 96%, 42%, 0.1);}
+.external-app .box-img12 {border: 1px solid #77bf91;background-color: hsl(133.85deg 28.06% 72.75% / 19%);
+}
+.external-app .box-img13 {border: 1px solid #c03d3b;background-color: hsla(11, 96%, 42%, 0.1);}
+
 .account-upgrade{background-color: #1D8287;}
 .colored-box h3{font-size: 26px;margin-bottom: .5rem;}
 .gift-voucher{background-color: #5B7B50;}
@@ -72,3 +83,10 @@ background-position: top;}
     display: none;
 }
 
+@media(max-width:767px){
+    h3 {font-size: 1.2rem !important; }
+    body, table tr td,th {font-size: .875rem;}
+    .border-left{border-left:none;padding-left: 0 !important;}
+    .mt-15 { margin-top: 0rem; }
+    .mt-16 { margin-top: 1rem; }
+}

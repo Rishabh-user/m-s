@@ -42,7 +42,8 @@ export interface SideMenuState {
   mainMenu: Array<Menu | string>;
   storeMenu: Array<Menu | string>;
   mnsMenu: Array<Menu | string>;
-  HRISMenu: Array<Menu | string>
+  HRISMenu: Array<Menu | string>;
+  CoPortalMenu: Array<Menu | string>
 }
 
 const initialState: SideMenuState = {
@@ -257,14 +258,37 @@ const initialState: SideMenuState = {
       {
         image: SearchCustomer,
         title: "User Management",        
-      },
-      
+      },      
     ],
+    CoPortalMenu: [
+      "HRIMS", 
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal",
+        title: "Dashboard",        
+      },     
+      {
+        image: SearchCustomer,
+        pathname: "/request-application",
+        title: "Request & Maintenance Application",        
+      }, 
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/sales-tracker",
+        title: "Sales Tracker",        
+      }, 
+      {
+        image: SearchCustomer,
+        pathname: "co-portal/sales-tracker-old",
+        title: "Sales Tracker Old",        
+      },    
+    ]
   },
   mainMenu: [],
   storeMenu: [],
   mnsMenu: [],
-  HRISMenu: []
+  HRISMenu: [],
+  CoPortalMenu: []
 };
 
 export const sideMenuSlice = createSlice({
@@ -278,5 +302,6 @@ export const selectSideMenu = (state: RootState) => state.sideMenu.menu.mainMenu
 export const selectStoreMenu = (state: RootState) => state.sideMenu.menu.storeMenu;
 export const selectMNSMenu = (state: RootState) => state.sideMenu.menu.mnsMenu;
 export const selectHRISMenu = (state: RootState) => state.sideMenu.menu.HRISMenu;
+export const selectCOPortalMenu = (state: RootState) => state.sideMenu.menu.CoPortalMenu;
 
 export default sideMenuSlice.reducer;

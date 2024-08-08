@@ -3,7 +3,7 @@ import "@/assets/css/themes/echo.css";
 import { Transition } from "react-transition-group";
 import { useState, useEffect, createRef } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { selectHRISMenu, selectMNSMenu, selectSideMenu, selectStoreMenu } from "@/stores/sideMenuSlice";
+import { selectCOPortalMenu, selectHRISMenu, selectMNSMenu, selectSideMenu, selectStoreMenu } from "@/stores/sideMenuSlice";
 import {
   selectCompactMenu,
   setCompactMenu as setCompactMenuStore,
@@ -38,7 +38,8 @@ function Main() {
   const sideMenuStore = useAppSelector(selectSideMenu);
   const storeMenuportal = useAppSelector(selectStoreMenu);
   const mnsMenucare = useAppSelector(selectMNSMenu);
-  const HRISMenu = useAppSelector(selectHRISMenu)
+  const HRISMenu = useAppSelector(selectHRISMenu);
+  const CoPortalMenu = useAppSelector(selectCOPortalMenu);
   //const sideMenu = () => nestedMenu(sideMenuStore, location);
   const scrollableRef = createRef<HTMLDivElement>();
 
@@ -67,6 +68,8 @@ function Main() {
       ? nestedMenu(mnsMenucare, location)
       : location.pathname.startsWith("/hris")
       ? nestedMenu(HRISMenu, location)
+      : location.pathname.startsWith("/co-portal")
+      ? nestedMenu(CoPortalMenu, location)
       : nestedMenu(sideMenuStore, location);
       setFormattedMenu(formattedMenu);
 
@@ -75,7 +78,7 @@ function Main() {
     window.onresize = () => {
       compactLayout();
     };
-  }, [sideMenuStore, storeMenuportal, mnsMenucare, HRISMenu, location]);
+  }, [sideMenuStore, storeMenuportal, mnsMenucare, HRISMenu, CoPortalMenu, location]);
 
   window.onscroll = () => {
     // Topbar
@@ -340,7 +343,7 @@ function Main() {
               {/* END: First Child */}
               <li>
                 <div className="flex justify-center my-5">
-                  <Link to='/' className="btn btn-primary">Back to Dashboard</Link>
+                  <Link to='/' className="btn btn-primary px-5 py-3">Back to Dashboard</Link>
                 </div>
               </li>
             </ul>
@@ -357,7 +360,7 @@ function Main() {
             ])}
           >
              <div className="container flex items-center w-full h-full ease-in-out duration-300 box shadow-none border-none
-                group-[.top-bar--active]:box group-[.top-bar--active] px-5 bg-transparent group-[.top-bar--active]:bg-black">
+                group-[.top-bar--active]:box group-[.top-bar--active] xl:px-5 bg-transparent group-[.top-bar--active]:bg-black">
               <div className="flex items-center gap-1 xl:hidden">
                   <a
                     href=""
@@ -431,7 +434,7 @@ function Main() {
           { "mode--light": !topBarActive },
         ])}
       >
-        <div className="px-5 mt-16 mx-5">
+        <div className="xl:px-5 mt-16 mx-5">
           <div className="container">
             <Outlet />
           </div>

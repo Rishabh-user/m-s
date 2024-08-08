@@ -10,7 +10,7 @@ function ErrorPage() {
         <div style={{ textAlign: 'center'}}>
             <p className="text-3xl mb-2">Looks like you're lost</p>
             <p className="text-xl mb-5">The page you are looking for not available</p>
-            <Link to="/" className="btn btn-primary" style={{ marginTop: '30px', display: 'block'}}>Go to Home</Link>
+            <Link to="/" className="btn btn-primary px-5 py-3" style={{ marginTop: '30px', display: 'block'}}>Go to Home</Link>
         </div>
     </div>
   );

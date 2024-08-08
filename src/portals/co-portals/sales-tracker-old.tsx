@@ -1,46 +1,49 @@
 
 import React, { useState, useEffect, ChangeEvent } from "react";
 import Breadcrumb from "@/components/Base/Breadcrumb";
-import Pagination from "@/components/pagination";
 import { FormSelect } from "@/components/Base/Form";
 import Table from "@/components/Base/Table";
 import _ from "lodash";
 import { Link } from "react-router-dom";
-import { BASE_URL } from "./api";
+import { BASE_URL } from "../../api";
 import axios from "axios";
+import Pagination from "@/components/pagination";
 
-function SalesTrackerOldView() {
-    const [salesData, setSalesData] = useState<any>(null);
-    const [salesPage, setSalesPage] = useState(1);
-    const [salesItemsPerPage, setSalesItemsPerPage] = useState(10);
-  
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await axios.get(`${BASE_URL}/StorePortal/SalesTracker`);
-          setSalesData(response.data);
-        } catch (err) {
-          console.error("Error fetching sales data", err);
-        }
-      };  
-      fetchData();
-    }, []);
-  
-    const handleSalesItemsPerPageChange = (event: ChangeEvent<HTMLSelectElement>) => {
-      setSalesItemsPerPage(Number(event.target.value));
-      setSalesPage(1);
+function SalesTrackerOldCoPortal() {
+  const [salesData, setSalesData] = useState<any>(null);
+  const [salesPage, setSalesPage] = useState(1);
+  const [salesItemsPerPage, setSalesItemsPerPage] = useState(10);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`${BASE_URL}/StorePortal/SalesTracker`);
+        setSalesData(response.data);
+      } catch (err) {
+        console.error("Error fetching sales data", err);
+      }
     };
-  
-    const salesTotalPages = salesData
-      ? Math.ceil(salesData.data.TodaySale.length / salesItemsPerPage)
-      : 1;
-  
-    const currentSalesItems = salesData
-      ? salesData.data.TodaySale.slice(
-          (salesPage - 1) * salesItemsPerPage,
-          salesPage * salesItemsPerPage
-        )
-      : [];
+
+    fetchData();
+  }, []);
+
+  const handleSalesItemsPerPageChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setSalesItemsPerPage(Number(event.target.value));
+    setSalesPage(1);
+  };
+
+  const salesTotalPages = salesData
+    ? Math.ceil(salesData.data.TodaySale.length / salesItemsPerPage)
+    : 1;
+
+  const currentSalesItems = salesData
+    ? salesData.data.TodaySale.slice(
+        (salesPage - 1) * salesItemsPerPage,
+        salesPage * salesItemsPerPage
+      )
+    : [];
+ 
+      
   return (
     <div className="grid grid-cols-12 gap-y-10 gap-x-6  mt-15">
       <div className="col-span-12">        
@@ -216,25 +219,25 @@ function SalesTrackerOldView() {
                                     </Table.Tr>
                                 ))}                           
                             </Table.Tbody>
-                        </Table>
-                        <div className="flex flex-col-reverse justify-between items-center p-5 flex-reverse gap-y-2 sm:flex-row">
-                            <Pagination
-                                currentPage={salesPage}
-                                totalPages={salesTotalPages}
-                                onPageChange={setSalesPage}
+                        </Table>                        
+                    </div> 
+                    <div className="flex flex-col-reverse justify-between items-center p-5 flex-reverse gap-y-2 sm:flex-row">
+                        <Pagination
+                            currentPage={salesPage}
+                            totalPages={salesTotalPages}
+                            onPageChange={setSalesPage}
                             />
                             <FormSelect
-                                className="sm:w-20 rounded-[0.5rem]"
-                                onChange={handleSalesItemsPerPageChange}
-                                value={salesItemsPerPage}
-                                >
-                                <option value={10}>10</option>
-                                <option value={25}>25</option>
-                                <option value={35}>35</option>
-                                <option value={50}>50</option>
-                            </FormSelect>
-                        </div> 
-                    </div>                            
+                            className="sm:w-20 rounded-[0.5rem]"
+                            onChange={handleSalesItemsPerPageChange}
+                            value={salesItemsPerPage}
+                            >
+                            <option value={10}>10</option>
+                            <option value={25}>25</option>
+                            <option value={35}>35</option>
+                            <option value={50}>50</option>
+                        </FormSelect>
+                    </div>                           
                 </div>
             </div>
             <div className="flex flex-col gap-8 mt-3.5 p-5 box">               
@@ -402,4 +405,4 @@ function SalesTrackerOldView() {
   );
 }
 
-export default SalesTrackerOldView;
+export default SalesTrackerOldCoPortal;
