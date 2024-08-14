@@ -23,26 +23,20 @@ function OnePieceTransactionSummery() {
        <div className="col-span-12">
             <div className="flex flex-col gap-8 mt-3.5 p-5 box">
                 <div className="flex flex-col">
-                <form className="flex xl:flex-row flex-col items-end border-dashed gap-x-5 gap-y-2 border border-slate-300/80 xl:border-0 rounded-[0.6rem] p-4 sm:p-5 xl:p-0" >               
-                    <div>
+                <form className="flex lg:flex-row flex-col items-end border-dashed gap-x-5 gap-y-2 border border-slate-300/80 xl:border-0 rounded-[0.6rem] p-4 sm:p-5 xl:p-0" >               
+                    <div className="w-[100%]">
                         <FormLabel className="mr-3 whitespace-nowrap">
                             Date From:
                         </FormLabel>
-                        <FormInput                  
-                            type="date"
-                            className=""
-                        />
+                        <FormInput type="date" className="" />
                     </div>
-                    <div>
+                    <div className="w-[100%]">
                         <FormLabel className="mr-3 whitespace-nowrap">
                             Date To:
                         </FormLabel>
-                        <FormInput                  
-                            type="date"
-                            className=""
-                        />
+                        <FormInput  type="date" className="" />
                     </div>                
-                    <div className="gap-y-2">
+                    <div className="gap-y-2 w-[100%]">
                         <FormLabel className="mr-3 whitespace-nowrap">
                             Mobile No.
                         </FormLabel>
@@ -54,42 +48,27 @@ function OnePieceTransactionSummery() {
                     <div className="flex gap-2">
                         <Button type="button" className="btn-primary" >Search </Button>
                         <Button type="button" className="btn-primary"> <Lucide icon="RotateCw" className="block" /> </Button>
-                    </div>
-                    <Button variant="outline-secondary">
-                  <Lucide
-                    icon="Printer"
-                    className="stroke-[1.3] w-4 h-4 mr-2"
-                  />
-                  Print
-                </Button>
-                <Menu className="sm:ml-auto xl:ml-0">
-                  <Menu.Button
-                    as={Button}
-                    variant="outline-secondary"
-                    className="w-full sm:w-auto"
-                  >
-                    <Lucide
-                      icon="FileCheck2"
-                      className="stroke-[1.3] w-4 h-4 mr-2"
-                    />
-                    Export
-                    <Lucide
-                      icon="ChevronDown"
-                      className="stroke-[1.3] w-4 h-4 ml-2"
-                    />
-                  </Menu.Button>
-                  <Menu.Items className="w-40">
-                    <Menu.Item>
-                      <Lucide icon="FileCheck2" className="w-4 h-4 mr-2" />{" "}
-                      Export CSV
-                    </Menu.Item>
-                    
-                    <Menu.Item >
-                      <Lucide icon="FileCheck2" className="w-4 h-4 mr-2" />
-                      Export XLSX
-                    </Menu.Item>
-                  </Menu.Items>
-                </Menu>
+                        <Button variant="outline-secondary">
+                            <Lucide icon="Printer" className="stroke-[1.3] w-4 h-4 mr-2" />Print
+                        </Button>
+                        <Menu className="sm:ml-auto xl:ml-0">
+                            <Menu.Button as={Button} variant="outline-secondary" className="w-full sm:w-auto" >
+                                <Lucide icon="FileCheck2" className="stroke-[1.3] w-4 h-4 mr-2" />
+                                    Export
+                                <Lucide icon="ChevronDown" className="stroke-[1.3] w-4 h-4 ml-2"/>
+                            </Menu.Button>
+                            <Menu.Items className="w-40">
+                                <Menu.Item>
+                                    <Lucide icon="FileCheck2" className="w-4 h-4 mr-2" />{" "}
+                                    Export CSV
+                                </Menu.Item>                            
+                                <Menu.Item >
+                                    <Lucide icon="FileCheck2" className="w-4 h-4 mr-2" />
+                                    Export XLSX
+                                </Menu.Item>
+                            </Menu.Items>
+                        </Menu>
+                    </div>                   
                 </form>
                 </div>
                 <div className="flex flex-col gap-5">

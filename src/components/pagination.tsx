@@ -10,7 +10,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }: { currentPage: nu
     };
     const { start, end } = getPaginationRange();
     return (
-        <div className="flex justify-between mt-4 w-[100%]">
+        <div className="flex justify-between w-[100%]">
             <div className="flex justify-center pagination">
                 <button
                     disabled={currentPage === 1}

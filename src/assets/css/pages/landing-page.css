@@ -63,8 +63,9 @@ background-position: top;}
 
 .account-upgrade{background-color: #1D8287;}
 .colored-box h3{font-size: 26px;margin-bottom: .5rem;}
+.colored-box div {font-size: 14px;line-height: 1.2;}
 .gift-voucher{background-color: #5B7B50;}
-.pagination { display: flex; justify-content: center; margin-top: 20px;}
+.pagination { display: flex; justify-content: center; }
 .page-number { margin: 0 5px; padding: 5px 10px; border: 1px solid #ccc; cursor: pointer;}
 .page-number.active { background-color: #000; color: #fff;}
 .box-sales{border-radius: 6px; padding: 2.5rem 1.5rem;color: var(--white); text-align: center;}
@@ -89,4 +90,5 @@ background-position: top;}
     .border-left{border-left:none;padding-left: 0 !important;}
     .mt-15 { margin-top: 0rem; }
     .mt-16 { margin-top: 1rem; }
+    .colored-box h3{margin-bottom: 0;}
 }

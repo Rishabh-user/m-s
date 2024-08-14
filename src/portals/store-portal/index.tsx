@@ -12,6 +12,7 @@ import NPSDashboard from '../../assets/images/icons/NPS-dashboard.png'
 import CaptureData from '../../assets/images/icons/Capture-Bra-FitData.png'
 
 import { PieChart } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function Main() {
 
@@ -25,7 +26,7 @@ function Main() {
         </Breadcrumb>
         {/* END: Breadcrumb */}
         <div className="grid grid-cols-12 gap-5 mt-3.5">          
-          <div className="flex flex-col col-span-12 p-5 md:col-span-4 2xl:col-span-4 box ">            
+          <div className="flex flex-col col-span-12 p-5 md:col-span-6 sm:col-span-6 2xl:col-span-4 box ">            
             <div className="flex items-center">             
               <div className="ml-4">
                 <div className="text-base font-medium ">Account Downgraded</div>
@@ -46,7 +47,7 @@ function Main() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col col-span-12 p-5 md:col-span-4 2xl:col-span-4 box ">           
+          <div className="flex flex-col col-span-12 p-5 md:col-span-6 sm:col-span-6 2xl:col-span-4 box ">           
             <div className="flex items-center">              
               <div className="ml-4">
                 <div className="text-base font-medium">
@@ -74,7 +75,7 @@ function Main() {
               </div>
             </div>            
           </div>
-          <div className="flex flex-col col-span-12 p-5 md:col-span-4 2xl:col-span-4 box ">           
+          <div className="flex flex-col col-span-12 p-5 md:col-span-6 sm:col-span-6 2xl:col-span-4 box ">           
             <div className="flex items-center">              
               <div className="ml-4">
                 <div className="text-base font-medium">
@@ -102,7 +103,7 @@ function Main() {
               </div>
             </div>            
           </div>
-          <div className="flex flex-col col-span-12 p-5 md:col-span-4 2xl:col-span-4 box ">
+          <div className="flex flex-col col-span-12 p-5 md:col-span-6 sm:col-span-6 2xl:col-span-4 box ">
             <div className="flex items-center">
               <div className="ml-4">
                 <div className="text-base font-medium">
@@ -116,7 +117,7 @@ function Main() {
               
             </div>
           </div>
-          <div className="flex flex-col col-span-12 p-5 md:col-span-8 2xl:col-span-8 box ">
+          <div className="flex flex-col col-span-12 p-5 md:col-span-12 sm:col-span-12 2xl:col-span-8 box ">
             <div className="flex items-center">
               <div className="ml-4">
                 <div className="text-base font-medium">
@@ -138,14 +139,16 @@ function Main() {
         </div>
         <div className="mt-3.5 grid grid-cols-12 gap-y-4 gap-x-4">          
           <div className="flex-col col-span-12 md:col-span-3">
-            <div className="relative p-5 box text-center">
-                <div className="">
-                    <img loading="lazy" alt="MNSPortal" src={SearchCustomer} className="m-auto" width={100} height={100} />
-                </div>
-                <div className="mt-5">
-                  <div className="text-base font-medium">Search Customer</div>              
-                </div>            
-            </div>
+            <Link to="/store-portal/loyalty-customer">
+              <div className="relative p-5 box text-center">
+                  <div className="">
+                      <img loading="lazy" alt="MNSPortal" src={SearchCustomer} className="m-auto" width={100} height={100} />
+                  </div>
+                  <div className="mt-5">
+                    <div className="text-base font-medium">Search Customer</div>              
+                  </div>            
+              </div>
+            </Link>
           </div>
           <div className="flex-col col-span-12 md:col-span-3">
             <div className="relative p-5 box text-center">

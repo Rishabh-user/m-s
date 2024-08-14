@@ -38,7 +38,12 @@ function ActivePromotion() {
       const data = await GetActivePromotionbyUPC(formData.upc);
       const activeData = await GetActivePromo(formData.upc);
       setActivePromotionupcData(data);
-      setActivePromoData(activeData);
+      if (data.message === "No Record Found") {
+        setActivePromoData(null);
+        setError("No records available.");
+      } else {
+        setActivePromoData(data);
+      }
     } catch (err) {
       setError('Error fetching promotion data');
     } finally {
@@ -265,32 +270,35 @@ function ActivePromotion() {
                                     </Table.Td>                                    
                                 </Table.Tr>
                                 </Table.Thead>
-                                <Table.Tbody> 
-                                {currentActivePromoItems.map((promo, index) => (
-                                    <Table.Tr key={index} className="[&_td]:last:border-b-0">
-                                    <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
-                                        <div className="whitespace-nowrap">{promo.PromoCode}</div>
-                                    </Table.Td>
-                                    <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
-                                        <div className="flex items-center">
-                                        <div className="ml-1.5 whitespace-nowrap">{promo['Promo Name']}</div>
-                                        </div>
-                                    </Table.Td>
-                                    <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
-                                        <div className="whitespace-nowrap">{promo['Start Date']}</div>
-                                    </Table.Td>
-                                    <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
-                                        <div className="flex items-center text-primary whitespace-nowrap">
-                                        {promo['End Date']}
-                                        </div>
-                                    </Table.Td>
-                                    </Table.Tr>
-                                ))}
-                                <Table.Tr>
-                                    <Table.Td colSpan={4} className="py-4 text-center text-gray-500">
-                                        No records available.
-                                    </Table.Td>
-                                </Table.Tr>
+                                <Table.Tbody>
+                                    {currentActivePromoItems.length > 0 ? (
+                                        currentActivePromoItems.map((promo, index) => (
+                                        <Table.Tr key={index} className="[&_td]:last:border-b-0">
+                                            <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
+                                            <div className="whitespace-nowrap">{promo.PromoCode}</div>
+                                            </Table.Td>
+                                            <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
+                                            <div className="flex items-center">
+                                                <div className="ml-1.5 whitespace-nowrap">{promo['Promo Name']}</div>
+                                            </div>
+                                            </Table.Td>
+                                            <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
+                                            <div className="whitespace-nowrap">{promo['Start Date']}</div>
+                                            </Table.Td>
+                                            <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
+                                            <div className="flex items-center text-primary whitespace-nowrap">
+                                                {promo['End Date']}
+                                            </div>
+                                            </Table.Td>
+                                        </Table.Tr>
+                                        ))
+                                    ) : (
+                                        <Table.Tr>
+                                        <Table.Td colSpan={4} className="py-4 text-center text-gray-500">
+                                            {currentActivePromoItems?.message || "No records available."}
+                                        </Table.Td>
+                                        </Table.Tr>
+                                    )}
                                 </Table.Tbody>
                             </Table>
                         )}

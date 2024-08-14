@@ -1,7 +1,6 @@
 import React, {useState, ChangeEvent, FormEvent, useEffect} from "react";
 import Breadcrumb from "@/components/Base/Breadcrumb";
 import Lucide from "@/components/Base/Lucide";
-import Pagination from "@/components/Base/Pagination";
 import { FormInput, FormLabel, FormInline, FormSelect } from "@/components/Base/Form";
 import Button from "@/components/Base/Button";
 import Table from "@/components/Base/Table";
@@ -82,11 +81,19 @@ function LoyaltyCustomer() {
     // on mobile click    
     const handleMobileClick = async (contact) => {
         setSelectedContact(contact);
+        setCustomerData(true);
         try {
-          const data = await searchCustomer('', contact.mobile_Phone_No, '');
-          setSelectedContact(data);
+            const data = await searchCustomer('', contact.mobile_Phone_No, '');
+            setSelectedContact(data);
+            const accountNo = data.memberContact[0].account_No;
+            const balance = await GetLCRunningBalance(accountNo);
+            setBalanceData(balance);
+            const coupenCode = await GetCoupenCodeForAccountNoForStorePortal(accountNo);
+            setCoupenCodeData(coupenCode);
         } catch (error) {
           console.error('Error sending mobile number:', error);
+        } finally {
+            setLoading(false);
         }
     };
     // Clear form
@@ -180,7 +187,7 @@ function LoyaltyCustomer() {
           <div className="flex flex-col box py-4">
             <div className="flex flex-col p-5 xl:items-center xl:flex-row gap-y-2">
             <form onSubmit={handleSubmit}
-                className="flex xl:flex-row flex-col items-end border-dashed gap-x-5 gap-y-2 border border-slate-300/80 xl:border-0 rounded-[0.6rem] p-4 sm:p-5 xl:p-0"
+                className="flex lg:flex-row flex-col items-end border-dashed gap-x-5 gap-y-2 border border-slate-300/80 xl:border-0 rounded-[0.6rem] p-4 sm:p-5 xl:p-0"
                 >
                 <div className="w-[100%]">
                     <FormLabel className="mr-3 whitespace-nowrap">Name</FormLabel>
@@ -692,7 +699,7 @@ function LoyaltyCustomer() {
                         </div>
                     )
                 )}
-                 {selectedContact && selectedContact.memberContact && (
+                {selectedContact && selectedContact.memberContact && (
                     <div>
                         <div className="col-span-12 mb-5">
                             <div className="grid grid-cols-10 gap-5">
