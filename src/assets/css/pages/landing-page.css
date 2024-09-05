@@ -83,7 +83,8 @@ background-position: top;}
 .echo .side-menu ul.scrollable > li ul .side-menu__link img {
     display: none;
 }
-
+.css-1d3z3hw-MuiOutlinedInput-notchedOutline{border-color: rgb(203 213 225 / 0.6) !important;    box-shadow: 0px 2px 2px #cccccc2b;}
+.css-lc42l8-MuiInputBase-input-MuiOutlinedInput-input{line-height: 1.25rem !important;padding: 8px 14px !important;}
 @media(max-width:767px){
     h3 {font-size: 1.2rem !important; }
     body, table tr td,th {font-size: .875rem;}

@@ -8,16 +8,21 @@ import _ from "lodash";
 import { Menu } from "@/components/Base/Headless";
 import { GetLoyaltyEnrollment } from "./api";
 import Loader from "@/components/Base/LoadingIcon/loader";
-
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
+import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs, { Dayjs } from 'dayjs';
+import { TextField } from "@mui/material";
 
 function LoyaltyEnrollment() {
-    const [formData, setFormData] = useState({
-        storeNo: '',
-        dateFrom: '',
-        dateTo: '',
-    });
+    const [formData, setFormData] = useState<{
+        dateFrom: Dayjs | null;
+        dateTo: Dayjs | null;
+        storeNo: string;
+      }>({
+        dateFrom: dayjs(), 
+        dateTo: dayjs(),
+        storeNo: ''
+      });
     const [loyaltyData, setLoyaltyData] = useState<any>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -25,7 +30,7 @@ function LoyaltyEnrollment() {
     const [loyaltyPage, setLoyaltyPage] = useState(1);
     const [loyaltyItemsPerPage, setLoyaltyItemsPerPage] = useState(10);  
 
-    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
     };    
@@ -33,12 +38,22 @@ function LoyaltyEnrollment() {
     setLoyaltyItemsPerPage(parseInt(event.target.value, 10));
     setLoyaltyPage(1); 
     };
-    const handleSubmit = async (event: FormEvent) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setLoading(true);
-        setError(null);    
+        setError(null); 
+        if (!formData.dateFrom || !formData.dateTo || !formData.storeNo) {
+            setError('Please select Date From&Date To and Store No.');
+            setLoading(false);
+            return;
+        }  
+        const formattedData = {
+            storeNo: formData.storeNo,
+            dateFrom: formData.dateFrom.format('YYYY-MM-DD'),
+            dateTo: formData.dateTo.format('YYYY-MM-DD'),
+          };  
         try {
-          const data = await GetLoyaltyEnrollment(formData.storeNo, formData.dateFrom, formData.dateTo);
+          const data = await GetLoyaltyEnrollment(formattedData.storeNo, formattedData.dateFrom, formattedData.dateTo);
           setLoyaltyData(data);   
          
         } catch (err) {
@@ -47,6 +62,12 @@ function LoyaltyEnrollment() {
           setLoading(false);
         }
     };
+    const handleDateChange = (name: string, value: Dayjs | null) => {
+        setFormData({
+          ...formData,
+          [name]: value,
+        });
+      };
       // Pagination calculations for balance table
     const loyaltyTotalItems = loyaltyData?.data?.LoyaltyEnrollmentSummary?.length || 0;
     const loyaltyTotalPages = Math.ceil(loyaltyTotalItems / loyaltyItemsPerPage);
@@ -93,20 +114,15 @@ function LoyaltyEnrollment() {
             </div>
         );
     };
-    const handlePrint = () => {
-        if (loyaltyData) {
-          const storeNoString = formData.storeNo.toString();
-          const dateFromString = formData.dateFrom.toString();
-          const dateToString = formData.dateTo.toString();
-    
-          printLoyaltyData(storeNoString, dateFromString, dateToString, loyaltyData);
-        } else {
-          console.log('No data to print');
-        }
-      };    
-      const printLoyaltyData = (storeNo: string, dateFrom: string, dateTo: string, data: any) => {
-        console.log('Printing Data:', { storeNo, dateFrom, dateTo, data });
-      };
+    // Clear form
+    const handleClearForm = () => {
+        setFormData({
+            dateFrom: null,
+            dateTo: null,
+            storeNo: ''
+        });
+    };
+   
   return (
     <div className="grid grid-cols-12 gap-y-10 gap-x-6  mt-15">
       <div className="col-span-12">        
@@ -126,25 +142,43 @@ function LoyaltyEnrollment() {
                         <FormLabel className="mr-3 whitespace-nowrap">
                             Date From:
                         </FormLabel>
-                        <FormInput                  
+                        {/* <FormInput                  
                             type="date"
                             className=""
                             name="dateFrom"
                             onChange={handleInputChange}
                             value={formData.dateFrom}
-                        />
+                        /> */}
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <DatePicker
+                                value={formData.dateFrom}
+                                onChange={(newValue) => handleDateChange('dateFrom', newValue)}
+                                slotProps={{
+                                textField: { fullWidth: true },
+                                }}
+                            />
+                        </LocalizationProvider>
                     </div>
                     <div className="w-[100%]">
                         <FormLabel className="mr-3 whitespace-nowrap">
                             Date To:
                         </FormLabel>
-                        <FormInput                  
+                        {/* <FormInput                  
                             type="date"
                             className=""
                             name="dateTo"
                             onChange={handleInputChange}
                             value={formData.dateTo}
-                        />
+                        /> */}
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <DatePicker
+                                value={formData.dateTo}
+                                onChange={(newValue) => handleDateChange('dateTo', newValue)}
+                                slotProps={{
+                                textField: { fullWidth: true },
+                                }}
+                            />
+                        </LocalizationProvider>
                     </div>                
                     <div className="gap-y-2 w-[100%]">
                         <FormLabel className="mr-3 whitespace-nowrap">
@@ -160,8 +194,10 @@ function LoyaltyEnrollment() {
                     </div>
                     <div className="flex gap-2">
                         <Button type="submit" className="btn-primary" >Search </Button>
-                        <Button type="button" className="btn-primary"> <Lucide icon="RotateCw" className="block" /> </Button>
-                        <Button variant="outline-secondary" onClick={handlePrint}>
+                        <Button type="button" className="btn-primary" onClick={handleClearForm}> 
+                            <Lucide icon="RotateCw" className="block" /> 
+                        </Button>
+                        <Button variant="outline-secondary">
                             <Lucide
                                 icon="Printer"
                                 className="stroke-[1.3] w-4 h-4 mr-2"
@@ -198,8 +234,9 @@ function LoyaltyEnrollment() {
                         </Menu>
                     </div>
                     
-                </form>
+                </form>                
                 </div>
+                {error && <div className="text-red-500 text-right px-5">{error}</div>}
                 <div className="flex flex-col gap-5">
                     <div className="overflow-auto xl:overflow-visible">
                         {loading ? (

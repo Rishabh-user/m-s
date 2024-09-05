@@ -9,13 +9,20 @@ import { Menu } from "@/components/Base/Headless";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { GetTransactionSummary } from "./api";
 import Loader from "@/components/Base/LoadingIcon/loader";
+import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs, { Dayjs } from 'dayjs';
 
 function TransactionSummery() {
-    const [formData, setFormData] = useState({
-        storeNo: '',
-        dateFrom: '',
-        dateTo: '',
-    });
+    const [formData, setFormData] = useState<{
+        dateFrom: Dayjs | null;
+        dateTo: Dayjs | null;
+        storeNo: string;
+      }>({
+        dateFrom: dayjs(), 
+        dateTo: dayjs(),
+        storeNo: ''
+      });
     const [loyaltyData, setLoyaltyData] = useState<any>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -28,9 +35,19 @@ function TransactionSummery() {
         event.preventDefault();
         setLoading(true);
         setError(null);
-        setNoRecords(false); 
+        if (!formData.dateFrom || !formData.dateTo || !formData.storeNo) {
+            setError('Please select Date From&Date To and Store No.');
+            setLoading(false);
+            return;
+        } 
+        setNoRecords(false);
+        const formattedData = {
+            storeNo: formData.storeNo,
+            dateFrom: formData.dateFrom.format('YYYY-MM-DD'),
+            dateTo: formData.dateTo.format('YYYY-MM-DD'),
+          };  
         try {
-            const data = await GetTransactionSummary(formData.storeNo, formData.dateFrom, formData.dateTo);
+            const data = await GetTransactionSummary(formattedData.storeNo, formattedData.dateFrom, formattedData.dateTo);
             setLoyaltyData(data);
             if (data?.code === 404 && data?.message === 'No Record Found') {
              setNoRecords(true);
@@ -40,6 +57,20 @@ function TransactionSummery() {
         } finally {
             setLoading(false);
         }
+    };
+    const handleDateChange = (name: string, value: Dayjs | null) => {
+        setFormData({
+          ...formData,
+          [name]: value,
+        });
+      };
+    // Clear form
+    const handleClearForm = () => {
+        setFormData({
+            dateFrom: null,
+            dateTo: null,
+            storeNo: ''
+        });
     };
   return (
     <div className="grid grid-cols-12 gap-y-10 gap-x-6  mt-15">
@@ -60,25 +91,43 @@ function TransactionSummery() {
                         <FormLabel className="mr-3 whitespace-nowrap">
                             Date From:
                         </FormLabel>
-                        <FormInput                  
+                        {/* <FormInput                  
                             type="date"
                             className=""
                             name="dateFrom"
                             onChange={handleInputChange}
                             value={formData.dateFrom}
-                        />
+                        /> */}
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <DatePicker
+                                value={formData.dateFrom}
+                                onChange={(newValue) => handleDateChange('dateFrom', newValue)}
+                                slotProps={{
+                                textField: { fullWidth: true },
+                                }}
+                            />
+                        </LocalizationProvider>
                     </div>
                     <div className="w-[100%]">
                         <FormLabel className="mr-3 whitespace-nowrap">
                             Date To:
                         </FormLabel>
-                        <FormInput                  
+                        {/* <FormInput                  
                             type="date"
                             className=""
                             name="dateTo"
                             onChange={handleInputChange}
                             value={formData.dateTo}
-                        />
+                        /> */}
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <DatePicker
+                                value={formData.dateTo}
+                                onChange={(newValue) => handleDateChange('dateTo', newValue)}
+                                slotProps={{
+                                textField: { fullWidth: true },
+                                }}
+                            />
+                        </LocalizationProvider>
                     </div>                
                     <div className="gap-y-2 w-[100%]">
                         <FormLabel className="mr-3 whitespace-nowrap">
@@ -94,7 +143,9 @@ function TransactionSummery() {
                     </div>
                     <div className="flex gap-2">
                         <Button type="submit" className="btn-primary" >Search </Button>
-                        {/* <Button type="button" className="btn-primary"> <Lucide icon="RotateCw" className="block" /> </Button> */}
+                        <Button type="button" className="btn-primary" onClick={handleClearForm}> 
+                            <Lucide icon="RotateCw" className="block" /> 
+                        </Button>
                         <Button variant="outline-secondary">
                             <Lucide icon="Printer" className="stroke-[1.3] w-4 h-4 mr-2" />Print
                         </Button>
@@ -119,6 +170,7 @@ function TransactionSummery() {
                     
                 </form>
                 </div>
+                {error && <div className="text-red-500 text-right px-5">{error}</div>}
                 <div className="flex flex-col gap-5">
                     <div className="overflow-auto xl:overflow-visible">
                         {loading ? (

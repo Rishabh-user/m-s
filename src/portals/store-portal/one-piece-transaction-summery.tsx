@@ -100,52 +100,11 @@ function OnePieceTransactionSummery() {
                             </Table.Thead>
                             <Table.Tbody>                    
                                 <Table.Tr className="[&_td]:last:border-b-0">
-                                    <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
+                                    <Table.Td colSpan={4} className="text-center py-4 border-dashed dark:bg-darkmode-600">
                                         <div className="whitespace-nowrap">
-                                            5/8/2024 7:54:16 AM
+                                            No data available
                                         </div>
-                                    </Table.Td>
-                                    <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
-                                        <div className= "flex items-center">
-                                            <div className="ml-1.5 whitespace-nowrap">
-                                                10003428
-                                            </div>
-                                        </div>
-                                    </Table.Td>
-                                    <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
-                                        <div className="whitespace-nowrap">
-                                            1392
-                                        </div>
-                                    </Table.Td>
-                                    <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
-                                        <div className="flex items-center whitespace-nowrap"
-                                        >000T653000108748
-                                        </div>
-                                    </Table.Td>
-                                </Table.Tr>
-                                <Table.Tr className="[&_td]:last:border-b-0">
-                                    <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
-                                        <div className="whitespace-nowrap">
-                                            5/8/2024 7:54:16 AM
-                                        </div>
-                                    </Table.Td>
-                                    <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
-                                        <div className= "flex items-center">
-                                            <div className="ml-1.5 whitespace-nowrap">
-                                                10003428
-                                            </div>
-                                        </div>
-                                    </Table.Td>
-                                    <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
-                                        <div className="whitespace-nowrap">
-                                            1392
-                                        </div>
-                                    </Table.Td>
-                                    <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
-                                        <div className="flex items-center text-primary whitespace-nowrap"
-                                        >000T653000108748
-                                        </div>
-                                    </Table.Td>
+                                    </Table.Td>                                    
                                 </Table.Tr>
                             </Table.Tbody>
                         </Table>
