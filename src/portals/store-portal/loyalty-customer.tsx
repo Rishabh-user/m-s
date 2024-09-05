@@ -232,9 +232,9 @@ function LoyaltyCustomer() {
                         <Lucide icon="RotateCw" className="block" />
                     </Button>
                 </div>
-            </form>
-            {error && <div className="text-red-500">{error}</div>}
+            </form>            
             </div>
+            {error && <div className="text-red-500 text-right px-5">{error}</div>}
           </div>
         </div>
        </div>
