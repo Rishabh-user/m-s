@@ -292,6 +292,7 @@ function LoyaltyCustomer() {
                                                 <option value={50}>50</option>
                                             </FormSelect>
                                         </div>
+
                                     </div>
                                 </div>                    
                             </div>
@@ -384,7 +385,7 @@ function LoyaltyCustomer() {
                                                                 <div>Address</div>
                                                                 <span>{customerData.memberContact[0].address}, {customerData.memberContact[0].address_2}, {customerData.memberContact[0].city}</span>
                                                             </div>
-                                                        </div>   
+                                                        </div>  angu 
                                                         <div className="flex items-center">                      
                                                             <div className="flex justify-between flex-wrap w-full sm:items-center sm:flex-row gap-y-1">
                                                                 <div>Enrollment Date</div>
