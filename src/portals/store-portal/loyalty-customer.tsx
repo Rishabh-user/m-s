@@ -355,7 +355,7 @@ function LoyaltyCustomer() {
                                                     <h3>Personal Information</h3>
                                                 </div>
                                                 <div className="grid grid-cols-12 gap-5 mt-3.5 p-4">
-                                                    <div className="flex flex-col col-span-12 md:col-span-6 w-[100%] gap-7 md:pr-4">
+                                                    <div className="flex flex-col col-span-12 md:col-span-6 w-[100%] gap-7 pr-4">
                                                         <div className="flex items-center">
                                                             <div className="flex justify-between flex-wrap w-full sm:items-center sm:flex-row gap-y-1">
                                                                 <div>Account No</div>
@@ -756,7 +756,7 @@ function LoyaltyCustomer() {
                                             <h3>Personal Information</h3>
                                         </div>
                                         <div className="grid grid-cols-12 gap-5 mt-3.5 p-4">
-                                            <div className="flex flex-col col-span-12  md:col-span-6 2xl:col-span-6 w-[100%] gap-7 md:pr-4">
+                                            <div className="flex flex-col col-span-12 col-span-6 gap-7 pr-4">
                                             <div className="flex items-center">
                                                 <div className="flex justify-between flex-wrap w-full sm:items-center sm:flex-row gap-y-1">
                                                 <div>Account No</div>
@@ -800,7 +800,7 @@ function LoyaltyCustomer() {
                                                 </div>
                                             </div>
                                             </div>
-                                            <div className="flex flex-col col-span-12  md:col-span-6 2xl:col-span-6 gap-7 pl-4 border-left">
+                                            <div className="flex flex-col col-span-12 col-span-6 gap-7 pl-4 border-left">
                                             <div className="flex items-center">
                                                 <div className="flex justify-between flex-wrap w-full sm:items-center sm:flex-row gap-y-1">
                                                 <div>Name</div>

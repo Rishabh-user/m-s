@@ -33,7 +33,11 @@ function ActivePromotion() {
     event.preventDefault();
     setLoading(true);
     setError(null);
-
+    if (!formData.upc) {
+        setError('Please UPC No.');
+        setLoading(false);
+        return;
+    } 
     try {
       const data = await GetActivePromotionbyUPC(formData.upc);
       const activeData = await GetActivePromo(formData.upc);
@@ -66,20 +70,20 @@ function ActivePromotion() {
     setActivePromoPage(1); 
   };
 
-  const promoTotalPages = activepromotionupcData
-    ? Math.ceil(activepromotionupcData.data.ActivePromotionByUPC.length / promoItemsPerPage)
+  const promoTotalPages = activepromotionupcData?.data?.ActivePromotionByUPC?.length
+    ? Math.ceil(activepromotionupcData?.data?.ActivePromotionByUPC?.length / promoItemsPerPage)
     : 1;
-  const activePromoTotalPages = activePromoData
-    ? Math.ceil(activePromoData.data.ActivePromotionByUPC.length / activePromoItemsPerPage)
+  const activePromoTotalPages = activePromoData?.data?.ActivePromotionByUPC?.length
+    ? Math.ceil(activePromoData?.data?.ActivePromotionByUPC?.length / activePromoItemsPerPage)
     : 1;
-  const currentPromoItems = activepromotionupcData
-    ? activepromotionupcData.data.ActivePromotionByUPC.slice(
+  const currentPromoItems = activepromotionupcData?.data?.ActivePromotionByUPC
+    ? activepromotionupcData?.data?.ActivePromotionByUPC.slice(
         (promoPage - 1) * promoItemsPerPage,
         promoPage * promoItemsPerPage
       )
     : [];
     const currentActivePromoItems = activePromoData
-    ? activePromoData.data.ActivePromotionByUPC.slice(
+    ? activePromoData?.data?.ActivePromotionByUPC.slice(
         (activePromoPage - 1) * activePromoItemsPerPage,
         activePromoPage * activePromoItemsPerPage
       )
@@ -142,25 +146,26 @@ function ActivePromotion() {
                 <form onSubmit={handleSubmit}
                 className="flex xl:flex-row flex-col items-end border-dashed gap-x-5 gap-y-2 border border-slate-300/80 xl:border-0 rounded-[0.6rem] p-4 sm:p-5 xl:p-0"
                 >
-                <div className="w-[100%]">
-                    <FormLabel className="mr-3 whitespace-nowrap">Enter UPC</FormLabel>
-                    <FormInput
-                    type="text"
-                    name="upc"
-                    onChange={handleInputChange}
-                    value={formData.upc}
-                    />
-                </div>
-                <div className="flex gap-2">
-                    <Button type="submit" className="btn-primary">
-                       Search
-                    </Button>
-                    <Button type="button" className="btn-primary" onClick={handleClearForm}>
-                        <Lucide icon="RotateCw" className="block" />
-                    </Button>
-                </div>
+                    <div className="w-[100%]">
+                        <FormLabel className="mr-3 whitespace-nowrap">Enter UPC</FormLabel>
+                        <FormInput
+                        type="text"
+                        name="upc"
+                        onChange={handleInputChange}
+                        value={formData.upc}
+                        />
+                    </div>
+                    <div className="flex gap-2">
+                        <Button type="submit" className="btn-primary">
+                        Search
+                        </Button>
+                        <Button type="button" className="btn-primary" onClick={handleClearForm}>
+                            <Lucide icon="RotateCw" className="block" />
+                        </Button>
+                    </div>
                 </form>
             </div>
+            {error && <div className="text-red-500 text-left px-5">{error}</div>}
           </div>
         </div>
        </div>
@@ -176,7 +181,7 @@ function ActivePromotion() {
                             <div className="flex items-center justify-center">
                                 <Loader icon={"oval"} className="w-20 h-20 flex items-center justify-center" />
                             </div>
-                            ) : (
+                            ) : currentPromoItems && currentPromoItems.length > 0 ? (
                             <Table className="border-b border-dashed border-slate-200/80">
                                 <Table.Thead className="bg-black">
                                     <Table.Tr>
@@ -217,7 +222,13 @@ function ActivePromotion() {
                                     ))}
                                 </Table.Tbody>
                             </Table>
-                        )}
+                        ) : (
+                            <Table.Tr className="flex w-[100%]">
+                                <Table.Td colSpan={4} className="py-4 text-center text-gray-500 w-[100%]">
+                                    {currentPromoItems?.message || "No records available."}
+                                </Table.Td>
+                            </Table.Tr>
+                          )}
                         </div>
                         <div className="flex flex-col-reverse justify-between items-center p-5 flex-reverse gap-y-2 sm:flex-row">
                             <Pagination
