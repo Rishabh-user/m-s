@@ -23,6 +23,26 @@
         }
     }
 }
+.text-warning-500 {
+    --tw-text-opacity: 1;
+    color: rgb(250 145 107 / var(--tw-text-opacity));
+}
+.bg-warning-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(250 145 107 / var(--tw-bg-opacity));
+}
+
+.bg-success-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(80 199 147 / var(--tw-bg-opacity));
+}
+.text-success-500 {
+    --tw-text-opacity: 1;
+    color: rgb(80 199 147 / var(--tw-text-opacity));
+}
+.bg-opacity-25 {
+    --tw-bg-opacity: 0.25;
+}
 body{color: var(--black);font-size: 1rem;}
 p{color: var(--black);}
 h3{font-size: 1.3rem !important;}

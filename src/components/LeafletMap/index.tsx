@@ -1,6 +1,5 @@
 import LeafletMapLoader, { Init } from "@/components/Base/LeafletMapLoader";
 import { getColor } from "@/utils/colors";
-import { selectDarkMode } from "@/stores/darkModeSlice";
 import { useAppSelector } from "@/stores/hooks";
 import location from "@/assets/json/location.json";
 import { selectColorScheme } from "@/stores/colorSchemeSlice";
@@ -16,7 +15,6 @@ function Main({ width = 0, height = 0, className = "" }: MainProps) {
     height: height,
     className: className,
   };
-  const darkMode = useAppSelector(selectDarkMode);
   const colorScheme = useAppSelector(selectColorScheme);
 
   const init: Init = async (initializeMap) => {
@@ -44,7 +42,7 @@ function Main({ width = 0, height = 0, className = "" }: MainProps) {
         maxClusterRadius: 30,
         iconCreateFunction: function (cluster) {
           const color =
-            darkMode && colorScheme
+            colorScheme
               ? getColor("darkmode.100", 0.6)
               : getColor("primary", 0.8);
           const mapMarkerRegionSvg =
@@ -87,7 +85,7 @@ function Main({ width = 0, height = 0, className = "" }: MainProps) {
       map.addLayer(markers);
 
       const color =
-        darkMode && colorScheme
+      colorScheme
           ? getColor("darkmode.100")
           : getColor("primary");
       const mapMarkerSvg =
@@ -120,7 +118,7 @@ function Main({ width = 0, height = 0, className = "" }: MainProps) {
   return (
     <LeafletMapLoader
       init={init}
-      darkMode={darkMode}
+      
       className={props.className}
     />
   );

@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
-import { selectDarkMode } from "@/stores/darkModeSlice";
-import { useAppSelector } from "@/stores/hooks";
+
 
 interface LoadingIconProps extends React.ComponentPropsWithoutRef<"span"> {
   icon: "oval";
@@ -16,10 +15,9 @@ function Loader({
     icon: icon,
     color: color,
   };
-  const darkMode = useAppSelector(selectDarkMode);
   const iconColor = useMemo(() => {
-    return !darkMode ? props.color : "#ffffff";
-  }, [darkMode]);
+    return  props.color ;
+  }, []);
 
   return (
     <span {...computedProps}>

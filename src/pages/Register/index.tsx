@@ -4,7 +4,6 @@ import users from "@/fakers/users";
 import Button from "@/components/Base/Button";
 import clsx from "clsx";
 import _ from "lodash";
-import ThemeSwitcher from "@/components/ThemeSwitcher";
 
 function Main() {
   return (
@@ -186,7 +185,6 @@ function Main() {
           </div>
         </div>
       </div>
-      <ThemeSwitcher />
     </>
   );
 }

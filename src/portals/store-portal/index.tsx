@@ -1,5 +1,4 @@
 
-import { getColor } from "@/utils/colors";
 import ReportDonutChart from "@/components/ReportDonutChart";
 import ReportPieChart from "@/components/ReportPieChart";
 import ReportBarChart5 from "@/components/ReportBarChart5";

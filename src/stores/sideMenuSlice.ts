@@ -25,6 +25,7 @@ import Reports from '../assets/images/icons/reports.png';
 import SalesTracker from '../assets/images/icons/sales-tracker.png';
 import NPSDashboard from '../assets/images/icons/NPS-dashboard.png';
 import CaptureFitData from '../assets/images/icons/Capture-Bra-FitData.png'
+import { ClassNames } from "@emotion/react";
 
 export interface Menu {
   image?: string;
@@ -169,7 +170,7 @@ const initialState: SideMenuState = {
       {
         image: SearchCustomer,
         pathname: "/store-portal",
-        title: "Dashboard",        
+        title: "Dashboard",       
       },     
       {
         image: SearchCustomer,

@@ -2,7 +2,6 @@ import Chart from "@/components/Base/Chart";
 import { ChartData, ChartOptions } from "chart.js/auto";
 import { getColor } from "@/utils/colors";
 import { selectColorScheme } from "@/stores/colorSchemeSlice";
-import { selectDarkMode } from "@/stores/darkModeSlice";
 import { useAppSelector } from "@/stores/hooks";
 import { useMemo } from "react";
 
@@ -18,7 +17,6 @@ function Main({ width = "auto", height = "auto", className = "" }: MainProps) {
     className: className,
   };
   const colorScheme = useAppSelector(selectColorScheme);
-  const darkMode = useAppSelector(selectDarkMode);
 
   const chartData = [15, 10, 65];
   const chartColors = () => [
@@ -35,11 +33,11 @@ function Main({ width = "auto", height = "auto", className = "" }: MainProps) {
           backgroundColor: colorScheme ? chartColors() : "",
           hoverBackgroundColor: colorScheme ? chartColors() : "",
           borderWidth: 5,
-          borderColor: darkMode ? getColor("darkmode.700") : getColor("white"),
+          borderColor:  getColor("darkmode.700") ,
         },
       ],
     };
-  }, [colorScheme, darkMode]);
+  }, [colorScheme]);
 
   const options: ChartOptions = useMemo(() => {
     return {
@@ -51,7 +49,7 @@ function Main({ width = "auto", height = "auto", className = "" }: MainProps) {
       },
       cutout: "80%",
     };
-  }, [colorScheme, darkMode]);
+  }, [colorScheme]);
 
   return (
     <Chart

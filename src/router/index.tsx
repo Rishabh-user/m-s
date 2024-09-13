@@ -1,9 +1,7 @@
 import { useRoutes } from "react-router-dom";
 import MainDashboard from "../pages/Dashboard";
 import Users from "../pages/Users";
-import Departments from "../pages/Departments";
-import AddUser from "../pages/AddUser";
-import ProfileOverview from "../pages/ProfileOverview";
+
 import Settings from "../pages/Settings";
 import Login from "../pages/Login";
 import Notification from "../pages/Notification";
@@ -94,18 +92,7 @@ function Router() {
           path: "users",
           element: <Users />,
         },
-        {
-          path: "departments",
-          element: <Departments />,
-        },
-        {
-          path: "add-user",
-          element: <AddUser />,
-        },
-        {
-          path: "profile-overview",
-          element: <ProfileOverview />,
-        },
+                
         {
           path: "settings",
           element: <Settings />,

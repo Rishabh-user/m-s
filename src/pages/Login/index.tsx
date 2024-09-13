@@ -2,11 +2,10 @@ import { FormCheck, FormInput, FormLabel } from "@/components/Base/Form";
 import Tippy from "@/components/Base/Tippy";
 import users from "@/fakers/users";
 import Button from "@/components/Base/Button";
-import Alert from "@/components/Base/Alert";
 import Lucide from "@/components/Base/Lucide";
 import clsx from "clsx";
 import _ from "lodash";
-import ThemeSwitcher from "@/components/ThemeSwitcher";
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import QRCode from 'qrcode.react';
@@ -60,7 +59,6 @@ function Main() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     try {
       const response = await axios.post('http://localhost:8000/api/verify-microsoftotp/', { token: otp, secret: secret });
       if (response.data.success) {
@@ -108,35 +106,7 @@ function Main() {
                 <div className="mt-2.5 text-slate-600">
                   Secure Access to Your Account Easily!
                 </div>
-                {/* <Alert
-                  variant="outline-primary"
-                  className="flex items-center px-4 py-3 my-7 bg-primary/5 border-primary/20 rounded-[0.6rem] leading-[1.7]"
-                >
-                  {({ dismiss }) => (
-                    <>
-                      <div className="">
-                        <Lucide
-                          icon="Lightbulb"
-                          className="stroke-[0.8] w-7 h-7 mr-2 fill-primary/10"
-                        />
-                      </div>
-                      <div className="ml-1 mr-8">
-                        Welcome to <span className="font-medium">Tailwise</span>{" "}
-                        demo! Simply click{" "}
-                        <span className="font-medium">Sign In</span> to explore
-                        and access our documentation.
-                      </div>
-                      <Alert.DismissButton
-                        type="button"
-                        className="btn-close text-primary"
-                        onClick={dismiss}
-                        aria-label="Close"
-                      >
-                        <Lucide icon="X" className="w-5 h-5" />
-                      </Alert.DismissButton>
-                    </>
-                  )}
-                </Alert> */}
+               
                 <div className="mt-6">
                   <FormLabel>User Name</FormLabel>
                   <FormInput
@@ -222,7 +192,7 @@ function Main() {
           </div>
         </div>
       </div>
-      <ThemeSwitcher />
+      
     </>
   );
 }

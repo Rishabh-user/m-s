@@ -7,6 +7,7 @@ import Table from "@/components/Base/Table";
 import _ from "lodash";
 import { searchCustomer, GetLCRunningBalance, GetCoupenCodeForAccountNoForStorePortal } from "../../api";
 import Loader from "@/components/Base/LoadingIcon/loader";
+import Pagination from "@/components/pagination";
 
 function LoyaltyCustomer() {
     const [formData, setFormData] = useState({
@@ -108,63 +109,63 @@ function LoyaltyCustomer() {
     // Pagination calculations for customer table
     const customerTotalItems = customerData?.memberContact?.length || 0;
     const customerTotalPages = Math.ceil(customerTotalItems / customerItemsPerPage);
-    const customerIndexOfLastItem = customerPage * customerItemsPerPage;
-    const customerIndexOfFirstItem = customerIndexOfLastItem - customerItemsPerPage;
+    const customerIndexOfLastItem = Math.min(customerPage * customerItemsPerPage, customerTotalItems);
+    const customerIndexOfFirstItem = (customerPage - 1) * customerItemsPerPage;
     const currentCustomerItems = customerData?.memberContact?.slice(customerIndexOfFirstItem, customerIndexOfLastItem);
 
     // Pagination calculations for balance table
     const balanceTotalItems = balanceData?.data?.LCRunningBalance?.length || 0;
     const balanceTotalPages = Math.ceil(balanceTotalItems / balanceItemsPerPage);
-    const balanceIndexOfLastItem = balancePage * balanceItemsPerPage;
-    const balanceIndexOfFirstItem = balanceIndexOfLastItem - balanceItemsPerPage;
+    const balanceIndexOfLastItem = Math.min(balancePage * balanceItemsPerPage, balanceTotalItems);
+    const balanceIndexOfFirstItem = (balancePage - 1) * balanceItemsPerPage;
     const currentBalanceItems = balanceData?.data?.LCRunningBalance?.slice(balanceIndexOfFirstItem, balanceIndexOfLastItem);
     
     // Pagination calculations for coupen table
     const coupenTotalItems = coupenCodeData?.data?.VouchersByAccountNoForStorePortal?.length || 0;
     const coupenTotalPages = Math.ceil(coupenTotalItems / CoupenItemsPerPage);
-    const coupenIndexOfLastItem = coupenPage * CoupenItemsPerPage;
-    const coupenIndexOfFirstItem = coupenIndexOfLastItem - balanceItemsPerPage;
+    const coupenIndexOfLastItem = Math.min(coupenPage * CoupenItemsPerPage, coupenTotalItems);
+    const coupenIndexOfFirstItem =  (coupenPage - 1) * CoupenItemsPerPage;
     const currentCoupenItems = coupenCodeData?.data?.VouchersByAccountNoForStorePortal?.slice(coupenIndexOfFirstItem, coupenIndexOfLastItem);
 
     // Pagination component
-    const Pagination = ({ currentPage, totalPages, onPageChange }: { currentPage: number, totalPages: number, onPageChange: (pageNumber: number) => void }) => {
-        const maxPagesToShow = 5;
-        const getPaginationRange = () => {
-            const start = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
-            const end = Math.min(totalPages, start + maxPagesToShow - 1);
-            return { start, end };
-        };
-        const { start, end } = getPaginationRange();
-        return (
-            <div className="flex justify-between mt-4 w-[100%]">
-                <div className="flex justify-center pagination">
-                    <button
-                        disabled={currentPage === 1}
-                        onClick={() => onPageChange(currentPage - 1)}
-                        className="px-4 rounded disabled:opacity-50"
-                    >
-                        <Lucide icon="ChevronsLeft" className="w-5 h-5" />
-                    </button>
-                    {Array.from({ length: end - start + 1 }, (_, index) => (
-                        <button
-                            key={start + index}
-                            onClick={() => onPageChange(start + index)}
-                            className={`px-4 ${currentPage === start + index} rounded mx-2`}
-                        >
-                            {start + index}
-                        </button>
-                    ))}
-                    <button
-                        disabled={currentPage === totalPages}
-                        onClick={() => onPageChange(currentPage + 1)}
-                        className="px-4 rounded disabled:opacity-50"
-                    >
-                        <Lucide icon="ChevronsRight" className="w-5 h-5" />
-                    </button>
-                </div>                
-            </div>
-        );
-    };
+    // const Pagination = ({ currentPage, totalPages, onPageChange }: { currentPage: number, totalPages: number, onPageChange: (pageNumber: number) => void }) => {
+    //     const maxPagesToShow = 5;
+    //     const getPaginationRange = () => {
+    //         const start = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
+    //         const end = Math.min(totalPages, start + maxPagesToShow - 1);
+    //         return { start, end };
+    //     };
+    //     const { start, end } = getPaginationRange();
+    //     return (
+    //         <div className="flex justify-between mt-4 w-[100%]">
+    //             <div className="flex justify-center pagination">
+    //                 <button
+    //                     disabled={currentPage === 1}
+    //                     onClick={() => onPageChange(currentPage - 1)}
+    //                     className="px-4 rounded disabled:opacity-50"
+    //                 >
+    //                     <Lucide icon="ChevronsLeft" className="w-5 h-5" />
+    //                 </button>
+    //                 {Array.from({ length: end - start + 1 }, (_, index) => (
+    //                     <button
+    //                         key={start + index}
+    //                         onClick={() => onPageChange(start + index)}
+    //                         className={`px-4 ${currentPage === start + index} rounded mx-2`}
+    //                     >
+    //                         {start + index}
+    //                     </button>
+    //                 ))}
+    //                 <button
+    //                     disabled={currentPage === totalPages}
+    //                     onClick={() => onPageChange(currentPage + 1)}
+    //                     className="px-4 rounded disabled:opacity-50"
+    //                 >
+    //                     <Lucide icon="ChevronsRight" className="w-5 h-5" />
+    //                 </button>
+    //             </div>                
+    //         </div>
+    //     );
+    // };
 
   return (
     <div className="grid grid-cols-12 gap-y-10 gap-x-6  mt-15">
@@ -264,7 +265,7 @@ function LoyaltyCustomer() {
                                                 <tbody>
                                                     {currentCustomerItems?.map((contact, index) => (
                                                         <tr key={index} onClick={() => handleMobileClick(contact)} className="cursor-pointer">
-                                                            <td className="px-5 border-b dark:border-darkmode-300 py-4 border-dashed dark:bg-darkmode-600">{index+1}</td>
+                                                            <td className="px-5 border-b dark:border-darkmode-300 py-4 border-dashed dark:bg-darkmode-600">{customerIndexOfFirstItem + index+1}</td>
                                                             <td className="px-5 border-b dark:border-darkmode-300 py-4 border-dashed dark:bg-darkmode-600">{contact.name}</td>
                                                             <td className="px-5 border-b dark:border-darkmode-300 py-4 border-dashed dark:bg-darkmode-600">{contact.account_No}</td>                                
                                                             <td className="px-5 border-b dark:border-darkmode-300 py-4 border-dashed dark:bg-darkmode-600" onClick={() => handleMobileClick(contact)}>{contact.mobile_Phone_No}</td>
@@ -605,7 +606,7 @@ function LoyaltyCustomer() {
                                                     Mobile No
                                                 </Table.Td>
                                                 <Table.Td className="px-3 whitespace-nowrap text-white">
-                                                    Action
+                                                    Status
                                                 </Table.Td>
                                             </Table.Tr>
                                             </Table.Thead>
@@ -614,7 +615,7 @@ function LoyaltyCustomer() {
                                                     <Table.Tr key={index} className="[&_td]:last:border-b-0">
                                                         <Table.Td className="px-3 py-4 border-dashed dark:bg-darkmode-600">
                                                             <div className="whitespace-nowrap">
-                                                                {index+1}
+                                                                {coupenIndexOfFirstItem + index + 1}
                                                             </div>
                                                         </Table.Td>
                                                         <Table.Td className="px-3 py-4 border-dashed dark:bg-darkmode-600">
@@ -665,7 +666,9 @@ function LoyaltyCustomer() {
                                                             </div>
                                                         </Table.Td>
                                                         <Table.Td className="px-3 py-4 border-dashed dark:bg-darkmode-600">
-                                                            <div className="flex items-center justify-center whitespace-nowrap"
+                                                            <div className={`flex items-center justify-center whitespace-nowrap bg-opacity-25 px-3 py-1 rounded-full ${
+                                                                coupenData.isExpired === 1 ?  "text-success-500 bg-success-500" : "text-warning-500 bg-warning-500"
+                                                            }`}
                                                             >
                                                                 {coupenData.isExpired === 1 ? 'Active' : 'Inactive'}
                                                             </div>
@@ -1006,7 +1009,7 @@ function LoyaltyCustomer() {
                                                 Mobile No
                                             </Table.Td>
                                             <Table.Td className="whitespace-nowrap text-white">
-                                                Action
+                                                Status
                                             </Table.Td>
                                         </Table.Tr>
                                         </Table.Thead>
@@ -1015,7 +1018,7 @@ function LoyaltyCustomer() {
                                                 <Table.Tr key={index} className="[&_td]:last:border-b-0">
                                                     <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
                                                         <div className="whitespace-nowrap">
-                                                            {index+1}
+                                                            {coupenIndexOfFirstItem + index + 1}
                                                         </div>
                                                     </Table.Td>
                                                     <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
@@ -1066,7 +1069,9 @@ function LoyaltyCustomer() {
                                                         </div>
                                                     </Table.Td>
                                                     <Table.Td className="py-4 border-dashed dark:bg-darkmode-600">
-                                                        <div className="flex items-center justify-center whitespace-nowrap"
+                                                        <div className={`flex items-center justify-center whitespace-nowrap bg-opacity-25 px-3 py-1 rounded-full ${
+                                                            coupenData.isExpired === 1 ?  "text-success-500 bg-success-500" : "text-warning-500 bg-warning-500"
+                                                        }`}
                                                         >
                                                             {coupenData.isExpired === 1 ? 'Active' : 'Inactive'}
                                                         </div>

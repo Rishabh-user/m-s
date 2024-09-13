@@ -1,7 +1,6 @@
 import Chart, { ChartElement } from "@/components/Base/Chart";
 import { ChartData, ChartOptions } from "chart.js/auto";
 import { selectColorScheme } from "@/stores/colorSchemeSlice";
-import { selectDarkMode } from "@/stores/darkModeSlice";
 import { useAppSelector } from "@/stores/hooks";
 import { useMemo, useRef } from "react";
 import { getColor } from "@/utils/colors";
@@ -32,14 +31,13 @@ function Main({
   };
   const reportLineChartRef = useRef<ChartElement | null>();
   const colorScheme = useAppSelector(selectColorScheme);
-  const darkMode = useAppSelector(selectDarkMode);
 
   const getBackground = () => {
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
     const gradient = ctx?.createLinearGradient(0, 0, 0, 100);
     gradient?.addColorStop(0, props.backgroundColor);
-    gradient?.addColorStop(1, darkMode ? "#28344e00" : "#ffffff01");
+    gradient?.addColorStop(1,  "#28344e00");
     return gradient;
   };
 
@@ -48,7 +46,7 @@ function Main({
     const ctx = canvas.getContext("2d");
     const gradient = ctx?.createLinearGradient(0, 0, 0, 100);
     gradient?.addColorStop(0, getColor("slate.50"));
-    gradient?.addColorStop(1, darkMode ? "#28344e00" : "#ffffff01");
+    gradient?.addColorStop(1, "#28344e00");
     return gradient;
   };
 
@@ -147,7 +145,7 @@ function Main({
         },
       ],
     };
-  }, [reportLineChartRef.current, colorScheme, darkMode]);
+  }, [reportLineChartRef.current, colorScheme]);
 
   const options: ChartOptions = useMemo(() => {
     return {
@@ -182,7 +180,7 @@ function Main({
         },
       },
     };
-  }, [reportLineChartRef.current, colorScheme, darkMode]);
+  }, [reportLineChartRef.current, colorScheme]);
 
   return (
     <>
