@@ -21,6 +21,7 @@ import HRIMS from "@/portals/HRIS";
 import CoPortals from "@/portals/co-portals";
 import SalesTrackerCoPortal from "@/portals/co-portals/sales-tracker";
 import SalesTrackerOldCoPortal from "@/portals/co-portals/sales-tracker-old";
+import CoActivePromotion from "@/portals/co-portals/active-promotion";
 
 function Router() {
   const routes = [
@@ -87,6 +88,10 @@ function Router() {
         {
           path: "co-portal/sales-tracker-old",
           element: <SalesTrackerOldCoPortal />,
+        },
+        {
+          path: "co-portal/active-promotion",
+          element: <CoActivePromotion />,
         },
         {
           path: "users",

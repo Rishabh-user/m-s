@@ -270,9 +270,149 @@ const initialState: SideMenuState = {
       },     
       {
         image: SearchCustomer,
-        pathname: "/request-application",
-        title: "Request & Maintenance Application",        
+        pathname: "/co-portal/active-promotion",
+        title: "Active promotion",        
       }, 
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/bank/mid/master",
+        title: "Bank MID Master",        
+      }, 
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/bank-cash-master",
+        title: "Bank Cash Master",        
+      }, 
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/bank-point-master",
+        title: "Bank Points Master",        
+      },  
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/campaign-dashboard",
+        title: "Campaign Dashboard",        
+      },  
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/campaign-manager",
+        title: "Campaign Manager",        
+      }, 
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/campaign-report",
+        title: "Campaign Report",        
+      }, 
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/summary-campaign-report",
+        title: "Summary:Campaign Report",        
+      },
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/download-pincode-master",
+        title: "Download PinCode Master",        
+      },
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/download-SAP-file",
+        title: "Download SAP File",        
+      },
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/FTP-upload-monitor",
+        title: "FTP Upload Monitor",        
+      },
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/generate-coupon",
+        title: "Generate Coupon",        
+      },
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/request-maintenance-application",
+        title: "Request & Maintenance Application",        
+      },
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/application",
+        title: "Application",        
+      },
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/log-master",
+        title: "Log Master",        
+      },
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/manage-roles",
+        title: "Manage Roles",        
+      }, 
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/merchant-catalog",
+        title: "Merchant Catalog",        
+      },
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/mgage-api",
+        title: "Mgage API[Send Mail]",        
+      },
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/missing-initial-MRP",
+        title: "Missing Initial MRP",        
+      },
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/attendance-monitor",
+        title: "Attendance Monitor",        
+      },
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/MRP-upload",
+        title: "MRP Upload",        
+      },
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/MRP-verification",
+        title: "MRP Verification",        
+      },
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/out-of-CO-employee",
+        title: "Out of CO Employee",        
+      },   
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/pending-TLOG-status",
+        title: "Pending TLOG Status",        
+      },   
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/points-accumulation",
+        title: "Points Accumulation",        
+      },   
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/points-transfer",
+        title: "Points Transfer",        
+      },   
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/price-upload",
+        title: "Price Upload",        
+      },   
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/reports",
+        title: "Reports",        
+      },   
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/reports-permission",
+        title: "Reprots Permission",        
+      },  
       {
         image: SearchCustomer,
         pathname: "/co-portal/sales-tracker",
@@ -280,9 +420,74 @@ const initialState: SideMenuState = {
       }, 
       {
         image: SearchCustomer,
-        pathname: "co-portal/sales-tracker-old",
+        pathname: "/co-portal/sales-tracker-old",
         title: "Sales Tracker Old",        
-      },    
+      }, 
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/sms-subscriber",
+        title: "SMS Subscriber",        
+      }, 
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/staff-report",
+        title: "Staff Report",        
+      }, 
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/item-file-import-summary",
+        title: "Item File Import Summary",        
+      }, 
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/tax-detail",
+        title: "Tax Details",        
+      },  
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/transaction-report-card",
+        title: "Transaction Report Card",        
+      },
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/transaction-report-cash",
+        title: "Transaction Report Cash",        
+      },
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/transaction-summary",
+        title: "Transaction Summary",        
+      },
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/MRP-tracker",
+        title: "MRP Tracker",        
+      },
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/upload-bank/file",
+        title: "Upload Bank File",        
+      },
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/upload-campaign-result",
+        title: "Upload Campagn Result",        
+      },
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/upload-campaign-result-sms",
+        title: "Upload Campaign Result SMS",        
+      },
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/upload-new-article",
+        title: "Upload New Articles",        
+      },
+      {
+        image: SearchCustomer,
+        pathname: "/co-portal/MRP-exception",
+        title: "MRP Exception",        
+      },  
     ]
   },
   mainMenu: [],
